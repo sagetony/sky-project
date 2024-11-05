@@ -1,17 +1,25 @@
 {
-  "meta_city_fund": "Meta City Fund",
+  "create_account": "Create account",
+  "title": "Meta City Fund",
   "map": "Map",
   "market": "Market",
   "tokenomics": "Tokenomics",
-  "about_us": "About Us",
+  "about": "About Us",
   "login": "Log in",
-  "create_account": "Create account",
-  "mcfd": "# MCFD",
-  "introduction": "Introduction",
-  "intro_text_1": "Land less than one thousand square meters is held by OSO Fund, and can choose fund management and development or investment and operation.",
-  "intro_text_2": "Land over 1,000 square meters can be sold by itself. In this case, we will deploy your on-chain NFT and unlock the corresponding rights in the virtual world, provide you with a series of facilities issued by the government for the corresponding land.",
-  "advantages": "Advantages",
-  "adv_text_1": "The Meta City Fund is managed transparently, with all land transactions and management recorded on the blockchain so anyone can review, investigate and supervise it.",
-  "adv_text_2": "As the assets grow, OSO Fund can submit to supervision agency and intermediary fund operations are compliant, and complete reports and asset management are legally issued.",
-  "footer_text": "18+ and Copyright ©SKY META CITY"
+  "main": {
+    "section1": {
+      "title": "Introduction",
+      "content1": "Land less than one thousand square meters is held by OSO Fund, and can choose fund management and development or investment and operation.",
+      "content2": "Land over 1,000 square meters can be sold by itself. In this case, we will deploy your on-chain NFT and unlock the corresponding rights in the virtual world, provide you with a series of facilities issued by the government for the corresponding land."
+    },
+    "section2": {
+      "title": "Advantages",
+      "content1": "The Meta City Fund is managed transparently, with all land transactions and management recorded on the blockchain so anyone can review, investigate and supervise it.",
+      "content2": "As the assets grow, OSO Fund can submit to supervision agency and intermediary fund operations are compliant, and complete reports and asset management are legally issued."
+    }
+  },
+  "twitter": "Twitter",
+  "discord": "Discord",
+  "telegram": "Telegram",
+  "copyright": "18+ and Copyright ©SKY META CITY"
 }

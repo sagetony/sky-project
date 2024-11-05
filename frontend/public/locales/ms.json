@@ -1,0 +1,26 @@
+{
+  "title": "Dana Bandar Meta",
+  "map": "Peta",
+  "market": "Pasaran",
+  "tokenomics": "Tokenomics",
+  "about": "Tentang Kami",
+  "login": "Log masuk",
+  "create_account": "Buat akaun",
+  "main": {
+    "section1": {
+      "title": "Pengenalan",
+      "content1": "Tanah kurang daripada seribu meter persegi dipegang oleh Dana OSO, dan boleh memilih pengurusan dana dan pembangunan atau pelaburan dan operasi.",
+      "content2": "Tanah melebihi 1,000 meter persegi boleh dijual sendiri. Dalam kes ini, kami akan menggunakan NFT dalam rangkaian anda dan membuka kunci hak yang sepadan dalam dunia maya, menyediakan anda dengan kemudahan yang dikeluarkan oleh kerajaan untuk tanah yang berkenaan."
+    },
+    "section2": {
+      "title": "Kelebihan",
+      "content1": "Dana Bandar Meta diurus dengan telus, dengan semua transaksi tanah dan pengurusan direkodkan pada blok rantai supaya sesiapa sahaja boleh menyemak, menyiasat dan menyelia.",
+      "content2": "Apabila aset berkembang, Dana OSO boleh menyerahkan kepada agensi penyeliaan dan operasi dana yang patuh, dan laporan lengkap dan pengurusan aset dikeluarkan secara sah."
+    }
+  },
+
+  "twitter": "Twitter",
+  "discord": "Discord",
+  "telegram": "Telegram",
+  "copyright": "18+ Hak Cipta ©SKY META CITY"
+}

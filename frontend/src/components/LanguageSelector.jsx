@@ -1,6 +1,8 @@
+/* eslint-disable react/prop-types */
 import i18next from 'i18next';
 import { useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
+import { IoMdCheckmarkCircleOutline } from 'react-icons/io';
 
 const languages = [
   { code: 'en', label: 'English' },
@@ -13,7 +15,7 @@ const languages = [
   { code: 'es', label: 'Español' }, // Spanish
 ];
 
-const LanguageSelector = () => {
+const LanguageSelector = ({ setIsDropdownVisible }) => {
   const { i18n } = useTranslation();
 
   const changeLanguage = (code) => {
@@ -25,14 +27,25 @@ const LanguageSelector = () => {
   }, [i18n.language]);
 
   return (
-    <div className='bg-blue-500 p-4 rounded-lg text-white space-y-2'>
+    <div className='bg-blue-500 h-[200px] rounded-lg text-white mb-2'>
       {languages.map((lang) => (
         <button
           key={lang.code}
-          onClick={() => changeLanguage(lang.code)}
-          className='block w-full text-left px-4 py-2 hover:bg-blue-700 rounded'
+          onClick={() => {
+            changeLanguage(lang.code);
+            sessionStorage.setItem('language', lang.code);
+            setIsDropdownVisible(false);
+          }}
+          className={`block border-b border-gray-200 w-full text-left px-4 py-2 rounded ${
+            i18n.language === lang.code ? 'bg-blue-700' : 'hover:bg-blue-700'
+          }`}
         >
-          {lang.label}
+          <span className='flex justify-between items-center'>
+            {lang.label}
+            {i18n.language === lang.code && (
+              <IoMdCheckmarkCircleOutline style={{ fontSize: '22px' }} />
+            )}
+          </span>
         </button>
       ))}
     </div>
