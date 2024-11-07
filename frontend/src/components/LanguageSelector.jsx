@@ -27,7 +27,7 @@ const LanguageSelector = ({ setIsDropdownVisible }) => {
   }, [i18n.language]);
 
   return (
-    <div className='bg-blue-500 h-[200px] rounded-lg text-white mb-2'>
+    <div className='bg-blue-500 z-[999px] h-[200px] rounded-lg text-white mb-2'>
       {languages.map((lang) => (
         <button
           key={lang.code}
