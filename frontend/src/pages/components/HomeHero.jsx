@@ -9,18 +9,18 @@ const HomeHero = () => {
       <div className=' z-0'>
         <div
           style={{ backgroundImage: `url(${Home_Hero})` }}
-          className='h-[90vh] flex items-end justify-center bg-cover bg-[0px_-140px] bg-no-repeat'
+          className='md:h-[90vh] h-[100vh] flex items-end justify-center bg-cover md:bg-[0px_-140px] bg-[0px_-0px] bg-no-repeat'
         >
-          <div className='relative animate-breathing md:-mb-20 -mb-0'>
-            <h2 className='font-itim uppercase text-[#FDFFED] text-3xl text-center  absolute z-0 left-[104px] top-6 '>
+          <div className='md:relative animate-breathing -mb-20  '>
+            <h2 className='font-itim uppercase text-[#FDFFED] text-2xl md:text-3xl text-center  absolute z-0 md:left-[104px] left-[100px] top-6 '>
               Welcome to
             </h2>
             <img
               src={City_Logo}
               alt=''
-              className='md:w-[400px] md:h-[300px] w-[200px] h-[150px]  '
+              className='md:w-[400px] md:h-[300px] w-[350px] h-[250px]  '
             />
-            <h2 className='font-itim uppercase text-[#DFFEFC] text-2xl text-center cursor-pointer hover:text-white hover:text-3xl hover:left-[70px] absolute z-50 left-[98px] bottom-6 '>
+            <h2 className='font-itim uppercase text-[#DFFEFC] text-2xl text-center cursor-pointer hover:text-white md:hover:text-3xl hover:left-[70px] absolute z-50 md:left-[98px] left-[75px] bottom-6 '>
               Start adventure
             </h2>
           </div>
@@ -38,10 +38,10 @@ const HomeHero = () => {
         <img
           src={Cloud3}
           alt=''
-          className='absolute top-[480px] right-0 w-48 animate-upAndDown'
+          className='absolute md:top-[480px] top-[300px] right-0 w-48 animate-upAndDown'
         />
-        <div className='bg-blue-gradient   py-20 pb-10'>
-          <div className=' w-1/3 mx-auto flex flex-col items-center justify-center  '>
+        <div className='bg-blue-gradient md:px-0 px-7  py-20 pb-10'>
+          <div className=' md:w-1/3 mx-auto flex flex-col items-center justify-center  '>
             <h1 className='font-[600] mt-5 font-fredoka text-5xl text-white  tracking-wide drop-shadow-md'>
               Start Your <br />
               <span className='text-4xl ml-16'>Metaverse World</span>
