@@ -7,7 +7,7 @@ function Home() {
 
   return (
     <div className=' '>
-      <HomeHero />
+      <HomeHero showButtons={true} />
       <Tokenomics />
       <Overview />
       {/* <h1 className='text-2xl mt-8'>{t('welcome')}</h1> */}

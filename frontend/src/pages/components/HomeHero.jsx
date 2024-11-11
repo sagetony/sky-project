@@ -1,9 +1,10 @@
+/* eslint-disable react/prop-types */
 import { Home_Hero, City_Logo, Cloud1, Cloud2, Cloud3 } from '../../assets';
 import { IoMapOutline } from 'react-icons/io5';
 import { BsCart2 } from 'react-icons/bs';
 import { BlueButton, PurpleButton, Translations } from '../../components';
 
-const HomeHero = () => {
+const HomeHero = ({ showButtons }) => {
   return (
     <div className=''>
       <div className=' z-0'>
@@ -33,29 +34,31 @@ const HomeHero = () => {
         <img
           src={Cloud2}
           alt=''
-          className='absolute top-[540px] w-48 animate-upAndDown'
+          className='absolute top-[560px] w-52 animate-upAndDown'
         />
         <img
           src={Cloud3}
           alt=''
-          className='absolute md:top-[480px] top-[300px] right-0 w-48 animate-upAndDown'
+          className='absolute md:top-[480px] top-[250px] right-0 w-52 animate-upAndDown'
         />
         <div className='bg-blue-gradient md:px-0 px-7  py-20 pb-10'>
           <div className=' md:w-1/3 mx-auto flex flex-col items-center justify-center  '>
-            <h1 className='font-[600] mt-5 font-fredoka text-5xl text-white  tracking-wide drop-shadow-md'>
+            <h1 className='font-[600] mt-5 mb-16 font-fredoka text-5xl text-white  tracking-wide drop-shadow-md'>
               Start Your <br />
               <span className='text-4xl ml-16'>Metaverse World</span>
             </h1>
-            <div className='flex  flex-col gap-10 mt-16 w-full font-gurajada tracking-wide items-center'>
-              <BlueButton
-                icon={<IoMapOutline className='w-8 h-8' />}
-                text={<Translations text='map' />}
-              />
-              <PurpleButton
-                icon={<BsCart2 className='w-8 h-8' />}
-                text={<Translations text='market' />}
-              />
-            </div>
+            {showButtons && (
+              <div className='flex  flex-col gap-10   w-full font-gurajada tracking-wide items-center'>
+                <BlueButton
+                  icon={<IoMapOutline className='w-8 h-8' />}
+                  text={<Translations text='map' />}
+                />
+                <PurpleButton
+                  icon={<BsCart2 className='w-8 h-8' />}
+                  text={<Translations text='market' />}
+                />
+              </div>
+            )}
           </div>
         </div>
       </div>
