@@ -11,9 +11,11 @@ export default {
         footer:
           'linear-gradient(180deg, rgba(105, 204, 244, 0) 0%, rgba(4, 54, 102, 0.5) 100%)',
         content:
-          ' linear-gradient(to bottom, #1671d7, #43adef, #5dc4f5, #68ccf5)',
+          ' linear-gradient(to bottom, #1b78d9, #2b8ee5, #5dc4f5, #68ccf5)',
         mapsbtn: 'linear-gradient(180deg, #2A86E0 0%, #1968B6 100%)',
         login: 'linear-gradient(180deg, #2A86E0 0%, #17497A 100%)',
+        pages: 'linear-gradient(180deg, #17497A 0%, #79b6ed 100%)',
+        btn: 'linear-gradient(180deg, #69CBF4 0%, #5DB5E3 100%)',
       },
 
       boxShadow: {

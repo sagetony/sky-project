@@ -19,6 +19,10 @@ import twitter from './twitter.png';
 import telegram from './telegram.png';
 import points from './points.png';
 import login_bg from './Login_Bg.png';
+import gift from './gift.png';
+import gcal from './gcal.png';
+import tether from './tether.png';
+import gift2 from './gift2.png';
 
 export {
   Logo,
@@ -42,4 +46,8 @@ export {
   telegram,
   points,
   login_bg,
+  gift,
+  gcal,
+  tether,
+  gift2,
 };
