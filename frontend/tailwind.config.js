@@ -12,12 +12,16 @@ export default {
           'linear-gradient(180deg, rgba(105, 204, 244, 0) 0%, rgba(4, 54, 102, 0.5) 100%)',
         content:
           ' linear-gradient(to bottom, #1671d7, #43adef, #5dc4f5, #68ccf5)',
+        mapsbtn: 'linear-gradient(180deg, #2A86E0 0%, #1968B6 100%)',
+        login: 'linear-gradient(180deg, #2A86E0 0%, #17497A 100%)',
       },
+
       boxShadow: {
         'custom-inset-top': '0px 10px 5px 0px #E7FEFF40 inset',
         'custom-inset-bottom': '0px -13px 18.3px 0px #3A75C840 inset',
         section: '0px 6px 14.4px 0px #00000040',
         card: ' 0px 4px 4px 0px #00000040',
+        'deep-top': '0 -10px 15px rgba(0, 0, 0, 0.4)',
       },
       keyframes: {
         breathing: {

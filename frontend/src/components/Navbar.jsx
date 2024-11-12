@@ -33,7 +33,7 @@ export default function Navbar() {
     <nav className='bg-gradient-to-b fixed w-full shadow-xl z-50 top-0 from-blue-400 to-[#6bccf4] p-2 px-5 flex items-center justify-between space-x-4 text-white'>
       <img src={Logo} alt='Logo' className='w-16 h-16 ' />
       <div className='hidden md:flex justify-between w-0  md:w-1/2 items-center bg-[#2b86e0] rounded-lg shadow-lg px-5 py-3 text-md'>
-        <a href='#map' className='flex items-center space-x-1 '>
+        <a href='/maps' className='flex items-center space-x-1 '>
           <FaMap />
           <span> {t('map')}</span>
         </a>
@@ -99,7 +99,7 @@ export default function Navbar() {
             </div>
           )}
         </div>{' '}
-        <a href='#login' className='h hover:text-blue-500 hover:font-bold'>
+        <a href='/login' className='h hover:text-blue-500 hover:font-bold'>
           {t('login')}
         </a>
         <a

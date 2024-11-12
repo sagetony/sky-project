@@ -5,16 +5,44 @@ import {
   overviewT1,
   overviewT2,
   overviewT3,
+  points,
 } from '../../assets';
 
 /* eslint-disable react/no-unescaped-entities */
 const Overview = () => {
   return (
-    <div className='bg-content p-16 px-5 text-white'>
+    <div className='bg-content p-16 px-5 md:px-28 text-white'>
       {' '}
       <h2 className='font-[600] font-fredoka text-5xl sm:text-6xl md:text-7xl  text-center tracking-wide drop-shadow-md'>
         Project Overview
       </h2>
+      <div className='flex md:flex-row flex-col-reverse justify-between gap-16'>
+        <div className='md:w-1/3'>
+          <div className='mb-20'>
+            <h3 className='font-itim text-2xl'>Position</h3>
+            <p>
+              The project is located in Sihanoukville, Sihanoukville, Cambodia,
+              about 20 kilometers away from Sihanoukville City (West Port).
+              Sihanoukville is Cambodia's only special economic zone and the
+              country's largest deep water port
+            </p>
+          </div>
+          <div>
+            <h3 className='font-itim text-2xl'>Surroundings</h3>
+            <p>
+              The project is surrounded by magnificent mangrove scenery, which
+              not only enhances the ecological quality of the project, It also
+              provides abundant resources for landscape development.
+            </p>
+          </div>
+        </div>
+        <div className='md:w-2/3 flex justify-center flex-col'>
+          <img src={points} alt='' />
+          <span className='shadow-card bg-mapsbtn w-[450px] text-center font-[300] mx-auto px-10 py-5 rounded-md font-inter'>
+            Official website Hundred book trading market 100 hectares pre-sale
+          </span>
+        </div>
+      </div>
       <div className='my-28 flex md:flex-row flex-col gap-20 justify-between'>
         <div className='flex flex-col gap-5 items-center'>
           <img src={overview1} alt='' />

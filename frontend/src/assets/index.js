@@ -14,6 +14,11 @@ import overview3 from './overview3.png';
 import overviewT1 from './overviewT1.png';
 import overviewT2 from './overviewT2.png';
 import overviewT3 from './overviewT3.png';
+import instagram from './instagram.png';
+import twitter from './twitter.png';
+import telegram from './telegram.png';
+import points from './points.png';
+import login_bg from './Login_Bg.png';
 
 export {
   Logo,
@@ -32,4 +37,9 @@ export {
   overviewT1,
   overviewT2,
   overviewT3,
+  instagram,
+  twitter,
+  telegram,
+  points,
+  login_bg,
 };

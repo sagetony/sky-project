@@ -102,7 +102,7 @@ const Tokenomics = () => {
           <h2 className='p-5 px-7 font-[900] text-2xl'>What is CMC Token?</h2>
           <div className='py-10 pb-5 px-5 rounded-b-lg bg-white  '>
             <div
-              className={`grid gap-5 md:grid-cols-4 ${
+              className={`grid gap-5 md:grid-cols-2 lg:grid-cols-4 ${
                 slideDirection === 'right'
                   ? 'animate-slide-in-right'
                   : 'animate-slide-in-left'
@@ -120,7 +120,7 @@ const Tokenomics = () => {
                 </div>
               ))}
             </div>
-            <div className='mt-24 flex items-center justify-center gap-5'>
+            <div className='lg:mt-24 mt-10 flex items-center justify-center gap-5'>
               <button
                 onClick={handlePrevious}
                 disabled={currentBatch === 0}
