@@ -38,7 +38,7 @@ const Overview = () => {
         </div>
         <div className='md:w-2/3 flex justify-center flex-col'>
           <img src={points} alt='' />
-          <span className='shadow-card bg-mapsbtn w-[450px] text-center font-[300] mx-auto px-10 py-5 rounded-md font-inter'>
+          <span className='shadow-card bg-mapsbtn md:mt-0 mt-8 md:w-[450px] text-center font-[300] mx-auto px-10 py-5 rounded-md font-inter'>
             Official website Hundred book trading market 100 hectares pre-sale
           </span>
         </div>
