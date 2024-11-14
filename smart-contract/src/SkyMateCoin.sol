@@ -9,10 +9,16 @@ import "@openzeppelin/contracts/token/ERC20/extensions/ERC20Pausable.sol";
  * @dev ERC20 token with vesting schedules for different allocations, pausability, and owner-controlled minting and burning.
  */
 contract SkyMateCoin is ERC20, Ownable, ERC20Pausable {
+    /*´:°•.°+.*•´.*:˚.°*.˚•´.°:°•.°•.*•´.*:˚.°*.˚•´.°:°•.°+.*•´.*:*/
+    /*                          ERRORS                           */
+    /*.•°:°.´+˚.*°.˚:*.´•*.+°.•°:´*.´•*.•°.•°:°.´:•˚°.*°.˚:*.´+°.•*/
     error SkyMateCoin_AllocationFundCompleted();
     error SkyMateCoin_AllocationPeriodNotYetReady();
     error SkyMateCoin_ZeroAddress();
 
+    /*´:°•.°+.*•´.*:˚.°*.˚•´.°:°•.°•.*•´.*:˚.°*.˚•´.°:°•.°+.*•´.*:*/
+    /*                          STORAGE                           */
+    /*.•°:°.´+˚.*°.˚:*.´•*.+°.•°:´*.´•*.•°.•°:°.´:•˚°.*°.˚:*.´+°.•*/
     struct VestingSchedule {
         string name;
         address admin;
@@ -24,6 +30,9 @@ contract SkyMateCoin is ERC20, Ownable, ERC20Pausable {
     uint256 constant ALLOCATION_TIMING = 180 days;
     mapping(string => VestingSchedule) private vestingSchedules;
 
+    /*´:°•.°+.*•´.*:˚.°*.˚•´.°:°•.°•.*•´.*:˚.°*.˚•´.°:°•.°+.*•´.*:*/
+    /*                          EVENTS                           */
+    /*.•°:°.´+˚.*°.˚:*.´•*.+°.•°:´*.´•*.•°.•°:°.´:•˚°.*°.˚:*.´+°.•*/
     /**
      * @dev Emitted when tokens are minted for a vesting schedule allocation.
      * @param name The name of the vesting schedule.
@@ -37,6 +46,10 @@ contract SkyMateCoin is ERC20, Ownable, ERC20Pausable {
      * @param amount The amount burned from allocation.
      */
     event AllocationBurn(string name, uint256 amount);
+
+    /*´:°•.°+.*•´.*:˚.°*.˚•´.°:°•.°•.*•´.*:˚.°*.˚•´.°:°•.°+.*•´.*:*/
+    /*                        CONSTRUCTOR                         */
+    /*.•°:°.´+˚.*°.˚:*.´•*.+°.•°:´*.´•*.•°.•°:°.´:•˚°.*°.˚:*.´+°.•*/
 
     /**
      * @dev Initializes the SkyMateCoin contract with an initial owner and predefined vesting schedules.
@@ -145,6 +158,10 @@ contract SkyMateCoin is ERC20, Ownable, ERC20Pausable {
             lastAllocationTime: 0
         });
     }
+
+    /*´:°•.°+.*•´.*:˚.°*.˚•´.°:°•.°•.*•´.*:˚.°*.˚•´.°:°•.°+.*•´.*:*/
+    /*              PUBLIC / EXTERNAL VIEW FUNCTIONS              */
+    /*.•°:°.´+˚.*°.˚:*.´•*.+°.•°:´*.´•*.•°.•°:°.´:•˚°.*°.˚:*.´+°.•*/
 
     /**
      * @notice Mints tokens to a specified account.
