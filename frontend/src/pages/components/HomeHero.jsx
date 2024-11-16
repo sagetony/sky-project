@@ -3,8 +3,10 @@ import { Home_Hero, City_Logo, Cloud1, Cloud2, Cloud3 } from '../../assets';
 import { IoMapOutline } from 'react-icons/io5';
 import { BsCart2 } from 'react-icons/bs';
 import { BlueButton, PurpleButton, Translations } from '../../components';
+import { useNavigate } from 'react-router-dom';
 
 const HomeHero = ({ showButtons }) => {
+  const navigate = useNavigate();
   return (
     <div className=''>
       <div className=' z-0'>
@@ -50,10 +52,12 @@ const HomeHero = ({ showButtons }) => {
             {showButtons && (
               <div className='flex  flex-col gap-10   w-full font-gurajada tracking-wide items-center'>
                 <BlueButton
+                  onClick={() => navigate('/maps')}
                   icon={<IoMapOutline className='w-8 h-8' />}
                   text={<Translations text='map' />}
                 />
                 <PurpleButton
+                  onClick={() => navigate('/market')}
                   icon={<BsCart2 className='w-8 h-8' />}
                   text={<Translations text='market' />}
                 />

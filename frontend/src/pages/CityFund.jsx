@@ -3,9 +3,9 @@ import { CloseButton } from '../components';
 const CityFund = () => {
   return (
     <div className='bg-content text-white pt-20'>
-      <div className='px-5 py-16 md:p-10'>
+      <div className='px-5 py-16 md:pb-32 md:p-10'>
         <div className='md:w-4/5 mx-auto'>
-          <CloseButton />
+          <CloseButton route={`/`} />
         </div>
         <h2 className=' font-[600] font-fredoka text-6xl sm:text-7xl md:text-8xl text-center tracking-wide drop-shadow-md'>
           Meta City Fund

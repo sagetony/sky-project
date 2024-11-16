@@ -16,9 +16,9 @@ const StakeCard = () => {
 
   return (
     <div>
-      <div className='bg-login hover:ring-2 text-white p-6 sm:px-16 flex lg:flex-row flex-col lg:items-center justify-between rounded-[12px] mb-5 cursor-pointer shadow-cards1'>
+      <div className='bg-login hover:ring-2 text-white p-6 py-6 md:py-3 sm:px-16 flex lg:flex-row flex-col lg:items-center justify-between rounded-[50px] mb-5 cursor-pointer shadow-cards1'>
         <div className='flex flex-col lg:items-center'>
-          <img src={tether} className='w-fit rounded-full' />
+          <img src={tether} className='w-[100px] rounded-full' />
           <p className=' mt-1 font-itim text-2xl'>Cryto Name</p>
           <p className='font-[300] text-sm opacity-50'>Stake & Earn</p>
         </div>

@@ -8,6 +8,8 @@ import Login from './pages/auth/Login';
 import Staking from './pages/Staking';
 import CityFund from './pages/CityFund';
 import About from './pages/About';
+import Purchase from './pages/Purchase';
+import Market from './pages/Market';
 
 function App() {
   return (
@@ -16,6 +18,8 @@ function App() {
         <Route path='/' element={<Home />} />
         <Route path='/maps' element={<Maps />} />
         <Route path='/login' element={<Login />} />
+        <Route path='/market' element={<Market />} />
+        <Route path='/purchase' element={<Purchase />} />
         <Route path='/staking' element={<Staking />} />
         <Route path='/city-fund' element={<CityFund />} />
         <Route path='/about' element={<About />} />
