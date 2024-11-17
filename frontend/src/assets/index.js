@@ -44,6 +44,12 @@ import pin from './pin.png';
 import User from './User.png';
 import close from './close.png';
 import platform from './platform.png';
+import map_inner from './map_inner.png';
+import maps_bg from './maps_bg.png';
+import maps_card_img from './maps_card_img.png';
+import tags from './tags.png';
+import creator from './creator.png';
+import meta from './meta.png';
 
 export {
   Logo,
@@ -92,4 +98,10 @@ export {
   User,
   close,
   platform,
+  map_inner,
+  maps_bg,
+  maps_card_img,
+  tags,
+  creator,
+  meta,
 };

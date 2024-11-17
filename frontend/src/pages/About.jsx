@@ -15,7 +15,7 @@ const About = () => {
         <img
           src={Cloud2}
           alt=''
-          className='absolute md:top-[1200px] top-[2900px] left-0 w-64 animate-upAndDown'
+          className='absolute md:top-[1200px] top-[2600px] left-0 w-64 animate-upAndDown'
         />
         <img
           src={Cloud3}
@@ -25,7 +25,7 @@ const About = () => {
         <img
           src={Cloud3}
           alt=''
-          className='absolute md:top-[1600px] top-[3500px] right-0 w-64 animate-upAndDown'
+          className='absolute md:block hidden md:top-[1600px] top-[3500px] right-0 w-64 animate-upAndDown'
         />
       </div>{' '}
       <div className='font-itim relative z-10 font-[100] my-10 md:w-4/5 md:px-0 px-5 mx-auto'>

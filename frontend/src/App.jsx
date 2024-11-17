@@ -10,12 +10,14 @@ import CityFund from './pages/CityFund';
 import About from './pages/About';
 import Purchase from './pages/Purchase';
 import Market from './pages/Market';
+import Profile from './pages/Profile';
 
 function App() {
   return (
     <Layout>
       <Routes>
         <Route path='/' element={<Home />} />
+        <Route path='/profile' element={<Profile />} />
         <Route path='/maps' element={<Maps />} />
         <Route path='/login' element={<Login />} />
         <Route path='/market' element={<Market />} />

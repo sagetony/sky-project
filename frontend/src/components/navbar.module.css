@@ -101,13 +101,6 @@ a:hover {
     align-items: center;
   }
 
-  .useruser {
-    position: absolute;
-    display: block;
-    top: 10px;
-    right: 80px;
-  }
-
   .navbarContainer .hamburgerLines .line {
     display: block;
     height: 3px;
@@ -130,7 +123,7 @@ a:hover {
 
   .navbar .menuItems {
     position: relative;
-    left: 30%;
+    left: 40%;
     padding-top: 20px;
     padding-left: 10px;
     height: 100vh;

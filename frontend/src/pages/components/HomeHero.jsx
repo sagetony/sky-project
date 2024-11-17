@@ -36,7 +36,7 @@ const HomeHero = ({ showButtons }) => {
         <img
           src={Cloud2}
           alt=''
-          className='absolute top-[560px] w-52 animate-upAndDown'
+          className='absolute top-[560px] w-64 animate-upAndDown'
         />
         <img
           src={Cloud3}
