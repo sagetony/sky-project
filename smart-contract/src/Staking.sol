@@ -186,9 +186,6 @@ contract Staking is Ownable {
         hasActiveStake[msg.sender] = false;
         stake.amount = 0;
 
-        if (stake.accumulatedRewards > stake.expectedRewards)
-            revert Staking_RewardsCompleted();
-
         bool success = token.transfer(msg.sender, totalAmount);
         if (!success) revert Staking_FailedTransaction();
 
