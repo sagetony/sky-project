@@ -1,9 +1,10 @@
 /* eslint-disable react/prop-types */
-import { Navbar } from './index';
+import { Navbar, ScrollToTop } from './index';
 
 const Layout = ({ children }) => {
   return (
     <div className='min-h-screen  '>
+      <ScrollToTop />
       <Navbar />
       <main>{children}</main>
     </div>

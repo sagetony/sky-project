@@ -23,6 +23,33 @@ import gift from './gift.png';
 import gcal from './gcal.png';
 import tether from './tether.png';
 import gift2 from './gift2.png';
+import Star from './Star.png';
+import Search from './Search.png';
+import Flash from './Flash.png';
+import Stake_Label from './Token_Staking.png';
+import Land_Staking from './Land_Staking.png';
+import benefits from './benefits.png';
+import usdc from './usdc.webp';
+import usdt from './usdt.png';
+import usd from './usd.png';
+import bnb from './bnb.png';
+import bnb2 from './bnb2.png';
+import merc from './mercuryo.png';
+import reload from './reload.png';
+import market from './market.png';
+import buy from './buy.png';
+import rent from './rent.png';
+import onsale from './onsale.png';
+import pin from './pin.png';
+import User from './User.png';
+import close from './close.png';
+import platform from './platform.png';
+import map_inner from './map_inner.png';
+import maps_bg from './maps_bg.png';
+import maps_card_img from './maps_card_img.png';
+import tags from './tags.png';
+import creator from './creator.png';
+import meta from './meta.png';
 
 export {
   Logo,
@@ -50,4 +77,31 @@ export {
   gcal,
   tether,
   gift2,
+  Star,
+  Search,
+  Flash,
+  Stake_Label,
+  Land_Staking,
+  benefits,
+  usd,
+  usdc,
+  usdt,
+  bnb,
+  bnb2,
+  merc,
+  reload,
+  market,
+  buy,
+  rent,
+  onsale,
+  pin,
+  User,
+  close,
+  platform,
+  map_inner,
+  maps_bg,
+  maps_card_img,
+  tags,
+  creator,
+  meta,
 };

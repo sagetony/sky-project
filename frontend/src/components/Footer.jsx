@@ -2,7 +2,7 @@ import { instagram, telegram, twitter } from '../assets';
 
 const Footer = () => {
   return (
-    <div className='font-itim '>
+    <div className='font-itim z-50 relative'>
       <div className='bg-[#2A86E0] text-white py-5 flex sm:flex-row flex-col sm:gap-0 gap-8 justify-evenly items-center px-5 shadow-deep-top'>
         <h3 className='text-[20px]'>FOLLOW US</h3>
         <div className='flex gap-7'>

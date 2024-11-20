@@ -1,9 +1,10 @@
-import { HomeHero } from './components';
+import { HomeHero, MapSection } from './components';
 
 const Maps = () => {
   return (
     <div>
       <HomeHero />
+      <MapSection />
     </div>
   );
 };
