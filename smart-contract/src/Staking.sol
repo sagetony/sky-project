@@ -2,6 +2,7 @@
 pragma solidity 0.8.20;
 import "@openzeppelin/contracts/access/Ownable.sol";
 import {IERC20} from "@openzeppelin/contracts/token/ERC20/IERC20.sol";
+import {Test, console} from "forge-std/Test.sol";
 
 /**
  * @title StakingContract
@@ -23,12 +24,10 @@ contract Staking is Ownable {
     /*.•°:°.´+˚.*°.˚:*.´•*.+°.•°:´*.´•*.•°.•°:°.´:•˚°.*°.˚:*.´+°.•*/
     IERC20 public token;
     uint32 constant SECONDS_IN_A_DAY = 86400;
-    uint16 constant DAYS_IN_A_YEAR = 360;
+    uint16 constant DAYS_IN_A_YEAR = 365;
 
     uint256 public totalStakedToken;
     uint256 public totalRewardDistributed;
-
-    address private tokenowner;
 
     struct Stake {
         uint256 amount;
@@ -38,6 +37,7 @@ contract Staking is Ownable {
         uint256 lastClaimTimestamp;
         uint256 expectedRewardTimestamp;
         uint256 expectedRewards;
+        uint256 expectedDailyRewards;
         uint256 accumulatedRewards;
     }
 
@@ -72,11 +72,8 @@ contract Staking is Ownable {
      * @param _tokenowner Token owner.
 
      */
-    constructor(IERC20 _token, address _tokenowner) Ownable(msg.sender) {
-        transferOwnership(_tokenowner);
-
+    constructor(IERC20 _token, address _tokenowner) Ownable(_tokenowner) {
         token = _token;
-        tokenowner = _tokenowner;
 
         stakingaprs[30] = 3; // 3%
         stakingaprs[90] = 7; // 7%
@@ -109,9 +106,9 @@ contract Staking is Ownable {
 
         uint256 _expectedRewards = calculateEarnings(
             _amount,
-            stakingaprs[_period],
-            _period
+            stakingaprs[_period]
         );
+        uint256 _expectedDailyRewards = _expectedRewards / _period;
         uint256 _expectedRewardTimestamp = block.timestamp +
             (_period * SECONDS_IN_A_DAY);
         stakes[msg.sender].push(
@@ -120,10 +117,11 @@ contract Staking is Ownable {
                 startTimestamp: uint32(block.timestamp),
                 period: _period,
                 annualYieldRate: stakingaprs[_period],
-                lastClaimTimestamp: block.timestamp,
+                lastClaimTimestamp: 0,
                 expectedRewardTimestamp: _expectedRewardTimestamp,
                 accumulatedRewards: 0,
-                expectedRewards: _expectedRewards
+                expectedRewards: _expectedRewards,
+                expectedDailyRewards: _expectedDailyRewards
             })
         );
 
@@ -143,28 +141,37 @@ contract Staking is Ownable {
             revert Staking_InvalidStakeIndex();
         Stake storage stake = stakes[msg.sender][stakeIndex];
         uint256 currentTime = block.timestamp;
+        uint256 rewards = stake.accumulatedRewards;
 
         if (currentTime < stake.lastClaimTimestamp + 30 days)
             revert Staking_StakingNotOver();
 
-        uint256 earnings = calculateEarnings(
-            stake.amount,
-            stake.annualYieldRate,
-            30
-        );
+        uint256 currentDay = (currentTime - stake.lastClaimTimestamp) / 86400;
+
+        uint256 earnings = stake.expectedDailyRewards * currentDay;
         stake.accumulatedRewards += earnings;
         totalRewardDistributed += earnings;
         stake.lastClaimTimestamp = block.timestamp;
+        uint256 remainingearnings;
 
-        if (stake.accumulatedRewards > stake.expectedRewards)
-            revert Staking_RewardsCompleted();
+        if (stake.accumulatedRewards > stake.expectedRewards) {
+            remainingearnings = stake.expectedRewards - rewards;
 
-        bool success = token.transfer(msg.sender, earnings);
-        if (!success) revert Staking_FailedTransaction();
+            if (remainingearnings == 0) {
+                revert Staking_RewardsCompleted();
+            }
+
+            bool success = token.transfer(msg.sender, remainingearnings);
+            if (!success) revert Staking_FailedTransaction();
+        } else {
+            bool success = token.transfer(msg.sender, earnings);
+            if (!success) revert Staking_FailedTransaction();
+        }
+
         emit RewardsClaimed(msg.sender, earnings);
     }
 
-    function unstake(uint256 stakeIndex) internal {
+    function unstake(uint256 stakeIndex) external {
         if (stakeIndex >= stakes[msg.sender].length)
             revert Staking_InvalidStakeIndex();
         Stake storage stake = stakes[msg.sender][stakeIndex];
@@ -198,16 +205,14 @@ contract Staking is Ownable {
     /**
      * @dev Calculates earnings based on the staked amount, annual yield rate, and time elapsed.
      * @param _amount Amount of staked tokens.
-     * @param _timeElapsed Time elapsed since last calculation or stake.
+     * @param yieldRate yieldrate of the staked period
      * @return Earnings calculated based on the inputs.
      */
     function calculateEarnings(
         uint256 _amount,
-        uint256 _timeElapsed,
-        uint256 annualYieldRate
-    ) internal pure returns (uint256) {
-        return
-            (_amount * annualYieldRate * _timeElapsed) / (DAYS_IN_A_YEAR * 100);
+        uint256 yieldRate
+    ) public pure returns (uint256) {
+        return (_amount * yieldRate) / (100);
     }
 
     /**
