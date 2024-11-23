@@ -13,7 +13,6 @@ import "@chainlink/contracts/v0.8/shared/interfaces/AggregatorV3Interface.sol";
  */
 
 contract SkyMatePurchaseToken is Ownable {
-    
     /*´:°•.°+.*•´.*:˚.°*.˚•´.°:°•.°•.*•´.*:˚.°*.˚•´.°:°•.°+.*•´.*:*/
     /*                          ERRORS                           */
     /*.•°:°.´+˚.*°.˚:*.´•*.+°.•°:´*.´•*.•°.•°:°.´:•˚°.*°.˚:*.´+°.•*/
@@ -68,8 +67,7 @@ contract SkyMatePurchaseToken is Ownable {
         IERC20 _token,
         address _usdt,
         address initialOwner
-    ) Ownable(msg.sender) {
-        transferOwnership(initialOwner);
+    ) Ownable(initialOwner) {
         SkyMateCoin = _token;
 
         // Store supported assets
