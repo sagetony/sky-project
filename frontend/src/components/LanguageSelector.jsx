@@ -6,8 +6,8 @@ import { IoMdCheckmarkCircleOutline } from 'react-icons/io';
 
 const languages = [
   { code: 'en', label: 'English' },
-  { code: 'ja', label: '日本語' },
-  { code: 'ko', label: '한국어' },
+  { code: 'ja', label: '日本語' }, //Japanese
+  { code: 'ko', label: '한국어' }, //Korean
   { code: 'ms', label: 'Bahasa Melayu' },
   { code: 'km', label: 'ភាសាខ្មែរ' },
   { code: 'zh_Hant', label: '繁體中文' }, // Traditional Chinese

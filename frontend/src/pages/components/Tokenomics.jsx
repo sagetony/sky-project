@@ -43,9 +43,12 @@ const Tokenomics = () => {
               className='bg-card border-[5px] rounded-[70px] border-[#F9F9F4] p-5 pt-10 text-center px-7 shadow-card pb-10'
             >
               <h3 className='font-itim text-2xl text-center font-[300] mb-7'>
-                {card.title}
+                <Translations text={card.title} />
               </h3>
-              <p className='font-[300]'>{card.description}</p>
+              <p className='font-[300]'>
+                {' '}
+                <Translations text={card.description} />
+              </p>
             </div>
           ))}
         </div>
@@ -65,7 +68,7 @@ const Tokenomics = () => {
           <ul className='list-disc list-inside space-y-4'>
             {secondBatch.map((item, index) => (
               <li key={index} className='font-[300] text-lg'>
-                {item.description}
+                <Translations text={item.description} />
               </li>
             ))}
           </ul>
@@ -80,21 +83,21 @@ const Tokenomics = () => {
         <div className='md:w-1/2 w-full'>
           <h2 className='font-[600] font-fredoka text-6xl sm:text-7xl lg:text-8xl text-center text-white tracking-wide drop-shadow-md'>
             <Translations text='tokenomics' />
-          </h2>
+          </h2>{' '}
           <div className='flex flex-col gap-5 mt-10 md:w-4/5 mx-auto font-gurajada tracking-[0.25em] items-center'>
             <BlueButton
               icon={<img src={purchase} className='w-8 h-8' />}
-              text={'Token purchase'}
+              text={<Translations text='token_purchase' />}
               onClick={() => navigate('/purchase')}
             />
             <PurpleButton
               icon={<img src={staking} className='w-8 h-8' />}
-              text='Token staking'
+              text={<Translations text='token_staking' />}
               onClick={() => navigate('/staking')}
             />
             <button className='text-white font-itim tracking-widest text-xl border-2 border-white p-1 px-5 hover:bg-white hover:text-[#1e90ff] rounded-md'>
               <span className='flex items-center justify-center gap-3'>
-                Whitepaper <LuExternalLink />
+                <Translations text='whitepaper' /> <LuExternalLink />
               </span>
             </button>
           </div>
@@ -103,7 +106,10 @@ const Tokenomics = () => {
       </div>
       <div className='px-5 text-white font-inter md:mt-48 mt-36'>
         <div className='bg-[#2A86E0] rounded-lg shadow-section'>
-          <h2 className='p-5 px-7 font-[900] text-2xl'>What is CMC Token?</h2>
+          <h2 className='p-5 px-7 font-[900] text-2xl'>
+            {' '}
+            <Translations text='what_is_sms_token' />?
+          </h2>
           <div className='py-10 pb-5 px-5 rounded-b-lg bg-white'>
             {renderCards()}
             <div className='lg:mt-24 mt-10 flex items-center justify-center gap-5'>

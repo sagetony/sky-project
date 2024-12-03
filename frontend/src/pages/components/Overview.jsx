@@ -11,6 +11,7 @@ import {
   overviewT3,
   points,
 } from '../../assets';
+import { Translations } from '../../components';
 
 /* eslint-disable react/no-unescaped-entities */
 const Overview = () => {
@@ -40,12 +41,15 @@ const Overview = () => {
       </div>{' '}
       <div className='z-10 relative'>
         <h2 className='font-[600] font-fredoka text-5xl sm:text-6xl md:text-7xl  text-center tracking-wide drop-shadow-md'>
-          Project Overview
+          <Translations text='project_overview' />
         </h2>
         <div className='flex md:flex-row flex-col-reverse justify-between gap-16'>
           <div className='md:w-1/3'>
             <div className='mb-20'>
-              <h3 className='font-itim text-2xl'>Position</h3>
+              <h3 className='font-itim text-2xl'>
+                {' '}
+                <Translations text='position' />
+              </h3>
               <p>
                 The project is located in Sihanoukville, Sihanoukville,
                 Cambodia, about 20 kilometers away from Sihanoukville City (West
