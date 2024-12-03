@@ -2,7 +2,6 @@
 pragma solidity 0.8.20;
 import "@openzeppelin/contracts/access/Ownable.sol";
 import {IERC20} from "@openzeppelin/contracts/token/ERC20/IERC20.sol";
-import {Test, console} from "forge-std/Test.sol";
 
 /**
  * @title StakingContract
@@ -69,10 +68,10 @@ contract Staking is Ownable {
     /**
      * @dev Constructor sets the token address and initializes staking limits and penalties.
      * @param _token Address of the ERC20 token used for staking.
-     * @param _tokenowner Token owner.
+     * @param initialOwner Token owner.
 
      */
-    constructor(IERC20 _token, address _tokenowner) Ownable(_tokenowner) {
+    constructor(IERC20 _token, address initialOwner) Ownable(initialOwner) {
         token = _token;
 
         stakingaprs[30] = 3; // 3%
