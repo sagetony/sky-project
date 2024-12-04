@@ -61,7 +61,8 @@ const Navbar = () => {
     setDropdown2(null);
   };
 
-  const auth = sessionStorage.getItem('auth');
+  const auth = true;
+  // const auth = sessionStorage.getItem('auth');
 
   useEffect(() => {
     const handleScroll = () => {
@@ -182,6 +183,7 @@ const Navbar = () => {
                     src={User}
                     alt='User'
                     className='w-12'
+                    // onClick={() => handleMouseEnter2()}
                     onMouseEnter={() => handleMouseEnter2()}
                     onMouseLeave={handleMouseLeave2}
                   />{' '}
@@ -270,12 +272,22 @@ const Navbar = () => {
               </Link>
             </li>{' '}
             <li>
-              <div onClick={handleComingSoonModalClick}>
-                <Link to={`#`} className='flex items-center space-x-1 '>
+              <div>
+                <a
+                  onClick={(e) => {
+                    e.preventDefault();
+                    const targetElement = document.getElementById('tokenomics');
+                    if (targetElement) {
+                      targetElement.scrollIntoView({ behavior: 'smooth' });
+                    }
+                  }}
+                  href='#tokenomics'
+                  className='flex items-center space-x-1 '
+                >
                   {' '}
                   <FaCoins />
                   <span> {t('tokenomics')}</span>
-                </Link>
+                </a>
               </div>
             </li>
             <li>
@@ -320,12 +332,22 @@ const Navbar = () => {
               </div>
             </li>
             <li className='relative'>
-              <div onClick={handleComingSoonModalClick}>
-                <Link to={`#`} className='flex items-center space-x-1 '>
+              <div>
+                <a
+                  onClick={(e) => {
+                    e.preventDefault();
+                    const targetElement = document.getElementById('tokenomics');
+                    if (targetElement) {
+                      targetElement.scrollIntoView({ behavior: 'smooth' });
+                    }
+                  }}
+                  href='#tokenomics'
+                  className='flex items-center space-x-1 '
+                >
                   {' '}
                   <FaCoins />
                   <span> {t('tokenomics')}</span>
-                </Link>
+                </a>
               </div>
             </li>
             <li className='relative'>

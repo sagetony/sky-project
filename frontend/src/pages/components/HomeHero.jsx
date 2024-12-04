@@ -12,7 +12,7 @@ const HomeHero = ({ showButtons }) => {
       <div className=' z-0'>
         <div
           style={{ backgroundImage: `url(${Home_Hero})` }}
-          className='md:h-[90vh] h-[100vh] flex items-end justify-center bg-cover md:bg-[0px_-140px] bg-[0px_-0px] bg-no-repeat'
+          className='md:h-[90vh] h-[100vh] flex items-end justify-center bg-center md:bg-cover md:bg-[0px_-140px] bg-no-repeat'
         >
           <div className='md:relative animate-breathing -mb-20  '>
             <h2 className='font-itim uppercase text-[#FDFFED] text-2xl md:text-3xl text-center  absolute z-0 md:left-[104px] left-[100px] top-6 '>
@@ -36,24 +36,24 @@ const HomeHero = ({ showButtons }) => {
         <img
           src={Cloud2}
           alt=''
-          className='absolute top-[560px] w-64 animate-upAndDown'
+          className='absolute md:top-[660px]  hidden md:block w-64 animate-upAndDown'
         />
         <img
           src={Cloud3}
           alt=''
-          className='absolute md:top-[480px] top-[250px] right-0 w-52 animate-upAndDown'
+          className='absolute md:top-[380px] top-[370px] right-0 w-52 animate-upAndDown'
         />
         <div className='bg-blue-gradient md:px-0 px-7  py-20 pb-10'>
           <div className=' md:w-1/3 mx-auto flex flex-col items-center justify-center  '>
-            <h1 className='font-[600] mt-5 mb-16 font-fredoka text-5xl text-white  tracking-wide drop-shadow-md'>
+            <h1 className='font-[600] mt-5 mb-16 font-fredoka text-5xl text-white md:text-left text-center  tracking-wide drop-shadow-md'>
               <Translations text='start_your' />
               <br />
-              <span className='text-4xl ml-16'>
+              <span className='text-4xl md:ml-16'>
                 <Translations text='metaverse_world' />
               </span>
             </h1>
             {showButtons && (
-              <div className='flex  flex-col gap-10   w-full font-gurajada tracking-wide items-center'>
+              <div className='flex z-20  flex-col gap-10   w-full font-gurajada tracking-wide items-center'>
                 <BlueButton
                   onClick={() => navigate('/maps')}
                   icon={<IoMapOutline className='w-8 h-8' />}
