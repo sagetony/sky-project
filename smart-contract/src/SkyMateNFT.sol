@@ -5,15 +5,13 @@ import "@openzeppelin/contracts/token/ERC721/extensions/ERC721URIStorage.sol";
 import "@openzeppelin/contracts/access/Ownable.sol";
 import "@openzeppelin/contracts/utils/Strings.sol";
 
-import {Test, console} from "forge-std/Test.sol";
-
 /**
  * @title SkyMate NFT Contract
  * @dev This contract allows for the minting, managing, buying, and transferring of land NFTs.
  *      Each land NFT is associated with coordinates, a location name, a description, and a price.
  *      Only admins can upload new land NFTs, while anyone can buy or transfer ownership of lands.
  */
-contract SkyMateNFT is ERC721URIStorage, Ownable, Test {
+contract SkyMateNFT is ERC721URIStorage, Ownable {
     using Strings for uint256;
 
     /*´:°•.°+.*•´.*:˚.°*.˚•´.°:°•.°•.*•´.*:˚.°*.˚•´.°:°•.°+.*•´.*:*/
