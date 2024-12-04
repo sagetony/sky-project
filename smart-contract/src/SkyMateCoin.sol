@@ -4,8 +4,6 @@ import "@openzeppelin/contracts/token/ERC20/ERC20.sol";
 import "@openzeppelin/contracts/access/Ownable.sol";
 import "@openzeppelin/contracts/token/ERC20/extensions/ERC20Pausable.sol";
 
-import {Test, console} from "forge-std/Test.sol";
-
 /**
  * @title SkyMateCoin
  * @dev ERC20 token with vesting schedules for different allocations, pausability, and owner-controlled minting and burning.
