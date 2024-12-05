@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { gcal, tether } from '../../assets';
-import { BlueButton, ConnectWallet } from '../../components';
+import { ConnectWallet } from '../../components';
 
 const StakeCard = () => {
   const [modalOpen2, setModalOpen2] = useState(false);
