@@ -7,6 +7,7 @@ import ComingSoon from './ComingSoon';
 import { useTranslation } from 'react-i18next';
 import { FaMap, FaStore, FaCoins, FaInfoCircle, FaGlobe } from 'react-icons/fa';
 import LanguageSelector from './LanguageSelector';
+import { ConnectWallet } from './Button';
 
 const Navbar = () => {
   const { t } = useTranslation();
@@ -14,13 +15,13 @@ const Navbar = () => {
   // const [activeItem, setActiveItem] = useState('home');
   const [isMobileMenuOpen, setMobileMenuOpen] = useState(false);
   // const location = useLocation();
-  const [dropdown, setDropdown] = useState(null);
+  // const [dropdown, setDropdown] = useState(null);
   const [dropdown2, setDropdown2] = useState(null);
   const [modalOpen, setModalOpen] = useState(false);
   const [isMobile, setIsMobile] = useState(window.innerWidth <= 900);
   // const [selected, setSelected] = useState('');
   const [isDropdownVisible, setIsDropdownVisible] = useState(false);
-  const [isHoveringDropdown, setIsHoveringDropdown] = useState(false);
+  // const [isHoveringDropdown, setIsHoveringDropdown] = useState(false);
 
   const handleComingSoonModalClick = () => {
     setMobileMenuOpen(false);
@@ -33,7 +34,7 @@ const Navbar = () => {
 
   const handleMouseEnter = (index) => {
     if (!isMobile && index !== 2) {
-      setDropdown(index);
+      // setDropdown(index);
     }
     setIsDropdownVisible(true);
   };
@@ -45,24 +46,24 @@ const Navbar = () => {
   };
 
   const handleDropdownMouseEnter = () => {
-    setIsHoveringDropdown(true);
+    // setIsHoveringDropdown(true);
   };
 
   const handleDropdownMouseLeave = () => {
-    setIsHoveringDropdown(false);
+    // setIsHoveringDropdown(false);
     setIsDropdownVisible(false);
   };
 
   const handleMouseLeave = () => {
-    setDropdown(null);
+    // setDropdown(null);
   };
 
   const handleMouseLeave2 = () => {
     setDropdown2(null);
   };
 
-  const auth = true;
-  // const auth = sessionStorage.getItem('auth');
+  // const auth = true;
+  const auth = sessionStorage.getItem('auth');
 
   useEffect(() => {
     const handleScroll = () => {
@@ -195,29 +196,37 @@ const Navbar = () => {
                     >
                       <ul className='list-none flex flex-col'>
                         <li
-                          className='hover:bg-white hover:text-blue-950 cursor-pointer   border-b border-slate-500 pb-2 pt-1'
-                          onClick={handleComingSoonModalClick}
+                          className='hover:bg-white hover:text-blue-950 cursor-pointer pl-4   border-b border-slate-500 pb-2 pt-1'
+                          // onClick={handleComingSoonModalClick}
                           // className='border-b border-slate-500 pb-2 pt-1'
                         >
-                          No KYC login
+                          <Link to={`/profile`}>Profile</Link>
                         </li>
                         {/* </Link> */}
                         <li
-                          className='hover:bg-white hover:text-blue-950 cursor-pointer   border-b border-slate-500 pb-2 pt-1'
+                          className='hover:bg-white hover:text-blue-950 cursor-pointer pl-4   border-b border-slate-500 pb-2 pt-1'
                           onClick={handleComingSoonModalClick}
-                          // className='border-b border-slate-500 pb-2 pt-1'
                         >
-                          Security and Privacy
+                          Wallet
                         </li>{' '}
-                        <Link
-                          to='/my-releases'
-                          onClick={() => {
-                            window.scrollTo(0, 0);
-                          }}
-                          className='hover:bg-white hover:text-blue-950'
+                        <li
+                          className='hover:bg-white hover:text-blue-950 cursor-pointer pl-4   border-b border-slate-500 pb-2 pt-1'
+                          onClick={handleComingSoonModalClick}
                         >
-                          <li className='  pt-2 pb-2 '>My releases</li>
-                        </Link>{' '}
+                          Staking
+                        </li>{' '}
+                        <li
+                          className='hover:bg-white hover:text-blue-950 cursor-pointer pl-4   border-b border-slate-500 pb-2 pt-1'
+                          onClick={handleComingSoonModalClick}
+                        >
+                          Post rental
+                        </li>{' '}
+                        <li
+                          className='hover:bg-white hover:text-blue-950 cursor-pointer pl-4   border-b border-slate-500 pb-2 pt-1'
+                          onClick={handleComingSoonModalClick}
+                        >
+                          Log out
+                        </li>{' '}
                       </ul>
                     </div>
                   )}
@@ -225,18 +234,23 @@ const Navbar = () => {
               ) : (
                 <>
                   {' '}
-                  <a
+                  {/* <a
                     href='/login'
                     className='h hover:text-blue-500 hover:font-bold'
                   >
                     {t('login')}
-                  </a>
-                  <a
-                    href='#create-account'
+                  </a> */}
+                  {/* <a
+                    href='/create-account'
                     className='  text-white border border-white py-1 hover:ring-2 ring-blue-300 px-4 rounded hover:border-blue-500 hover:bg-blue-500'
                   >
-                    {t('create_account')}
-                  </a>
+                    {t('connect_wallet')}
+                  </a> */}{' '}
+                  <ConnectWallet
+                    className={` w-full hidden sm:block font-inter`}
+                    innerClassName={`px-6 rounded-[10px]`}
+                    outerClassName={`rounded-[10px]`}
+                  />
                 </>
               )}
             </div>
@@ -300,6 +314,11 @@ const Navbar = () => {
                 <span> {t('about')}</span>
               </Link>
             </li>
+            <ConnectWallet
+              className={`mt-5 w-[47vw] sm:hidden  font-bold block font-inter`}
+              innerClassName={`px-6  rounded-[10px]`}
+              outerClassName={`rounded-[10px]`}
+            />
           </ul>
         </div>
       </nav>{' '}
@@ -441,18 +460,23 @@ const Navbar = () => {
             ) : (
               <>
                 {' '}
-                <a
+                {/* <a
                   href='/login'
                   className='h hover:text-blue-500 hover:font-bold'
                 >
                   {t('login')}
-                </a>
-                <a
-                  href='#create-account'
+                </a> */}
+                {/* <a
+                  href='/create-account'
                   className='  text-white border border-white py-1 hover:ring-2 ring-blue-300 px-4 rounded hover:border-blue-500 hover:bg-blue-500'
                 >
-                  {t('create_account')}
-                </a>
+                  {t('connect_wallet')}
+                </a> */}{' '}
+                <ConnectWallet
+                  className={` w-full font-inter`}
+                  innerClassName={`px-6 rounded-[10px]`}
+                  outerClassName={`rounded-[10px]`}
+                />
               </>
             )}
           </div>

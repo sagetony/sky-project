@@ -8,6 +8,7 @@ import Guide from './Guide';
 import Icons from './Icon';
 import ComingSoon from './ComingSoon';
 import RewardModal from './RewardModal';
+import { ConnectWallet } from './Button';
 
 export {
   CustomToastContainer,
@@ -22,4 +23,5 @@ export {
   Icons,
   ComingSoon,
   RewardModal,
+  ConnectWallet,
 };

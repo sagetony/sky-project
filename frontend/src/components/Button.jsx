@@ -1,4 +1,5 @@
 /* eslint-disable react/prop-types */
+import { useState } from 'react';
 import { IoChevronBack } from 'react-icons/io5';
 import { useNavigate } from 'react-router-dom';
 
@@ -122,4 +123,29 @@ const CloseButton = ({ route }) => {
   );
 };
 
-export { PurpleButton, BlueButton, CloseButton };
+// import WalletModal from '../modal/WalletModal';
+
+const ConnectWallet = ({ className, innerClassName, outerClassName }) => {
+  const [modalOpen, setModalOpen] = useState(false);
+
+  const handleWalletModalClick = () => {
+    setModalOpen(!modalOpen);
+  };
+
+  const closeWalletModal = () => {
+    setModalOpen(false);
+  };
+  return (
+    <div className={className}>
+      <BlueButton
+        text={`Connect wallet`}
+        innerClassName={`text-xl ${innerClassName}`}
+        outerClassName={`${outerClassName}`}
+        onClick={handleWalletModalClick}
+      />
+      {/* {modalOpen && <WalletModal onclose={closeWalletModal} />} */}
+    </div>
+  );
+};
+
+export { PurpleButton, BlueButton, CloseButton, ConnectWallet };
