@@ -132,9 +132,9 @@ const ConnectWallet = ({ className, innerClassName, outerClassName }) => {
     setModalOpen(!modalOpen);
   };
 
-  const closeWalletModal = () => {
-    setModalOpen(false);
-  };
+  // const closeWalletModal = () => {
+  //   setModalOpen(false);
+  // };
   return (
     <div className={className}>
       <BlueButton
