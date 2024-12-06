@@ -87,7 +87,7 @@ const Staking = () => {
               <div className='bg-login px-10 pr-20 rounded-[100px] shadow-card'>
                 <div className='flex md:gap-0 gap-10 md:flex-row  flex-col justify-between'>
                   <div className=' w-full md:w-[400px] lg:w-[550px]  rounded-[60px] p-5 py-10 md:px-10 '>
-                    <h3 className='font-itim text-3xl font-[400]'>Earn SSAI</h3>
+                    <h3 className='font-itim text-3xl font-[400]'>Earn ETH</h3>
                     <p className='font-[300] font-itim mt-2'>
                       Total Distributed
                     </p>
@@ -129,7 +129,7 @@ const Staking = () => {
                     className='w-[340px]  -mb-6 -mt-6'
                   />
                   <div className=' w-full md:w-[400px] lg:w-[550px]  rounded-[60px] p-5 py-10 md:px-10 '>
-                    <h3 className='font-itim text-3xl font-[400]'>Earn SSAI</h3>
+                    <h3 className='font-itim text-3xl font-[400]'>Earn ETH</h3>
                     <p className='font-[300] font-itim mt-2'>
                       Total Distributed
                     </p>

@@ -12,7 +12,7 @@ const HomeHero = ({ showButtons }) => {
       <div className=' z-0'>
         <div
           style={{ backgroundImage: `url(${Home_Hero})` }}
-          className='md:h-[90vh] h-[100vh] flex items-end justify-center bg-center md:bg-cover md:bg-[0px_-140px] bg-no-repeat'
+          className='lg:h-[95vh] md:h-[82vh]  h-[95vh] lg:bg-[0px_20px] flex items-end justify-center bg-center lg:bg-cover lg:bg-[0px_-140px] bg-no-repeat'
         >
           <div className='md:relative animate-breathing -mb-20  '>
             <h2 className='font-itim uppercase text-[#FDFFED] text-2xl md:text-3xl text-center  absolute z-0 md:left-[104px] left-[100px] top-6 '>
@@ -31,17 +31,17 @@ const HomeHero = ({ showButtons }) => {
         <img
           src={Cloud1}
           alt=''
-          className='absolute top-20 z-0 w-48 animate-upAndDown'
+          className='absolute top-[10vh] z-0 w-48 animate-upAndDown'
         />
         <img
           src={Cloud2}
           alt=''
-          className='absolute md:top-[660px]  hidden md:block w-64 animate-upAndDown'
+          className='absolute top-[85vh] hidden md:block w-64 animate-upAndDown'
         />
         <img
           src={Cloud3}
           alt=''
-          className='absolute md:top-[380px] top-[370px] right-0 w-52 animate-upAndDown'
+          className='absolute md:top-[45vh] top-[60vh] right-0 w-52 animate-upAndDown'
         />
         <div className='bg-blue-gradient md:px-0 px-7  py-20 pb-10'>
           <div className=' md:w-1/3 mx-auto flex flex-col items-center justify-center  '>

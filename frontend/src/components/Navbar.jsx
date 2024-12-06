@@ -1,5 +1,5 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import { Link } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { Logo, User } from '../assets';
 import { useEffect, useState } from 'react';
 import styles from './navbar.module.css';
@@ -10,18 +10,29 @@ import LanguageSelector from './LanguageSelector';
 import { ConnectWallet } from './Button';
 
 const Navbar = () => {
+  const navigate = useNavigate();
+  const location = useLocation();
   const { t } = useTranslation();
   const [scrolling, setScrolling] = useState(false);
-  // const [activeItem, setActiveItem] = useState('home');
   const [isMobileMenuOpen, setMobileMenuOpen] = useState(false);
-  // const location = useLocation();
-  // const [dropdown, setDropdown] = useState(null);
   const [dropdown2, setDropdown2] = useState(null);
   const [modalOpen, setModalOpen] = useState(false);
   const [isMobile, setIsMobile] = useState(window.innerWidth <= 900);
-  // const [selected, setSelected] = useState('');
   const [isDropdownVisible, setIsDropdownVisible] = useState(false);
-  // const [isHoveringDropdown, setIsHoveringDropdown] = useState(false);
+
+  const handleTokenomicsClick = (e) => {
+    e.preventDefault();
+    if (location.pathname !== '/') {
+      navigate('/', { replace: true });
+    }
+    setMobileMenuOpen(false);
+    setTimeout(() => {
+      const targetElement = document.getElementById('tokenomics');
+      if (targetElement) {
+        targetElement.scrollIntoView({ behavior: 'smooth' });
+      }
+    }, 100);
+  };
 
   const handleComingSoonModalClick = () => {
     setMobileMenuOpen(false);
@@ -288,14 +299,8 @@ const Navbar = () => {
             <li>
               <div>
                 <a
-                  onClick={(e) => {
-                    e.preventDefault();
-                    const targetElement = document.getElementById('tokenomics');
-                    if (targetElement) {
-                      targetElement.scrollIntoView({ behavior: 'smooth' });
-                    }
-                  }}
-                  href='#tokenomics'
+                  onClick={handleTokenomicsClick}
+                  href='/#tokenomics'
                   className='flex items-center space-x-1 '
                 >
                   {' '}
@@ -353,14 +358,8 @@ const Navbar = () => {
             <li className='relative'>
               <div>
                 <a
-                  onClick={(e) => {
-                    e.preventDefault();
-                    const targetElement = document.getElementById('tokenomics');
-                    if (targetElement) {
-                      targetElement.scrollIntoView({ behavior: 'smooth' });
-                    }
-                  }}
-                  href='#tokenomics'
+                  onClick={handleTokenomicsClick}
+                  href='/#tokenomics'
                   className='flex items-center space-x-1 '
                 >
                   {' '}
