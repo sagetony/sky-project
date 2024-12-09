@@ -161,7 +161,9 @@ const Navbar = () => {
           className={` xl:flex xl:items-center xl:justify-between xl:pl-20  xl:pr-24 xl:py-4  ${styles.navbarContainer}`}
         >
           <div className='flex flex-row justify-between mr-20'>
-            <img src={logoSrc} className='w-16 h-16  ' />
+            <Link to='/'>
+              <img src={logoSrc} className='w-12 h-12 mt-2 ml-2  my-auto' />
+            </Link>
             <div
               className={`flex items-center gap-3 text-white ${styles.useruser}`}
             >
