@@ -1,5 +1,6 @@
 /* eslint-disable react/prop-types */
 import { useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import { IoChevronBack } from 'react-icons/io5';
 import { useNavigate } from 'react-router-dom';
 
@@ -127,6 +128,7 @@ const CloseButton = ({ route }) => {
 
 const ConnectWallet = ({ className, innerClassName, outerClassName }) => {
   const [modalOpen, setModalOpen] = useState(false);
+  const { t } = useTranslation();
 
   const handleWalletModalClick = () => {
     setModalOpen(!modalOpen);
@@ -138,7 +140,7 @@ const ConnectWallet = ({ className, innerClassName, outerClassName }) => {
   return (
     <div className={className}>
       <BlueButton
-        text={`Connect wallet`}
+        text={`${t('connect_wallet')}`}
         innerClassName={`text-xl ${innerClassName}`}
         outerClassName={`${outerClassName}`}
         onClick={handleWalletModalClick}
