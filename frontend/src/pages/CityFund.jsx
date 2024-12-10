@@ -13,7 +13,7 @@ const CityFund = () => {
         <div className='font-itim font-[100] mt-16 my-10 md:w-4/5 mx-auto'>
           <h3 className='text-2xl'>Introduction</h3>
           <p>
-            Land less than one thousand square meters is held by C99 fund, and
+            Land less than one thousand square meters is held by Sky fund, and
             can choose fund management and development or investment and
             construction. <span className='i block mb-5'></span>
             Land over 1,000 square meters can be held by itself, in this case,
