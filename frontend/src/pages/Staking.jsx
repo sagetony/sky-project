@@ -1,16 +1,27 @@
+import { useState } from 'react';
 import {
-  benefits,
+  benefits_1,
+  benefits_2,
   Cloud1,
   Cloud2,
   Cloud3,
   Land_Staking,
   Stake_Label,
 } from '../assets';
-import { BlueButton } from '../components';
+import { BlueButton, RewardModal } from '../components';
 import StakeCard from './components/StakeCard';
 import { FiGift } from 'react-icons/fi';
 
 const Staking = () => {
+  const [modalOpen, setModalOpen] = useState(false);
+
+  const handleRewardModalClick = () => {
+    setModalOpen(!modalOpen);
+  };
+
+  const closeRewardModal = () => {
+    setModalOpen(false);
+  };
   return (
     <div className='pt-36 bg-pages relative'>
       <div className='absolute inset-0 z-0'>
@@ -73,23 +84,28 @@ const Staking = () => {
               Benefits of Token Staking
             </h2>
             <div className='lg:p-16 p-10 rounded-b-lg bg-white'>
-              <div className='flex md:gap-0 gap-10 md:flex-row flex-col justify-between'>
-                <img src={benefits} alt='' className='md:w-2/4 w-full' />
-                <div className='bg-login w-full md:w-[400px] lg:w-[550px] rounded-[60px] p-5 py-10 md:px-10 shadow-card'>
-                  <h3 className='font-itim text-3xl font-[400]'>Earn SSAI</h3>
-                  <p className='font-[300] font-itim mt-2'>Total Distributed</p>
-                  <p className='font-[300] font-inter text-[14px]'>
-                    27587.7 CAKE
-                  </p>
-                  <ul className='list-disc font-itim my-10 mt-5'>
-                    <li className='ml-6'>Monthly revenue sharing</li>
-                    <li className='ml-6'>Monthly CAKE pool rewards</li>
-                  </ul>
-                  <BlueButton
-                    text='Check Reward'
-                    innerClassName='text-lg font-inter font-semibold flex-row-reverse gap-[10px]'
-                    icon={<FiGift className='text-[22px]' />}
-                  />
+              <div className='bg-login px-10 pr-20 rounded-[100px] shadow-card'>
+                <div className='flex md:gap-0 gap-10 md:flex-row  flex-col justify-between'>
+                  <div className=' w-full md:w-[400px] lg:w-[550px]  rounded-[60px] p-5 py-10 md:px-10 '>
+                    <h3 className='font-itim text-3xl font-[400]'>Earn ETH</h3>
+                    <p className='font-[300] font-itim mt-2'>
+                      Total Distributed
+                    </p>
+                    <p className='font-[300] font-inter text-[14px]'>
+                      27587.7 CAKE
+                    </p>
+                    <ul className='list-disc font-itim my-10 mt-5'>
+                      <li className='ml-6'>Monthly revenue sharing</li>
+                      <li className='ml-6'>Monthly CAKE pool rewards</li>
+                    </ul>
+                    <BlueButton
+                      onClick={handleRewardModalClick}
+                      text='Check Reward'
+                      innerClassName='text-lg font-inter font-semibold flex-row-reverse gap-[10px]'
+                      icon={<FiGift className='text-[22px]' />}
+                    />
+                  </div>
+                  <img src={benefits_1} alt='' className='w-[320px]  -mb-4' />
                 </div>
               </div>
             </div>
@@ -105,29 +121,38 @@ const Staking = () => {
               Benefits of Land Staking
             </h2>
             <div className='lg:p-16 p-10 rounded-b-lg bg-white'>
-              <div className='flex md:gap-0 gap-10 md:flex-row flex-col justify-between'>
-                <img src={benefits} alt='' className='md:w-2/4 w-full' />
-                {/* <div className='bg-[#D9D9D9] lg:h-60 h-48 lg:w-64 md:w-48 w-full'></div> */}
-                <div className='bg-login w-full md:w-[400px] lg:w-[550px] rounded-[60px] p-5 py-10 md:px-10 shadow-card'>
-                  <h3 className='font-itim text-3xl font-[400]'>Earn SSAI</h3>
-                  <p className='font-[300] font-itim mt-2'>Total Distributed</p>
-                  <p className='font-[300] font-inter text-[14px]'>
-                    27587.7 CAKE
-                  </p>
-                  <ul className='list-disc font-itim my-10 mt-5'>
-                    <li className='ml-6'>Monthly revenue sharing</li>
-                    <li className='ml-6'>Monthly CAKE pool rewards</li>
-                  </ul>
-                  <BlueButton
-                    text='Check Reward'
-                    innerClassName='text-lg font-inter font-semibold flex-row-reverse gap-[10px]'
-                    icon={<FiGift className='text-[22px]' />}
+              <div className='bg-login px-10 pl-20 rounded-[100px] shadow-card'>
+                <div className='flex md:gap-0 gap-10 md:flex-row  flex-col justify-between'>
+                  <img
+                    src={benefits_2}
+                    alt=''
+                    className='w-[340px]  -mb-6 -mt-6'
                   />
+                  <div className=' w-full md:w-[400px] lg:w-[550px]  rounded-[60px] p-5 py-10 md:px-10 '>
+                    <h3 className='font-itim text-3xl font-[400]'>Earn ETH</h3>
+                    <p className='font-[300] font-itim mt-2'>
+                      Total Distributed
+                    </p>
+                    <p className='font-[300] font-inter text-[14px]'>
+                      27587.7 CAKE
+                    </p>
+                    <ul className='list-disc font-itim my-10 mt-5'>
+                      <li className='ml-6'>Monthly revenue sharing</li>
+                      <li className='ml-6'>Monthly CAKE pool rewards</li>
+                    </ul>
+                    <BlueButton
+                      onClick={handleRewardModalClick}
+                      text='Check Reward'
+                      innerClassName='text-lg font-inter font-semibold flex-row-reverse gap-[10px]'
+                      icon={<FiGift className='text-[22px]' />}
+                    />
+                  </div>
                 </div>
               </div>
             </div>
           </div>
-        </div>
+        </div>{' '}
+        {modalOpen && <RewardModal onclose={closeRewardModal} />}
       </div>
     </div>
   );

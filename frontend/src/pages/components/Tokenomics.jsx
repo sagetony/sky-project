@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Coin_bag, purchase, staking } from '../../assets';
+import { Coin_bag, purchase, staking, coins } from '../../assets';
 import { BlueButton, PurpleButton, Translations } from '../../components';
 import { LuExternalLink } from 'react-icons/lu';
 import { cards } from '../../data/data';
@@ -78,19 +78,26 @@ const Tokenomics = () => {
   };
 
   return (
-    <div className='bg-[#68cdf4] py-16'>
-      <div className='flex justify-between lg:flex-row flex-col-reverse items-center gap-10 lg:px-20 px-7 lg:pl-28'>
+    <div className='bg-[#68cdf4] py-16 relative' id='tokenomics'>
+      <img
+        src={coins}
+        alt=''
+        className='absolute animate-upAndDown z-10 xl:-top-72 lg:-top-64'
+      />
+      <div className='flex z-20 justify-between lg:flex-row flex-col-reverse items-center gap-10 lg:px-20 px-7 lg:pl-28'>
         <div className='md:w-1/2 w-full'>
           <h2 className='font-[600] font-fredoka text-6xl sm:text-7xl lg:text-8xl text-center text-white tracking-wide drop-shadow-md'>
             <Translations text='tokenomics' />
           </h2>{' '}
-          <div className='flex flex-col gap-5 mt-10 md:w-4/5 mx-auto font-gurajada tracking-[0.25em] items-center'>
+          <div className='flex z-30 flex-col gap-5 mt-10 md:w-4/5 mx-auto font-gurajada tracking-[0.25em] items-center'>
             <BlueButton
-              icon={<img src={purchase} className='w-8 h-8' />}
+              outerClassName={`z-20`}
+              icon={<img src={purchase} className='w-8 h-8 ' />}
               text={<Translations text='token_purchase' />}
               onClick={() => navigate('/purchase')}
             />
             <PurpleButton
+              outerClassName={`z-20`}
               icon={<img src={staking} className='w-8 h-8' />}
               text={<Translations text='token_staking' />}
               onClick={() => navigate('/staking')}

@@ -7,6 +7,8 @@ import ScrollToTop from './ScrollToTop';
 import Guide from './Guide';
 import Icons from './Icon';
 import ComingSoon from './ComingSoon';
+import RewardModal from './RewardModal';
+import { ConnectWallet } from './Button';
 
 export {
   CustomToastContainer,
@@ -20,4 +22,6 @@ export {
   Guide,
   Icons,
   ComingSoon,
+  RewardModal,
+  ConnectWallet,
 };

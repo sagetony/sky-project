@@ -1,4 +1,6 @@
 /* eslint-disable react/prop-types */
+import { useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import { IoChevronBack } from 'react-icons/io5';
 import { useNavigate } from 'react-router-dom';
 
@@ -69,7 +71,7 @@ const BlueButton = ({
     <button
       onClick={onClick}
       disabled={disabled || loading}
-      className={`${outerClassName} shadow-custom-inset-top w-full py-0 rounded-full text-white hover:text-[#1e90ff] text-3xl hover:from-white  hover:to-white bg-gradient-to-r from-[#51d2ff] to-[#1e90ff] border-2 border-[#c9ebff] `}
+      className={`${outerClassName} shadow-custom-inset-top  w-full py-0 rounded-full text-white hover:text-[#1e90ff] text-3xl hover:from-white  hover:to-white bg-gradient-to-r from-[#51d2ff] to-[#1e90ff] border-2 border-[#c9ebff] `}
     >
       <span
         className={`flex shadow-custom-inset-bottom items-center justify-center gap-6 w-full py-2 rounded-full text-3xl ${innerClassName}`}
@@ -122,4 +124,30 @@ const CloseButton = ({ route }) => {
   );
 };
 
-export { PurpleButton, BlueButton, CloseButton };
+// import WalletModal from '../modal/WalletModal';
+
+const ConnectWallet = ({ className, innerClassName, outerClassName }) => {
+  const [modalOpen, setModalOpen] = useState(false);
+  const { t } = useTranslation();
+
+  const handleWalletModalClick = () => {
+    setModalOpen(!modalOpen);
+  };
+
+  // const closeWalletModal = () => {
+  //   setModalOpen(false);
+  // };
+  return (
+    <div className={className}>
+      <BlueButton
+        text={`${t('connect_wallet')}`}
+        innerClassName={`text-xl ${innerClassName}`}
+        outerClassName={`${outerClassName}`}
+        onClick={handleWalletModalClick}
+      />
+      {/* {modalOpen && <WalletModal onclose={closeWalletModal} />} */}
+    </div>
+  );
+};
+
+export { PurpleButton, BlueButton, CloseButton, ConnectWallet };

@@ -78,7 +78,7 @@ const Login = () => {
       // }
     } catch (e) {
       setLoading(false);
-      toast.error('An unexpected error occurred. Please try again.');
+      toast.error(`${e}An unexpected error occurred. Please try again.`);
     }
   };
 

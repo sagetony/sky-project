@@ -50,6 +50,11 @@ import maps_card_img from './maps_card_img.png';
 import tags from './tags.png';
 import creator from './creator.png';
 import meta from './meta.png';
+import coins from './coins.png';
+import benefits_1 from './benefits_1.png';
+import benefits_2 from './benefits_2.png';
+import banner_l from './banner_l.png';
+import banner_r from './banner_r.png';
 
 export {
   Logo,
@@ -104,4 +109,9 @@ export {
   tags,
   creator,
   meta,
+  coins,
+  benefits_1,
+  benefits_2,
+  banner_l,
+  banner_r,
 };

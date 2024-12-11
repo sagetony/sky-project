@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { gcal, tether } from '../../assets';
-import { BlueButton } from '../../components';
+import { ConnectWallet } from '../../components';
 
 const StakeCard = () => {
   const [modalOpen2, setModalOpen2] = useState(false);
@@ -92,10 +92,7 @@ const StakeCard = () => {
           </div>
         </div>
         <div className='lg:w-[25%] w-full flex flex-col justify-center lg:items-center'>
-          <BlueButton
-            text='Connect wallet'
-            innerClassName='text-xl font-bold font-inter'
-          />
+          <ConnectWallet className={` w-full font-bold font-inter`} />
         </div>
       </div>
     </div>

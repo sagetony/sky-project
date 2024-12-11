@@ -11,7 +11,7 @@ import {
   usdt,
   bnb,
 } from '../assets';
-import { BlueButton, Guide, Icons } from '../components';
+import { ConnectWallet, Guide, Icons } from '../components';
 
 const Purchase = () => {
   const [val, setVal] = useState(150);
@@ -215,11 +215,12 @@ const Purchase = () => {
               </div>
               <div className='flex justify-center gap-6 items-center'>
                 <div className='sm:w-2/3 w-full md:w-1/3'>
-                  <BlueButton
+                  {/* <BlueButton
                     text={`Connect wallet`}
                     innerClassName={`text-lg`}
                     outerClassName={``}
-                  />
+                  /> */}
+                  <ConnectWallet className={`text-lg`} />
                 </div>
               </div>
               <div className=' ' data-aos='fade-up' data-aos-duration='1200'>

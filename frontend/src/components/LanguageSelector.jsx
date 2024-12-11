@@ -20,10 +20,16 @@ const LanguageSelector = ({ setIsDropdownVisible }) => {
 
   const changeLanguage = (code) => {
     i18next.changeLanguage(code);
+    localStorage.setItem('i18nextLng', code);
   };
 
   useEffect(() => {
-    document.documentElement.setAttribute('lang', i18n.language);
+    const savedLanguage = localStorage.getItem('i18nextLng');
+    if (savedLanguage) {
+      i18next.changeLanguage(savedLanguage);
+    } else {
+      document.documentElement.setAttribute('lang', i18n.language);
+    }
   }, [i18n.language]);
 
   return (
@@ -33,7 +39,7 @@ const LanguageSelector = ({ setIsDropdownVisible }) => {
           key={lang.code}
           onClick={() => {
             changeLanguage(lang.code);
-            sessionStorage.setItem('language', lang.code);
+            // sessionStorage.setItem('language', lang.code);
             setIsDropdownVisible(false);
           }}
           className={`block border-b border-gray-200 w-full text-left px-4 py-2 rounded ${

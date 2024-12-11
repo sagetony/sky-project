@@ -47,29 +47,25 @@ const Overview = () => {
           <div className='md:w-1/3'>
             <div className='mb-20'>
               <h3 className='font-itim text-2xl'>
-                {' '}
                 <Translations text='position' />
               </h3>
               <p>
-                The project is located in Sihanoukville, Sihanoukville,
-                Cambodia, about 20 kilometers away from Sihanoukville City (West
-                Port). Sihanoukville is Cambodia's only special economic zone
-                and the country's largest deep water port
+                <Translations text='position_info' />
               </p>
             </div>
             <div>
-              <h3 className='font-itim text-2xl'>Surroundings</h3>
+              <h3 className='font-itim text-2xl'>
+                <Translations text='surroundings' />
+              </h3>
               <p>
-                The project is surrounded by magnificent mangrove scenery, which
-                not only enhances the ecological quality of the project, It also
-                provides abundant resources for landscape development.
+                <Translations text='surroundings_info' />
               </p>
             </div>
           </div>
           <div className='md:w-2/3 flex justify-center flex-col'>
             <img src={points} alt='' />
             <span className='shadow-card border-[5px] border-white rounded-full bg-mapsbtn md:mt-0 mt-8 md:w-[450px] text-center font-[300] mx-auto px-10 py-5 font-inter'>
-              Official website Hundred book trading market 100 hectares pre-sale
+              <Translations text='official_button' />{' '}
             </span>
           </div>
         </div>
@@ -92,75 +88,62 @@ const Overview = () => {
           </div>
         </div>
         <div className='font-itim bg-card rounded-[100px] border-[5px] border-white p-10 py-20'>
-          <h3 className='font-[200] text-[30px]'>Social responsibility</h3>
-          <h4 className='font-[200] text-[20px] mb-2 mt-5'>Employment </h4>
-          <ul>
-            <li className='font-[100] text-[18px]'>
-              • C99 Meta City will directly create a large number of jobs across
-              all levels and skill levels, from blue-collar workers to high-tech
-              R&D personnel.{' '}
-            </li>
-          </ul>
-          <h4 className='font-[200] text-[20px] mb-2 mt-5'>Finance</h4>
-          <ul>
-            <li className='font-[100] text-[18px]'>
-              • The C99 Meta City project financial district offers diversified
-              financial products and services to meet the financial needs of
-              enterprises and individuals and promote the development of the
-              financial market.
-            </li>
-            <li className='font-[100] text-[18px]'>
-              • At the same time, it will attract domestic and foreign capital
-              and promote local economic development and industrial upgrading.
-            </li>
-          </ul>
+          <h3 className='font-[200] text-[30px]'>
+            {' '}
+            <Translations text='social_responsibility' />
+          </h3>
           <h4 className='font-[200] text-[20px] mb-2 mt-5'>
-            Science and Technology
+            {' '}
+            <Translations text='employment' />
           </h4>
           <ul>
             <li className='font-[100] text-[18px]'>
-              • Through the research and development and innovation of big data,
-              blockchain and AI as well as the global technical exchange, the
-              C99 Science and Technology Zone can introduce international
-              advanced technology and experience to the local area, and promote
-              knowledge transfer and technology diffusion.
+              • <Translations text='employment_info' />
             </li>
           </ul>
-          <h4 className='font-[200] text-[20px] mb-2 mt-5'>Education</h4>
+          <h4 className='font-[200] text-[20px] mb-2 mt-5'>
+            <Translations text='finance' />
+          </h4>
           <ul>
             <li className='font-[100] text-[18px]'>
-              • The project will introduce international education resources and
-              advanced education concepts to Cambodia, provide international
-              education opportunities, enhance students' global vision and
-              competitiveness, and improve the overall education level.
+              • <Translations text='finance_info_1' />
+            </li>
+            <li className='font-[100] text-[18px]'>
+              • <Translations text='finance_info_2' />
+            </li>
+          </ul>
+          <h4 className='font-[200] text-[20px] mb-2 mt-5'>
+            <Translations text='science_and_technology' />
+          </h4>
+          <ul>
+            <li className='font-[100] text-[18px]'>
+              • <Translations text='science_and_technology_info' />
+            </li>
+          </ul>
+          <h4 className='font-[200] text-[20px] mb-2 mt-5'>
+            <Translations text='education' />
+          </h4>
+          <ul>
+            <li className='font-[100] text-[18px]'>
+              • <Translations text='education_info' />
             </li>
           </ul>
 
           <h4 className='font-[200] text-[20px] mb-2 mt-5'>
-            Environmental protection
+            <Translations text='environmental_protection' />
           </h4>
           <ul>
             <li className='font-[100] text-[18px]'>
-              • The unique geographical location of the project allows materials
-              for construction to be sourced from nearby sources without the
-              need to transport soil and sand long distances, which reduces the
-              dependence on external resources and reduces the environmental
-              impact.
+              • <Translations text='environmental_protection_info_1' />
             </li>
             <li className='font-[100] text-[18px]'>
-              • The mangroves surrounding the project help regulate the climate
-              and protect the shoreline, maintaining the stability of the
-              surrounding natural environment.
+              • <Translations text='environmental_protection_info_2' />
             </li>
             <li className='font-[100] text-[18px]'>
-              • The project supports the development of green industries and
-              environmental protection technologies, builds a sustainable
-              industrial chain, and promotes the development of green economy.
+              • <Translations text='environmental_protection_info_3' />
             </li>
             <li className='font-[100] text-[18px]'>
-              • Garbage sorting will be implemented within C99 Meta City and a
-              recycling system will be established to minimize environmental
-              pollution
+              • <Translations text='environmental_protection_info_4' />
             </li>
           </ul>
         </div>
