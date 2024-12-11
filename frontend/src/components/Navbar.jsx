@@ -1,12 +1,12 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import { Link } from 'react-router-dom';
-import { Logo, User } from '../assets';
-import { useEffect, useState } from 'react';
-import styles from './navbar.module.css';
-import ComingSoon from './ComingSoon';
-import { useTranslation } from 'react-i18next';
-import { FaMap, FaStore, FaCoins, FaInfoCircle, FaGlobe } from 'react-icons/fa';
-import LanguageSelector from './LanguageSelector';
+import { Link } from "react-router-dom";
+import { Logo, User } from "../assets";
+import { useEffect, useState } from "react";
+import styles from "./navbar.module.css";
+import ComingSoon from "./ComingSoon";
+import { useTranslation } from "react-i18next";
+import { FaMap, FaStore, FaCoins, FaInfoCircle, FaGlobe } from "react-icons/fa";
+import LanguageSelector from "./LanguageSelector";
 
 const Navbar = () => {
   const { t } = useTranslation();
@@ -61,7 +61,7 @@ const Navbar = () => {
     setDropdown2(null);
   };
 
-  const auth = sessionStorage.getItem('auth');
+  const auth = sessionStorage.getItem("auth");
 
   useEffect(() => {
     const handleScroll = () => {
@@ -76,12 +76,12 @@ const Navbar = () => {
       setIsMobile(window.innerWidth <= 900);
     };
 
-    window.addEventListener('scroll', handleScroll);
-    window.addEventListener('resize', handleResize);
+    window.addEventListener("scroll", handleScroll);
+    window.addEventListener("resize", handleResize);
 
     return () => {
-      window.removeEventListener('scroll', handleScroll);
-      window.addEventListener('resize', handleResize);
+      window.removeEventListener("scroll", handleScroll);
+      window.addEventListener("resize", handleResize);
     };
   }, []);
 
@@ -131,9 +131,9 @@ const Navbar = () => {
   };
 
   useEffect(() => {
-    document.addEventListener('click', handleDocumentClick);
+    document.addEventListener("click", handleDocumentClick);
     return () => {
-      document.removeEventListener('click', handleDocumentClick);
+      document.removeEventListener("click", handleDocumentClick);
     };
   }, [isMobileMenuOpen]);
 
@@ -147,19 +147,19 @@ const Navbar = () => {
         <div
           className={` xl:flex xl:items-center xl:justify-between xl:pl-20  xl:pr-24 xl:py-4  ${styles.navbarContainer}`}
         >
-          <div className='flex flex-row justify-between mr-20'>
-            <img src={logoSrc} className='w-16 h-16  ' />
+          <div className="flex flex-row justify-between mr-20">
+            <img src={logoSrc} className="w-16 h-16  " />
             <div
               className={`flex items-center gap-3 text-white ${styles.useruser}`}
             >
-              <div className='relative group'>
-                <button className='flex items-center space-x-1 '>
+              <div className="relative group">
+                <button className="flex items-center space-x-1 ">
                   <FaGlobe
                     onMouseEnter={handleMouseEnter}
                     onMouseLeave={handleMouseLeave}
                     onClick={() => setIsDropdownVisible(true)}
-                    style={{ fontSize: '25px' }}
-                    className='group-hover:mt-0 transform group-hover:rotate-180 transition-transform'
+                    style={{ fontSize: "25px" }}
+                    className="group-hover:mt-0 transform group-hover:rotate-180 transition-transform"
                   />
                 </button>
                 {/* Dropdown - Hidden initially */}
@@ -167,33 +167,33 @@ const Navbar = () => {
                   <div
                     onMouseEnter={handleDropdownMouseEnter}
                     onMouseLeave={handleDropdownMouseLeave}
-                    style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
-                    className='absolute overflow-x-auto scroll-smooth scrollbar-hide -left-16 mt-1   w-[150px]  bg-blue-500 text-blue-600 shadow-xl rounded '
+                    style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
+                    className="absolute overflow-x-auto scroll-smooth scrollbar-hide -left-16 mt-1   w-[150px]  bg-blue-500 text-blue-600 shadow-xl rounded "
                   >
                     <LanguageSelector
                       setIsDropdownVisible={setIsDropdownVisible}
                     />
                   </div>
                 )}
-              </div>{' '}
+              </div>{" "}
               {auth ? (
-                <div className='relatvive'>
+                <div className="relatvive">
                   <img
                     src={User}
-                    alt='User'
-                    className='w-12'
+                    alt="User"
+                    className="w-12"
                     onMouseEnter={() => handleMouseEnter2()}
                     onMouseLeave={handleMouseLeave2}
-                  />{' '}
+                  />{" "}
                   {dropdown2 && (
                     <div
-                      className='absolute font-normal text-lg top-15  w-[200px] rounded-b-lg right-0 bg-[#002B5E] text-slate-300 text-center py-4 pb-0 shadow-2xl'
+                      className="absolute font-normal text-lg top-15  w-[200px] rounded-b-lg right-0 bg-[#002B5E] text-slate-300 text-center py-4 pb-0 shadow-2xl"
                       onMouseEnter={() => handleMouseEnter2()}
                       onMouseLeave={handleMouseLeave2}
                     >
-                      <ul className='list-none flex flex-col'>
+                      <ul className="list-none flex flex-col">
                         <li
-                          className='hover:bg-white hover:text-blue-950 cursor-pointer   border-b border-slate-500 pb-2 pt-1'
+                          className="hover:bg-white hover:text-blue-950 cursor-pointer   border-b border-slate-500 pb-2 pt-1"
                           onClick={handleComingSoonModalClick}
                           // className='border-b border-slate-500 pb-2 pt-1'
                         >
@@ -201,46 +201,46 @@ const Navbar = () => {
                         </li>
                         {/* </Link> */}
                         <li
-                          className='hover:bg-white hover:text-blue-950 cursor-pointer   border-b border-slate-500 pb-2 pt-1'
+                          className="hover:bg-white hover:text-blue-950 cursor-pointer   border-b border-slate-500 pb-2 pt-1"
                           onClick={handleComingSoonModalClick}
                           // className='border-b border-slate-500 pb-2 pt-1'
                         >
                           Security and Privacy
-                        </li>{' '}
+                        </li>{" "}
                         <Link
-                          to='/my-releases'
+                          to="/my-releases"
                           onClick={() => {
                             window.scrollTo(0, 0);
                           }}
-                          className='hover:bg-white hover:text-blue-950'
+                          className="hover:bg-white hover:text-blue-950"
                         >
-                          <li className='  pt-2 pb-2 '>My releases</li>
-                        </Link>{' '}
+                          <li className="  pt-2 pb-2 ">My releases</li>
+                        </Link>{" "}
                       </ul>
                     </div>
                   )}
                 </div>
               ) : (
                 <>
-                  {' '}
+                  {" "}
                   <a
-                    href='/login'
-                    className='h hover:text-blue-500 hover:font-bold'
+                    href="/login"
+                    className="h hover:text-blue-500 hover:font-bold"
                   >
-                    {t('login')}
+                    {t("login")}
                   </a>
                   <a
-                    href='#create-account'
-                    className='  text-white border border-white py-1 hover:ring-2 ring-blue-300 px-4 rounded hover:border-blue-500 hover:bg-blue-500'
+                    href="#create-account"
+                    className="  text-white border border-white py-1 hover:ring-2 ring-blue-300 px-4 rounded hover:border-blue-500 hover:bg-blue-500"
                   >
-                    {t('create_account')}
+                    {t("create_account")}
                   </a>
                 </>
               )}
             </div>
           </div>
           {modalOpen && <ComingSoon onclose={closeComingSoonModal} />}
-          <input type='checkbox' onChange={toggleMobileMenu} />
+          <input type="checkbox" onChange={toggleMobileMenu} />
           <div className={styles.hamburgerLines}>
             <span className={`bg-white ${styles.line} ${styles.line1} `}></span>
             <span className={`bg-white ${styles.line} ${styles.line2} `}></span>
@@ -252,102 +252,102 @@ const Navbar = () => {
             <li>
               <Link
                 to={`/maps`}
-                className='flex items-center space-x-1 '
-                onClick={() => handleLinkClick('/maps')}
+                className="flex items-center space-x-1 "
+                onClick={() => handleLinkClick("/maps")}
               >
                 <FaMap />
-                <span> {t('map')}</span>
+                <span> {t("map")}</span>
               </Link>
             </li>
             <li>
               <Link
                 to={`/market`}
-                className='flex items-center space-x-1 '
-                onClick={() => handleLinkClick('/market')}
+                className="flex items-center space-x-1 "
+                onClick={() => handleLinkClick("/market")}
               >
                 <FaStore />
-                <span> {t('market')}</span>
+                <span> {t("market")}</span>
               </Link>
-            </li>{' '}
+            </li>{" "}
             <li>
               <div onClick={handleComingSoonModalClick}>
-                <Link to={`#`} className='flex items-center space-x-1 '>
-                  {' '}
+                <Link to={`#`} className="flex items-center space-x-1 ">
+                  {" "}
                   <FaCoins />
-                  <span> {t('tokenomics')}</span>
+                  <span> {t("tokenomics")}</span>
                 </Link>
               </div>
             </li>
             <li>
               <Link
                 to={`/about`}
-                className='flex items-center space-x-1 '
-                onClick={() => handleLinkClick('/about')}
+                className="flex items-center space-x-1 "
+                onClick={() => handleLinkClick("/about")}
               >
                 <FaInfoCircle />
-                <span> {t('about')}</span>
+                <span> {t("about")}</span>
               </Link>
             </li>
           </ul>
         </div>
-      </nav>{' '}
+      </nav>{" "}
       <div
         className={`bg-gradient-to-b fixed w-full shadow-xl z-50 top-0 from-blue-400 to-[#6bccf4] p-2 px-5 flex items-center justify-between space-x-4 text-white shadow-btns ${styles.navbar} lg:block hidden`}
       >
         <div className={`flex justify-between items-center`}>
-          <Link to='/'>
-            <div className='flex items-center gap-4'>
-              <img src={Logo} alt='Logo' className='w-16 h-16 ' />
+          <Link to="/">
+            <div className="flex items-center gap-4">
+              <img src={Logo} alt="Logo" className="w-16 h-16 " />
             </div>
-          </Link>{' '}
+          </Link>{" "}
           <ul
             className={`hidden md:flex justify-between w-0  md:w-1/2 items-center bg-[#2b86e0] rounded-lg shadow-lg px-5 py-3 text-white list-none`}
           >
-            <li className='relative'>
+            <li className="relative">
               <div>
-                <Link to={`/maps`} className='flex items-center space-x-1 '>
+                <Link to={`/maps`} className="flex items-center space-x-1 ">
                   <FaMap />
-                  <span> {t('map')}</span>
+                  <span> {t("map")}</span>
                 </Link>
               </div>
             </li>
-            <li className='relative'>
+            <li className="relative">
               <div>
-                <Link to={`/market`} className='flex items-center space-x-1 '>
+                <Link to={`/market`} className="flex items-center space-x-1 ">
                   <FaStore />
-                  <span> {t('market')}</span>
+                  <span> {t("market")}</span>
                 </Link>
               </div>
             </li>
-            <li className='relative'>
+            <li className="relative">
               <div onClick={handleComingSoonModalClick}>
-                <Link to={`#`} className='flex items-center space-x-1 '>
-                  {' '}
+                <Link to={`#`} className="flex items-center space-x-1 ">
+                  {" "}
                   <FaCoins />
-                  <span> {t('tokenomics')}</span>
+                  <span> {t("tokenomics")}</span>
                 </Link>
               </div>
             </li>
-            <li className='relative'>
+            <li className="relative">
               <div>
-                {' '}
-                <Link to={`/about`} className='flex items-center space-x-1 '>
+                {" "}
+                <Link to={`/about`} className="flex items-center space-x-1 ">
                   <FaInfoCircle />
-                  <span> {t('about')}</span>
+                  <span> {t("about")}</span>
                 </Link>
               </div>
             </li>
           </ul>
           {modalOpen && <ComingSoon onclose={closeComingSoonModal} />}
-          <div className='flex items-center gap-3'>
-            <div className='relative group'>
-              <button className='flex items-center space-x-1 '>
+          <div className="flex items-center gap-3">
+            <div className="relative group">
+              <button className="flex items-center space-x-1 ">
                 <FaGlobe
                   onMouseEnter={handleMouseEnter}
                   onMouseLeave={handleMouseLeave}
                   onClick={() => setIsDropdownVisible(true)}
-                  style={{ fontSize: '25px' }}
-                  className='group-hover:mt-0 transform group-hover:rotate-180 transition-transform'
+                  style={{ fontSize: "25px" }}
+                  className="group-hover:mt-0 transform group-hover:rotate-180 transition-transform"
                 />
               </button>
               {/* Dropdown - Hidden initially */}
@@ -355,33 +355,33 @@ const Navbar = () => {
                 <div
                   onMouseEnter={handleDropdownMouseEnter}
                   onMouseLeave={handleDropdownMouseLeave}
-                  style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
-                  className='absolute overflow-x-auto scroll-smooth scrollbar-hide -left-16 mt-1   w-[150px]  bg-blue-500 text-blue-600 shadow-xl rounded '
+                  style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
+                  className="absolute overflow-x-auto scroll-smooth scrollbar-hide -left-16 mt-1   w-[150px]  bg-blue-500 text-blue-600 shadow-xl rounded "
                 >
                   <LanguageSelector
                     setIsDropdownVisible={setIsDropdownVisible}
                   />
                 </div>
               )}
-            </div>{' '}
+            </div>{" "}
             {auth ? (
-              <div className='relatvive'>
+              <div className="relatvive">
                 <img
                   src={User}
-                  alt='User'
-                  className='w-12'
+                  alt="User"
+                  className="w-12"
                   onMouseEnter={() => handleMouseEnter2()}
                   onMouseLeave={handleMouseLeave2}
-                />{' '}
+                />{" "}
                 {dropdown2 && (
                   <div
-                    className='absolute font-normal text-lg top-15  w-[200px] rounded-b-lg right-0 bg-blue-500 text-slate-300 text-left  py-4 pb-0 shadow-2xl'
+                    className="absolute font-normal text-lg top-15  w-[200px] rounded-b-lg right-0 bg-blue-500 text-slate-300 text-left  py-4 pb-0 shadow-2xl"
                     onMouseEnter={() => handleMouseEnter2()}
                     onMouseLeave={handleMouseLeave2}
                   >
-                    <ul className='list-none flex flex-col'>
+                    <ul className="list-none flex flex-col">
                       <li
-                        className='hover:bg-white hover:text-blue-950 cursor-pointer pl-4   border-b border-slate-500 pb-2 pt-1'
+                        className="hover:bg-white hover:text-blue-950 cursor-pointer pl-4   border-b border-slate-500 pb-2 pt-1"
                         // onClick={handleComingSoonModalClick}
                         // className='border-b border-slate-500 pb-2 pt-1'
                       >
@@ -389,48 +389,49 @@ const Navbar = () => {
                       </li>
                       {/* </Link> */}
                       <li
-                        className='hover:bg-white hover:text-blue-950 cursor-pointer pl-4   border-b border-slate-500 pb-2 pt-1'
+                        className="hover:bg-white hover:text-blue-950 cursor-pointer pl-4   border-b border-slate-500 pb-2 pt-1"
                         onClick={handleComingSoonModalClick}
                       >
                         Wallet
-                      </li>{' '}
+                      </li>{" "}
                       <li
-                        className='hover:bg-white hover:text-blue-950 cursor-pointer pl-4   border-b border-slate-500 pb-2 pt-1'
+                        className="hover:bg-white hover:text-blue-950 cursor-pointer pl-4   border-b border-slate-500 pb-2 pt-1"
                         onClick={handleComingSoonModalClick}
                       >
                         Staking
-                      </li>{' '}
+                      </li>{" "}
                       <li
-                        className='hover:bg-white hover:text-blue-950 cursor-pointer pl-4   border-b border-slate-500 pb-2 pt-1'
+                        className="hover:bg-white hover:text-blue-950 cursor-pointer pl-4   border-b border-slate-500 pb-2 pt-1"
                         onClick={handleComingSoonModalClick}
                       >
                         Post rental
-                      </li>{' '}
+                      </li>{" "}
                       <li
-                        className='hover:bg-white hover:text-blue-950 cursor-pointer pl-4   border-b border-slate-500 pb-2 pt-1'
+                        className="hover:bg-white hover:text-blue-950 cursor-pointer pl-4   border-b border-slate-500 pb-2 pt-1"
                         onClick={handleComingSoonModalClick}
                       >
                         Log out
-                      </li>{' '}
+                      </li>{" "}
                     </ul>
                   </div>
                 )}
               </div>
             ) : (
               <>
-                {' '}
+                {/* {" "}
                 <a
-                  href='/login'
-                  className='h hover:text-blue-500 hover:font-bold'
+                  href="/login"
+                  className="h hover:text-blue-500 hover:font-bold"
                 >
-                  {t('login')}
-                </a>
-                <a
+                  {t("login")}
+                </a> */}
+                {/* <a
                   href='#create-account'
                   className='  text-white border border-white py-1 hover:ring-2 ring-blue-300 px-4 rounded hover:border-blue-500 hover:bg-blue-500'
                 >
                   {t('create_account')}
-                </a>
+                </a> */}
+                <appkit-button />
               </>
             )}
           </div>
