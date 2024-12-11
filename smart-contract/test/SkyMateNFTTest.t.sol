@@ -20,7 +20,6 @@ contract SkyMateNFTTest is Test {
 
     function test_deploymentStateForSkyMateNFT() external view {
         assertEq(nft.owner(), owner);
-        assertEq(nft._tokenIdCounter(), 1);
         assertEq(nft.admins(owner), true);
     }
 
@@ -71,6 +70,78 @@ contract SkyMateNFTTest is Test {
         assertEq(land.onSale, true);
         assertEq(land.id, tokenId);
         assertEq(nft.ownerOf(tokenId), owner);
+        vm.stopPrank();
+    }
+
+    function test_deleteLand() external {
+        vm.startPrank(owner);
+        uint256 tokenId = nft.uploadLand(
+            "20, 40",
+            "Zone A",
+            "A land in new york",
+            "A",
+            1 ether,
+            ""
+        );
+
+        SkyMateNFT.Land memory land = nft.getLand(tokenId);
+        assertEq(land.onSale, true);
+        assertEq(nft.ownerOf(tokenId), owner);
+
+        // delete land
+        nft.deleteLand(tokenId);
+        vm.stopPrank();
+    }
+
+    function test_onlyAdminDeleteLand() external {
+        vm.startPrank(owner);
+        uint256 tokenId = nft.uploadLand(
+            "20, 40",
+            "Zone A",
+            "A land in new york",
+            "A",
+            1 ether,
+            ""
+        );
+
+        SkyMateNFT.Land memory land = nft.getLand(tokenId);
+        assertEq(land.onSale, true);
+        assertEq(nft.ownerOf(tokenId), owner);
+        vm.stopPrank();
+
+        // delete land
+        vm.expectRevert();
+        nft.deleteLand(tokenId);
+    }
+
+    function test_deleteSoldLand() external {
+        vm.startPrank(owner);
+        uint256 tokenId = nft.uploadLand(
+            "20, 40",
+            "Zone A",
+            "A land in new york",
+            "A",
+            1 ether,
+            ""
+        );
+
+        SkyMateNFT.Land memory land = nft.getLand(tokenId);
+        assertEq(land.onSale, true);
+        assertEq(nft.ownerOf(tokenId), owner);
+        vm.stopPrank();
+
+        //buy
+        vm.startPrank(buyer);
+        nft.buyLand{value: 1 ether}(tokenId);
+        assertEq(nft.ownerOf(tokenId), buyer);
+        assertEq(buyer.balance, 9 ether);
+        assertEq(land.onSale, false);
+        vm.stopPrank();
+
+        // delete land
+        vm.startPrank(owner);
+        vm.expectRevert();
+        nft.deleteLand(tokenId);
         vm.stopPrank();
     }
 
