@@ -27,7 +27,7 @@ contract SkyMateNFT is ERC721URIStorage, Ownable {
     /*´:°•.°+.*•´.*:˚.°*.˚•´.°:°•.°•.*•´.*:˚.°*.˚•´.°:°•.°+.*•´.*:*/
     /*                          STORAGE                           */
     /*.•°:°.´+˚.*°.˚:*.´•*.+°.•°:´*.´•*.•°.•°:°.´:•˚°.*°.˚:*.´+°.•*/
-    uint256 public _tokenIdCounter; // @todo change to private
+    uint256 private _tokenIdCounter;
 
     /**
      * @dev Struct to represent Land metadata.
@@ -283,6 +283,23 @@ contract SkyMateNFT is ERC721URIStorage, Ownable {
         lands[tokenId].onSale = status;
 
         emit LandSaleStatusUpdated(tokenId, status);
+    }
+
+    /**
+     * @dev Delete land that has not been sold.
+     * @param tokenId The token ID of the land to delete.
+     * @notice Only the contract owner can delete unsold land.
+     */
+    function deleteLand(uint256 tokenId) external onlyOwner {
+        Land storage land = lands[tokenId];
+        if (land.id == 0) revert SkyMateNFT_LandDoesNotExist(); // Ensure the land exists
+        if (ownerOf(tokenId) != owner()) revert SkyMateNFT_NotAuthorized(); // Land must be unsold
+
+        // Burn the NFT and delete the land data
+        _burn(tokenId);
+        delete lands[tokenId];
+
+        emit LandInfoUpdated(tokenId, 0, "", ""); // Optional: Emit event to log deletion
     }
 
     /**

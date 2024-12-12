@@ -38,6 +38,7 @@ contract DeploySkyMate is Script, Test {
         Staking staking = new Staking(IERC20(skymatecoin), owner);
 
         SkyMateNFT nft = new SkyMateNFT(owner);
+        vm.stopBroadcast();
 
         vm.startPrank(owner);
         // Purchase
@@ -69,7 +70,7 @@ contract DeploySkyMate is Script, Test {
         assertEq(stakingschedule.totalMinted, 1_000_000 ether);
         vm.stopPrank();
 
-        vm.stopBroadcast();
         return (skymatecoin, skyMatepurchasetoken, staking, nft, config);
     }
 }
+// forge script script/DeploySkyMate.s.sol:DeploySkyMate --rpc-url https://eth-sepolia.g.alchemy.com/v2/jFt5UlUXHbrbOtldpgZ2-w36Hy-1BwmK --etherscan-api-key FJMHUPUN5FYV67YVZRD555JWQIUIRISQDS --broadcast
