@@ -15,7 +15,7 @@ import Register from "./pages/auth/Register";
 
 import { createAppKit } from "@reown/appkit/react";
 import { Ethers5Adapter } from "@reown/appkit-adapter-ethers5";
-import { mainnet, arbitrum } from "@reown/appkit/networks";
+import { mainnet, sepolia, bscTestnet } from "@reown/appkit/networks";
 
 // 1. Get projectId
 const projectId = "d4b4ea4d0b9e81094db8e4fd59a8eb87D";
@@ -32,7 +32,7 @@ const metadata = {
 createAppKit({
   adapters: [new Ethers5Adapter()],
   metadata: metadata,
-  networks: [mainnet, arbitrum],
+  networks: [sepolia, mainnet, bscTestnet],
   projectId,
   features: {
     email: false,

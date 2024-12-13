@@ -2,13 +2,12 @@
 pragma solidity 0.8.20;
 import "@openzeppelin/contracts/token/ERC20/ERC20.sol";
 import "@openzeppelin/contracts/access/Ownable.sol";
-import "@openzeppelin/contracts/token/ERC20/extensions/ERC20Pausable.sol";
 
 /**
  * @title SkyMateCoin
  * @dev ERC20 token with vesting schedules for different allocations, pausability, and owner-controlled minting and burning.
  */
-contract SkyMateCoin is ERC20, Ownable, ERC20Pausable {
+contract SkyMateCoin is ERC20, Ownable {
     /*´:°•.°+.*•´.*:˚.°*.˚•´.°:°•.°•.*•´.*:˚.°*.˚•´.°:°•.°+.*•´.*:*/
     /*                          ERRORS                           */
     /*.•°:°.´+˚.*°.˚:*.´•*.+°.•°:´*.´•*.•°.•°:°.´:•˚°.*°.˚:*.´+°.•*/
@@ -42,7 +41,7 @@ contract SkyMateCoin is ERC20, Ownable, ERC20Pausable {
     bytes32 immutable COMPANY_RESERVE = keccak256("Company Reserves");
 
     uint256 immutable ALLOCATION_TIMING = 180 days;
-    mapping(bytes32 => VestingSchedule) private vestingSchedules;
+    mapping(string => VestingSchedule) private vestingSchedules;
 
     /*´:°•.°+.*•´.*:˚.°*.˚•´.°:°•.°•.*•´.*:˚.°*.˚•´.°:°•.°+.*•´.*:*/
     /*                          EVENTS                           */
@@ -75,7 +74,7 @@ contract SkyMateCoin is ERC20, Ownable, ERC20Pausable {
         address initialOwner
     ) ERC20("SKY MATE COIN", "SMC") Ownable(initialOwner) {
         // Initialize vesting schedules with predefined allocations
-        vestingSchedules[CIRCULATION] = VestingSchedule({
+        vestingSchedules["Circulation"] = VestingSchedule({
             name: "Circulation",
             admin: initialOwner,
             maxAmount: 1_000_000 ether,
@@ -83,7 +82,7 @@ contract SkyMateCoin is ERC20, Ownable, ERC20Pausable {
             lastAllocationTime: 0
         });
 
-        vestingSchedules[PRIVATE_PLACEMENT] = VestingSchedule({
+        vestingSchedules["Private Placement"] = VestingSchedule({
             name: "Private Placement",
             admin: initialOwner,
             maxAmount: 5_000_000 ether,
@@ -91,7 +90,7 @@ contract SkyMateCoin is ERC20, Ownable, ERC20Pausable {
             lastAllocationTime: 0
         });
 
-        vestingSchedules[PUBLIC_OFFERING] = VestingSchedule({
+        vestingSchedules["Public Offering"] = VestingSchedule({
             name: "Public Offering",
             admin: initialOwner,
             maxAmount: 5_000_000 ether,
@@ -99,7 +98,7 @@ contract SkyMateCoin is ERC20, Ownable, ERC20Pausable {
             lastAllocationTime: 0
         });
 
-        vestingSchedules[MARKETING_EXPENSES] = VestingSchedule({
+        vestingSchedules["Marketing Expenses"] = VestingSchedule({
             name: "Marketing Expenses",
             admin: initialOwner,
             maxAmount: 4_000_000 ether,
@@ -107,7 +106,7 @@ contract SkyMateCoin is ERC20, Ownable, ERC20Pausable {
             lastAllocationTime: 0
         });
 
-        vestingSchedules[TEAM] = VestingSchedule({
+        vestingSchedules["Team"] = VestingSchedule({
             name: "Team",
             admin: initialOwner,
             maxAmount: 10_000_000 ether,
@@ -115,7 +114,7 @@ contract SkyMateCoin is ERC20, Ownable, ERC20Pausable {
             lastAllocationTime: 0
         });
 
-        vestingSchedules[COMMUNITY] = VestingSchedule({
+        vestingSchedules["Community"] = VestingSchedule({
             name: "Community",
             admin: initialOwner,
             maxAmount: 20_000_000 ether,
@@ -123,7 +122,7 @@ contract SkyMateCoin is ERC20, Ownable, ERC20Pausable {
             lastAllocationTime: 0
         });
 
-        vestingSchedules[METACITY_FUND] = VestingSchedule({
+        vestingSchedules["MetaCity Fund"] = VestingSchedule({
             name: "MetaCity Fund",
             admin: initialOwner,
             maxAmount: 20_000_000 ether,
@@ -131,7 +130,7 @@ contract SkyMateCoin is ERC20, Ownable, ERC20Pausable {
             lastAllocationTime: 0
         });
 
-        vestingSchedules[STAKING_REWARDS] = VestingSchedule({
+        vestingSchedules["Staking Rewards"] = VestingSchedule({
             name: "Staking Rewards",
             admin: initialOwner,
             maxAmount: 5_000_000 ether,
@@ -139,7 +138,7 @@ contract SkyMateCoin is ERC20, Ownable, ERC20Pausable {
             lastAllocationTime: 0
         });
 
-        vestingSchedules[DONATE] = VestingSchedule({
+        vestingSchedules["Donate"] = VestingSchedule({
             name: "Donate",
             admin: initialOwner,
             maxAmount: 2_000_000 ether,
@@ -147,7 +146,7 @@ contract SkyMateCoin is ERC20, Ownable, ERC20Pausable {
             lastAllocationTime: 0
         });
 
-        vestingSchedules[CONSULTANT] = VestingSchedule({
+        vestingSchedules["Consultant"] = VestingSchedule({
             name: "Consultant",
             admin: initialOwner,
             maxAmount: 3_000_000 ether,
@@ -155,7 +154,7 @@ contract SkyMateCoin is ERC20, Ownable, ERC20Pausable {
             lastAllocationTime: 0
         });
 
-        vestingSchedules[OFFICIAL_MARKETING] = VestingSchedule({
+        vestingSchedules["Official Marketing"] = VestingSchedule({
             name: "Official Marketing",
             admin: initialOwner,
             maxAmount: 5_000_000 ether,
@@ -163,7 +162,7 @@ contract SkyMateCoin is ERC20, Ownable, ERC20Pausable {
             lastAllocationTime: 0
         });
 
-        vestingSchedules[COMPANY_RESERVE] = VestingSchedule({
+        vestingSchedules["Company Reserves"] = VestingSchedule({
             name: "Company Reserves",
             admin: initialOwner,
             maxAmount: 20_000_000 ether,
@@ -193,7 +192,7 @@ contract SkyMateCoin is ERC20, Ownable, ERC20Pausable {
      * @param _amount The amount of tokens to mint for allocation.
      */
     function mintForAllocation(
-        bytes32 _name,
+        string memory _name,
         uint256 _amount
     ) external onlyOwner {
         VestingSchedule storage schedule = vestingSchedules[_name];
@@ -205,20 +204,11 @@ contract SkyMateCoin is ERC20, Ownable, ERC20Pausable {
         if (schedule.totalMinted + _amount > schedule.maxAmount)
             revert SkyMateCoin_AllocationFundCompleted();
 
-        // if (schedule.lastAllocationTime == 0) {
-        //     schedule.lastAllocationTime = block.timestamp;
-        // } else {
-        //     if (
-        //         schedule.lastAllocationTime + ALLOCATION_TIMING >
-        //         block.timestamp
-        //     ) revert SkyMateCoin_AllocationPeriodNotYetReady();
-        // }
-
         schedule.lastAllocationTime = block.timestamp;
         schedule.totalMinted += _amount;
         _mint(schedule.admin, _amount);
 
-        emit AllocationMinted(string(abi.encodePacked(_name)), _amount);
+        emit AllocationMinted(_name, _amount);
     }
 
     /**
@@ -228,7 +218,7 @@ contract SkyMateCoin is ERC20, Ownable, ERC20Pausable {
      * @param _amount The amount of tokens to burn from allocation.
      */
     function burnForAllocation(
-        bytes32 _name,
+        string memory _name,
         uint256 _amount
     ) external onlyOwner {
         VestingSchedule storage schedule = vestingSchedules[_name];
@@ -243,7 +233,7 @@ contract SkyMateCoin is ERC20, Ownable, ERC20Pausable {
         schedule.totalMinted -= _amount;
         _burn(schedule.admin, _amount);
 
-        emit AllocationBurn(string(abi.encodePacked(_name)), _amount);
+        emit AllocationBurn(_name, _amount);
     }
 
     /**
@@ -263,7 +253,7 @@ contract SkyMateCoin is ERC20, Ownable, ERC20Pausable {
      * @param _admin The address of the new admin.
      */
     function changeAllocationAdmin(
-        bytes32 _name,
+        string memory _name,
         address _admin
     ) external onlyOwner {
         VestingSchedule storage schedules = vestingSchedules[_name];
@@ -272,38 +262,8 @@ contract SkyMateCoin is ERC20, Ownable, ERC20Pausable {
     }
 
     function getVestingSchedule(
-        bytes32 _name
+        string memory _name
     ) public view returns (VestingSchedule memory) {
         return vestingSchedules[_name];
-    }
-
-    /**
-     * @notice Pauses all token transfers.
-     * @dev Only callable by the contract owner.
-     */
-    function pause() public onlyOwner {
-        _pause();
-    }
-
-    /**
-     * @notice Unpauses all token transfers.
-     * @dev Only callable by the contract owner.
-     */
-    function unpause() public onlyOwner {
-        _unpause();
-    }
-
-    /**
-     * @dev Overrides the ERC20 _transfer function to support pausing.
-     * @param from The address from which tokens are transferred.
-     * @param to The address to which tokens are transferred.
-     * @param value The amount of tokens transferred.
-     */
-    function _update(
-        address from,
-        address to,
-        uint256 value
-    ) internal virtual override(ERC20, ERC20Pausable) whenNotPaused {
-        super._update(from, to, value);
     }
 }

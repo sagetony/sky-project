@@ -1,11 +1,12 @@
 // SPDX-License-Identifier: SEE LICENSE IN LICENSE
 pragma solidity 0.8.20;
 import {IERC20} from "@openzeppelin/contracts/token/ERC20/IERC20.sol";
-import {MockERC20} from "./Mock/ERC20.sol";
+import {MockERC20Token} from "./Mock/ERC20.sol";
 import {SkyMateCoin} from "../src/SkyMateCoin.sol";
 import {SkyMatePurchaseToken} from "../src/SkyMatePurchaseToken.sol";
 import {Staking} from "../src/Staking.sol";
 import {Test, console} from "forge-std/Test.sol";
+import {MockERC20} from "forge-std/mocks/MockERC20.sol";
 
 contract StakingTest is Test {
     Staking staking;
@@ -20,7 +21,9 @@ contract StakingTest is Test {
     function setUp() external {
         // Deployment
         skymatecoin = new SkyMateCoin(owner);
-        usdt = new MockERC20("USDT Coin", "USDT", 6, 1_000_000);
+
+        usdt = new MockERC20();
+        usdt.initialize("USDT TOKEN", "USDT", 6);
         skyMatepurchasetoken = new SkyMatePurchaseToken(
             skymatecoin,
             address(usdt),
@@ -34,24 +37,24 @@ contract StakingTest is Test {
         vm.startPrank(owner);
         // Purchase
         skymatecoin.changeAllocationAdmin(
-            keccak256("Public Offering"),
+            ("Public Offering"),
             address(skyMatepurchasetoken)
         );
 
-        skymatecoin.mintForAllocation(keccak256("Public Offering"), 1000 ether);
+        skymatecoin.mintForAllocation(("Public Offering"), 1000 ether);
         SkyMateCoin.VestingSchedule memory publicofferingschedule = skymatecoin
-            .getVestingSchedule(keccak256("Public Offering"));
+            .getVestingSchedule(("Public Offering"));
         assertEq(publicofferingschedule.totalMinted, 1000 ether);
 
         // Staking
         skymatecoin.changeAllocationAdmin(
-            keccak256("Staking Rewards"),
+            ("Staking Rewards"),
             address(staking)
         );
 
-        skymatecoin.mintForAllocation(keccak256("Staking Rewards"), 1000 ether);
+        skymatecoin.mintForAllocation(("Staking Rewards"), 1000 ether);
         SkyMateCoin.VestingSchedule memory stakingschedule = skymatecoin
-            .getVestingSchedule(keccak256("Staking Rewards"));
+            .getVestingSchedule(("Staking Rewards"));
         assertEq(stakingschedule.totalMinted, 1000 ether);
         vm.stopPrank();
     }

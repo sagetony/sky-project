@@ -133,9 +133,10 @@ contract SkyMateNFTTest is Test {
         //buy
         vm.startPrank(buyer);
         nft.buyLand{value: 1 ether}(tokenId);
+        SkyMateNFT.Land memory newland = nft.getLand(tokenId);
         assertEq(nft.ownerOf(tokenId), buyer);
         assertEq(buyer.balance, 9 ether);
-        assertEq(land.onSale, false);
+        assertEq(newland.onSale, false);
         vm.stopPrank();
 
         // delete land
