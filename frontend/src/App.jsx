@@ -2,6 +2,7 @@ import { Routes, Route } from "react-router-dom";
 import "./App.css";
 import Layout from "./components/Layout";
 import Footer from "./components/Footer";
+import MintingForm from "./components/MintingForm";
 import Home from "./pages/Home";
 import Maps from "./pages/Map";
 import Login from "./pages/auth/Login";
@@ -15,7 +16,7 @@ import Register from "./pages/auth/Register";
 
 import { createAppKit } from "@reown/appkit/react";
 import { Ethers5Adapter } from "@reown/appkit-adapter-ethers5";
-import { mainnet, arbitrum } from "@reown/appkit/networks";
+import { mainnet, sepolia, bscTestnet } from "@reown/appkit/networks";
 
 // 1. Get projectId
 const projectId = "d4b4ea4d0b9e81094db8e4fd59a8eb87D";
@@ -32,7 +33,7 @@ const metadata = {
 createAppKit({
   adapters: [new Ethers5Adapter()],
   metadata: metadata,
-  networks: [mainnet, arbitrum],
+  networks: [sepolia, mainnet, bscTestnet],
   projectId,
   features: {
     email: false,
@@ -56,6 +57,7 @@ function App() {
         <Route path="/staking" element={<Staking />} />
         <Route path="/city-fund" element={<CityFund />} />
         <Route path="/about" element={<About />} />
+        <Route path="/minting" element={<MintingForm />} />
       </Routes>
       <Footer />
     </Layout>

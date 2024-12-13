@@ -4,7 +4,7 @@ pragma solidity ^0.8.0;
 // Import the OpenZeppelin ERC20 implementation
 import "@openzeppelin/contracts/token/ERC20/ERC20.sol";
 
-contract MockERC20 is ERC20 {
+contract MockERC20Token is ERC20 {
     /**
      * @dev Constructor that gives msg.sender all initial tokens.
      * @param name_ The name of the token.

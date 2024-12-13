@@ -16,40 +16,40 @@ contract SkyMateCoinTest is Test {
     function test_deploymentState() external view {
         assertEq(skymatecoin.owner(), owner);
         SkyMateCoin.VestingSchedule memory circulation = skymatecoin
-            .getVestingSchedule(keccak256("Circulation"));
+            .getVestingSchedule(("Circulation"));
         assertEq(circulation.maxAmount, 1_000_000 ether);
         SkyMateCoin.VestingSchedule memory PrivatePlacement = skymatecoin
-            .getVestingSchedule(keccak256("Private Placement"));
+            .getVestingSchedule(("Private Placement"));
         assertEq(PrivatePlacement.maxAmount, 5_000_000 ether);
         SkyMateCoin.VestingSchedule memory PublicOffering = skymatecoin
-            .getVestingSchedule(keccak256("Public Offering"));
+            .getVestingSchedule(("Public Offering"));
         assertEq(PublicOffering.maxAmount, 5_000_000 ether);
         SkyMateCoin.VestingSchedule memory MarketingExpenses = skymatecoin
-            .getVestingSchedule(keccak256("Marketing Expenses"));
+            .getVestingSchedule(("Marketing Expenses"));
         assertEq(MarketingExpenses.maxAmount, 4_000_000 ether);
         SkyMateCoin.VestingSchedule memory Team = skymatecoin
-            .getVestingSchedule(keccak256("Team"));
+            .getVestingSchedule(("Team"));
         assertEq(Team.maxAmount, 10_000_000 ether);
         SkyMateCoin.VestingSchedule memory Community = skymatecoin
-            .getVestingSchedule(keccak256("Community"));
+            .getVestingSchedule(("Community"));
         assertEq(Community.maxAmount, 20_000_000 ether);
         SkyMateCoin.VestingSchedule memory MetaCityFund = skymatecoin
-            .getVestingSchedule(keccak256("MetaCity Fund"));
+            .getVestingSchedule(("MetaCity Fund"));
         assertEq(MetaCityFund.maxAmount, 20_000_000 ether);
         SkyMateCoin.VestingSchedule memory StakingRewards = skymatecoin
-            .getVestingSchedule(keccak256("Staking Rewards"));
+            .getVestingSchedule(("Staking Rewards"));
         assertEq(StakingRewards.maxAmount, 5_000_000 ether);
         SkyMateCoin.VestingSchedule memory Donate = skymatecoin
-            .getVestingSchedule(keccak256("Donate"));
+            .getVestingSchedule(("Donate"));
         assertEq(Donate.maxAmount, 2_000_000 ether);
         SkyMateCoin.VestingSchedule memory Consultant = skymatecoin
-            .getVestingSchedule(keccak256("Consultant"));
+            .getVestingSchedule(("Consultant"));
         assertEq(Consultant.maxAmount, 3_000_000 ether);
         SkyMateCoin.VestingSchedule memory OfficialMarketing = skymatecoin
-            .getVestingSchedule(keccak256("Official Marketing"));
+            .getVestingSchedule(("Official Marketing"));
         assertEq(OfficialMarketing.maxAmount, 5_000_000 ether);
         SkyMateCoin.VestingSchedule memory CompanyReserves = skymatecoin
-            .getVestingSchedule(keccak256("Company Reserves"));
+            .getVestingSchedule(("Company Reserves"));
         assertEq(CompanyReserves.maxAmount, 20_000_000 ether);
     }
 
@@ -68,7 +68,7 @@ contract SkyMateCoinTest is Test {
     function test_mintOverAllocation() external {
         vm.startPrank(owner);
 
-        bytes32 expectedValue = keccak256("Team");
+        string memory expectedValue = ("Team");
         vm.expectRevert();
         skymatecoin.mintForAllocation(expectedValue, 20_000_000 ether);
         vm.stopPrank();
@@ -77,7 +77,7 @@ contract SkyMateCoinTest is Test {
     function test_mintAllocation() external {
         vm.startPrank(owner);
 
-        bytes32 expectedValue = keccak256("Team");
+        string memory expectedValue = ("Team");
         skymatecoin.mintForAllocation(expectedValue, 10_000_000 ether);
 
         SkyMateCoin.VestingSchedule memory vestingschedule = skymatecoin
@@ -93,7 +93,7 @@ contract SkyMateCoinTest is Test {
 
     function test_burnAllocation() external {
         vm.startPrank(owner);
-        bytes32 expectedValue = keccak256("Team");
+        string memory expectedValue = ("Team");
         skymatecoin.mintForAllocation(expectedValue, 10_000_000 ether);
         skymatecoin.burnForAllocation(expectedValue, 10_000_000 ether);
 
@@ -122,15 +122,15 @@ contract SkyMateCoinTest is Test {
 
     function test_changeAllocationAdmin() external {
         vm.startPrank(owner);
-        skymatecoin.changeAllocationAdmin(keccak256("Donate"), admin);
+        skymatecoin.changeAllocationAdmin(("Donate"), admin);
         vm.stopPrank();
         SkyMateCoin.VestingSchedule memory vestingschedule = skymatecoin
-            .getVestingSchedule(keccak256("Donate"));
+            .getVestingSchedule(("Donate"));
         assertEq(vestingschedule.admin, admin);
     }
 
     function test_changeAllocationCalledByOwner() external {
         vm.expectRevert();
-        skymatecoin.changeAllocationAdmin(keccak256("Donate"), admin);
+        skymatecoin.changeAllocationAdmin(("Donate"), admin);
     }
 }

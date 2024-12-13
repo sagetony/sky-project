@@ -3,7 +3,7 @@ pragma solidity 0.8.20;
 import {SkyMateCoin} from "../src/SkyMateCoin.sol";
 import {SkyMatePurchaseToken} from "../src/SkyMatePurchaseToken.sol";
 import {Test, console} from "forge-std/Test.sol";
-import {MockERC20} from "./Mock/ERC20.sol";
+import {MockERC20} from "forge-std/mocks/MockERC20.sol";
 
 contract SkyMatePurchaseTokenTest is Test {
     SkyMatePurchaseToken skyMatepurchasetoken;
@@ -16,7 +16,10 @@ contract SkyMatePurchaseTokenTest is Test {
 
     function setUp() external {
         skymatecoin = new SkyMateCoin(owner);
-        usdt = new MockERC20("USDT Coin", "USDT", 6, 1_000_000);
+
+        usdt = new MockERC20();
+        usdt.initialize("USDT TOKEN", "USDT", 6);
+
         skyMatepurchasetoken = new SkyMatePurchaseToken(
             skymatecoin,
             address(usdt),
@@ -27,13 +30,13 @@ contract SkyMatePurchaseTokenTest is Test {
 
         vm.startPrank(owner);
         skymatecoin.changeAllocationAdmin(
-            keccak256("Public Offering"),
+            ("Public Offering"),
             address(skyMatepurchasetoken)
         );
 
-        skymatecoin.mintForAllocation(keccak256("Public Offering"), 1000 ether);
+        skymatecoin.mintForAllocation(("Public Offering"), 1000 ether);
         SkyMateCoin.VestingSchedule memory vestingschedule = skymatecoin
-            .getVestingSchedule(keccak256("Public Offering"));
+            .getVestingSchedule(("Public Offering"));
         assertEq(vestingschedule.totalMinted, 1000 ether);
         vm.stopPrank();
     }

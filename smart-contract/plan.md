@@ -1,11 +1,32 @@
-0: contract SkyMateCoin 0xc4ac1d2B2bCA0DD9Ad7317A26D9535314b41D220
-1: contract SkyMatePurchaseToken 0x518862E18104487362FdEA018F42Fbecb243D52F
-2: contract Staking 0x9924C231ca50937750BA40C4974Cf1c7b8c2aB9F
-3: contract SkyMateNFT 0xCBdD163965286882f12d211663DcEd8dC937d0a0
+0: contract SkyMateCoin 0x4860e2c26a4A06265d387125C370F61Ff2Dd62c4
+1: contract SkyMatePurchaseToken 0xBaEa0c16b28BeccEBf88b04875d6bCfd44B855C8
+2: contract Staking 0x46Fd4d1f7c8e9f0685620cA757b51C75565B657b
+3: contract SkyMateNFT 0x2698AbFAf38dAB1c30DbE9A4F5ab22fc8f3D62C6
 4: contract HelperConfig 0xC7f2Cf4845C6db0e1a1e91ED41Bcd0FcC1b0E141
 
 == Logs ==
-USDT CONTRACT ADDRESS 0x404b377Aa18FD1825c6b02D8564B4533BaF4F5C0
+USDT CONTRACT ADDRESS 0x0169c266dF8461c072deA7a5e8fA11C57A3ceae9 6
+
+BDC
+== Return ==
+0: contract SkyMateCoin 0x5f548a29269537B00dC9d61cEac35887734369D4
+1: contract SkyMatePurchaseToken 0xdda41a29E1e78549b182c51883a529Af854bc3b7
+2: contract Staking 0x9854720B9B64498785A4E484b0fBC8cC7642ed98
+3: contract SkyMateNFT 0x404b377Aa18FD1825c6b02D8564B4533BaF4F5C0
+4: contract HelperConfig 0xC7f2Cf4845C6db0e1a1e91ED41Bcd0FcC1b0E141
+
+== Logs ==
+  USDT CONTRACT ADDRESS 0x6E840943e6b5f61C2f835C7A0569Aca76794a21e
+  
+https://api.etherscan.io/api?module=contract&action=checkverifystatus&guid=6gxu1iblmvkdduqmfuzazuqbrhghmylrcskxwczud1xuv5btbv&apikey=CC27HD26UZ64HK9DG7XN84XRSUBWE7B8KX
+
+forge verify-contract \
+--chain sepolia \
+--compiler-version 0.8.20 \
+--num-of-optimizations 200 \
+--etherscan-api-key CC27HD26UZ64HK9DG7XN84XRSUBWE7B8KX \
+0x27B08811e1e03493980223E9bF89252265E19aE6 \
+src/SkyMateCoin.sol:SkyMateCoin
 
 CONTRACT EXPLAINATION
 SKYMATECOIN
