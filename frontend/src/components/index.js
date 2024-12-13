@@ -9,6 +9,7 @@ import Icons from './Icon';
 import ComingSoon from './ComingSoon';
 import RewardModal from './RewardModal';
 import { ConnectWallet } from './Button';
+import MintingForm from './MintingForm';
 
 export {
   CustomToastContainer,
@@ -24,4 +25,5 @@ export {
   ComingSoon,
   RewardModal,
   ConnectWallet,
+  MintingForm,
 };
