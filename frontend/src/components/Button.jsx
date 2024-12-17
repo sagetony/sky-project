@@ -3,7 +3,14 @@ import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { IoChevronBack } from "react-icons/io5";
 import { useNavigate } from "react-router-dom";
-import { useAppKit, useAppKitAccount } from "@reown/appkit/react";
+import {
+  useAppKit,
+  useAppKitAccount,
+  useAppKitNetwork,
+  useAppKitProvider,
+} from "@reown/appkit/react";
+import { ethers } from "ethers";
+import axios from "axios";
 
 const PurpleButton = ({
   onClick,
@@ -130,16 +137,41 @@ const CloseButton = ({ route }) => {
 const ConnectWallet = ({ className, innerClassName, outerClassName }) => {
   const { open, close } = useAppKit();
   const { address, isConnected } = useAppKitAccount();
+  const { chainId } = useAppKitNetwork();
+  const { walletProvider } = useAppKitProvider("eip155");
   const [modalOpen, setModalOpen] = useState(false);
   const { t } = useTranslation();
+  const { walletSetting, setWalletSetting } = useState(false);
 
-  const handleWalletModalClick = () => {
-    setModalOpen(!modalOpen);
-  };
+  async function onSignMessage() {
+    open();
+    if (walletSetting == true) {
+      const provider = new ethers.providers.Web3Provider(
+        walletProvider,
+        chainId
+      );
+      const signer = provider.getSigner(address);
+      // Request a nonce from your backend
+      const { data } = await axios.get("http://127.0.0.1:8000/api/auth/nonce", {
+        params: { address },
+      });
+      const nonce = data.nonce;
 
-  // const closeWalletModal = () => {
-  //   setModalOpen(false);
-  // };
+      const signature = await signer?.signMessage(nonce);
+
+      // // Send the signed message to your backend for verification
+      const response = await axios.post(
+        "http://127.0.0.1:8000/api/auth/verify",
+        {
+          address,
+          signature: signature,
+          nonce,
+        }
+      );
+      console.log("Authenticated successfully:", response.data);
+    }
+  }
+
   return (
     <div className={className}>
       {/* <BlueButton
@@ -158,7 +190,7 @@ const ConnectWallet = ({ className, innerClassName, outerClassName }) => {
         }
         innerClassName={`text-xl ${innerClassName}`}
         outerClassName={`${outerClassName}`}
-        onClick={() => open()}
+        onClick={() => onSignMessage()}
       />
       {/* {modalOpen && <WalletModal onclose={closeWalletModal} />} */}
     </div>

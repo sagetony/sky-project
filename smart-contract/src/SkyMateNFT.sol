@@ -27,7 +27,7 @@ contract SkyMateNFT is ERC721URIStorage, Ownable {
     /*´:°•.°+.*•´.*:˚.°*.˚•´.°:°•.°•.*•´.*:˚.°*.˚•´.°:°•.°+.*•´.*:*/
     /*                          STORAGE                           */
     /*.•°:°.´+˚.*°.˚:*.´•*.+°.•°:´*.´•*.•°.•°:°.´:•˚°.*°.˚:*.´+°.•*/
-    uint256 private _tokenIdCounter;
+    uint256 public _tokenIdCounter;
 
     /**
      * @dev Struct to represent Land metadata.
@@ -131,7 +131,7 @@ contract SkyMateNFT is ERC721URIStorage, Ownable {
         address initialOwner
     ) ERC721("SkyMateNFT", "SMNFT") Ownable(initialOwner) {
         admins[initialOwner] = true; // Initially, the contract owner is an admin
-        _tokenIdCounter = 1; // Start counter from 1 (or 0, if preferred)
+        _tokenIdCounter = 1; // Start counter from 1
     }
 
     /**

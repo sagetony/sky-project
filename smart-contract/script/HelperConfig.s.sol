@@ -92,5 +92,5 @@ contract HelperConfig is Script {
 }
 // $ forge deploy script/DeploySeesea.s.sol:DeploySeeSeaAI --rpc-url https://bsc-dataseed.bnbchain.org --etherscan-api-key FJMHUPUN5FYV67YVZRD555JWQIUIRISQDS --broadcast --verify
 
-// forge script script/DeploySkyMate.s.sol:DeploySkyMate --rpc-url https://data-seed-prebsc-1-s1.bnbchain.org:8545 --etherscan-api-key FJMHUPUN5FYV67YVZRD555JWQIUIRISQDS --broadcast --verify
+// forge script script/DeploySkyMate.s.sol:DeploySkyMate --rpc-url https://bsc-testnet-dataseed.bnbchain.org --etherscan-api-key FJMHUPUN5FYV67YVZRD555JWQIUIRISQDS --broadcast --verify
 // forge script script/DeploySeesea.s.sol:DeploySeeSeaAI --rpc-url https://bsc-testnet-dataseed.bnbchain.org --etherscan-api-key FJMHUPUN5FYV67YVZRD555JWQIUIRISQDS --broadcast --verify
