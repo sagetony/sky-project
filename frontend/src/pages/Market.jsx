@@ -17,7 +17,7 @@ const Market = () => {
     if (isConnected) {
       // Fetch NFTs for the current page
       axios
-        .get(`http://127.0.0.1:8001/api/load-nft?page=${currentPage}`) // Pass currentPage to API
+        .get(`https://smcc99.com/api/load-nft?page=${currentPage}`) // Pass currentPage to API
         .then((response) => {
           setNfts(response.data.nfts.data); // response.data.nfts.data contains the paginated NFTs
           setTotalNfts(response.data.totalNfts); // response.data.totalNfts contains the total NFT count

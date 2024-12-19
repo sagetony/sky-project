@@ -4,12 +4,7 @@ use App\Http\Controllers\NftController;
 use App\Http\Controllers\UserController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-use Illuminate\Support\Facades\Cache;
 
-use Web3p\EthereumUtil\Util;
-// use Kornrunner\Ethereum\Util;
-use App\Models\User;
-use Illuminate\Support\Facades\Log;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -21,13 +16,24 @@ use Illuminate\Support\Facades\Log;
 |
 */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
-});
 
-Route::post('/uploadnft', [NftController::class, 'uploadNFT']);
-Route::get('/load-nft', [NftController::class, 'loadNFT']);
-Route::get('/total', [NftController::class, 'nftTotal']);
 
 Route::get('/auth/nonce', [UserController::class, 'userAuthGetNonce']);
 Route::post('/auth/verify', [UserController::class, 'userAuth']);
+
+
+Route::middleware(['auth:sanctum'])->group(function () {
+    // User
+
+    Route::get('/user', [UserController::class, 'viewUser'])->name('viewUser');
+    Route::post('/logout', [UserController::class, 'logout'])->name('logout');
+    Route::post('/profile', [UserController::class, 'editUser'])->name('editUser');
+
+    // NFT
+    Route::post('/buy', [NftController::class, 'buyNFT'])->name('editbuyNFTUser');
+    Route::get('/loadsoldnft', [NftController::class, 'loadBoughtNFT'])->name('loadBoughtNFT');
+
+    Route::post('/uploadnft', [NftController::class, 'uploadNFT']);
+    Route::get('/load-nft', [NftController::class, 'loadNFT']);
+    Route::get('/total', [NftController::class, 'nftTotal']);
+});

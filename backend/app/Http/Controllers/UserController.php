@@ -16,13 +16,18 @@ use Illuminate\Support\Facades\Cache;
 
 class UserController extends Controller
 {
-    // view user
+    // AUth for pages
+    // logout
+    // buys nft
+    // edit profile
+    // return all nft bought
+    // view nft
     public function viewUser(Request $request)
     {
-        $user = User::where('id', $request->user())->first();
+        $user = User::where('id', $request->user()->id)->first();
         return response()->json([
             'users' => $user
-        ], 201);
+        ], 200);
     }
     // update user
     public function editUser(Request $request)
@@ -138,6 +143,12 @@ class UserController extends Controller
                 200
             );
         }
+    }
+    // logout
+    public function logout(Request $request)
+    {
+        $request->user()->currentAccessToken()->delete();
+        return response()->json(['message' => 'Logged out']);
     }
     protected function verifySignature(
         $address,

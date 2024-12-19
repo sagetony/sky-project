@@ -139,7 +139,7 @@ const MintingForm = () => {
         // Sending the POST request to the API
         try {
           const response = await axios.post(
-            "http://127.0.0.1:8001/api/uploadnft",
+            "https://smcc99.com/api/uploadnft",
             nftData
           );
           if (response.status === 201) {

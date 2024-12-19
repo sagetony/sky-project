@@ -141,35 +141,26 @@ const ConnectWallet = ({ className, innerClassName, outerClassName }) => {
   const { walletProvider } = useAppKitProvider("eip155");
   const [modalOpen, setModalOpen] = useState(false);
   const { t } = useTranslation();
-  const { walletSetting, setWalletSetting } = useState(false);
 
   async function onSignMessage() {
     open();
-    if (walletSetting == true) {
-      const provider = new ethers.providers.Web3Provider(
-        walletProvider,
-        chainId
-      );
-      const signer = provider.getSigner(address);
-      // Request a nonce from your backend
-      const { data } = await axios.get("http://127.0.0.1:8000/api/auth/nonce", {
-        params: { address },
-      });
-      const nonce = data.nonce;
+    const provider = new ethers.providers.Web3Provider(walletProvider, chainId);
+    const signer = provider.getSigner(address);
+    // Request a nonce from your backend
+    const { data } = await axios.get("https://smcc99.com/api/auth/nonce", {
+      params: { address },
+    });
+    const nonce = data.nonce;
 
-      const signature = await signer?.signMessage(nonce);
+    const signature = await signer?.signMessage(nonce);
 
-      // // Send the signed message to your backend for verification
-      const response = await axios.post(
-        "http://127.0.0.1:8000/api/auth/verify",
-        {
-          address,
-          signature: signature,
-          nonce,
-        }
-      );
-      console.log("Authenticated successfully:", response.data);
-    }
+    // // Send the signed message to your backend for verification
+    const response = await axios.post("https://smcc99.com/api/auth/verify", {
+      address,
+      signature: signature,
+      nonce,
+    });
+    console.log("Authenticated successfully:", response.data);
   }
 
   return (

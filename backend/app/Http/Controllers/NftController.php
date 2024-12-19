@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Buynft;
 use App\Models\Nft;
 use Illuminate\Http\Request;
 
@@ -35,7 +36,7 @@ class NftController extends Controller
             'coordinates' => $request->coordinates,
         ]);
 
-        return response()->json(['message' => 'NFT uploaded successfully!'], 201);
+        return response()->json(['message' => 'NFT uploaded successfully!'], 200);
     }
 
     public function loadNFT()
@@ -54,6 +55,36 @@ class NftController extends Controller
                 'current_page' => $nfts->currentPage(),
                 'last_page' => $nfts->lastPage(),
             ],
+        ]);
+    }
+    public function buyNFT(Request $request)
+    {
+
+        // Validate the incoming data
+        $request->validate([
+            'tokenId' => 'required|numeric',
+            'owner' => 'required|string',
+        ]);
+        $nft = NFT::where('tokenId', $request->tokenId)->first();
+        $user =  $request->user();
+
+        Buynft::create([
+            'owner' => $request->owner,
+            'nft_id' => $nft->id,
+            'user_id' => $user->id,
+        ]);
+        $boughtNfts = Buynft::with(['nft', 'user'])->get();
+
+        return response()->json(['status' => 'success', 'nft' => $boughtNfts], 200);
+    }
+
+    public function loadBoughtNFT()
+    {
+        $boughtNfts = Buynft::with(['nft', 'user'])->get();
+
+        // Return paginated NFTs and total NFT count as JSON
+        return response()->json([
+            'nfts' => $boughtNfts,
         ]);
     }
 }
