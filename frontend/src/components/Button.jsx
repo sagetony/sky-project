@@ -1,5 +1,5 @@
 /* eslint-disable react/prop-types */
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useTranslation } from "react-i18next";
 import { IoChevronBack } from "react-icons/io5";
 import { useNavigate } from "react-router-dom";
@@ -8,6 +8,7 @@ import {
   useAppKitAccount,
   useAppKitNetwork,
   useAppKitProvider,
+  useDisconnect,
 } from "@reown/appkit/react";
 import { ethers } from "ethers";
 import axios from "axios";
@@ -138,33 +139,53 @@ const ConnectWallet = ({ className, innerClassName, outerClassName }) => {
   const { open, close } = useAppKit();
   const { address, isConnected } = useAppKitAccount();
   const { chainId } = useAppKitNetwork();
+  const { disconnect } = useDisconnect();
   const { walletProvider } = useAppKitProvider("eip155");
   const [modalOpen, setModalOpen] = useState(false);
   const { t } = useTranslation();
 
   async function onSignMessage() {
-    const responses = open();
-    console.log(responses);
+    const token = sessionStorage.getItem("ddhcnvK2");
+    if (token) {
+      onSignOut();
+      return null;
+    } else {
+      const provider = new ethers.providers.Web3Provider(
+        walletProvider,
+        chainId
+      );
+      const signer = provider.getSigner(address);
+      // Request a nonce from your backend
+      const { data } = await axios.get("https://smcc99.com/api/auth/nonce", {
+        params: { address },
+      });
+      const nonce = data.nonce;
 
-    const provider = new ethers.providers.Web3Provider(walletProvider, chainId);
-    const signer = provider.getSigner(address);
-    // Request a nonce from your backend
-    const { data } = await axios.get("https://smcc99.com/api/auth/nonce", {
-      params: { address },
-    });
-    const nonce = data.nonce;
+      const signature = await signer?.signMessage(nonce);
 
-    const signature = await signer?.signMessage(nonce);
+      // // Send the signed message to your backend for verification
+      const response = await axios.post("https://smcc99.com/api/auth/verify", {
+        address,
+        signature: signature,
+        nonce,
+      });
+      console.log("Authenticated successfully:", response.data.token);
+      sessionStorage.setItem("ddhcnvK2", response.data.token);
+      sessionStorage.setItem("auth", response.data.user);
+    }
+  }
+  async function onSignOut(params) {
+    await disconnect();
 
-    // // Send the signed message to your backend for verification
-    const response = await axios.post("https://smcc99.com/api/auth/verify", {
-      address,
-      signature: signature,
-      nonce,
-    });
-    console.log("Authenticated successfully:", response.data);
+    sessionStorage.removeItem("ddhcnvK2");
+    sessionStorage.removeItem("auth");
   }
 
+  useEffect(() => {
+    if (isConnected) {
+      onSignMessage();
+    }
+  }, [isConnected]);
   return (
     <div className={className}>
       {/* <BlueButton
@@ -173,6 +194,7 @@ const ConnectWallet = ({ className, innerClassName, outerClassName }) => {
         outerClassName={`${outerClassName}`}
         onClick={handleWalletModalClick}
       /> */}
+
       <BlueButton
         text={
           isConnected
@@ -183,8 +205,16 @@ const ConnectWallet = ({ className, innerClassName, outerClassName }) => {
         }
         innerClassName={`text-xl ${innerClassName}`}
         outerClassName={`${outerClassName}`}
-        onClick={() => onSignMessage()}
+        onClick={() => {
+          if (isConnected) {
+            onSignOut();
+          } else {
+            let sdsd = open();
+            console.log(sdsd);
+          }
+        }}
       />
+
       {/* {modalOpen && <WalletModal onclose={closeWalletModal} />} */}
     </div>
   );

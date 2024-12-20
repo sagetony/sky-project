@@ -192,58 +192,65 @@ const Navbar = () => {
                 )}
               </div>{" "}
               {auth ? (
-                <div className="relatvive">
-                  <img
-                    src={User}
-                    alt="User"
-                    className="w-12"
-                    // onClick={() => handleMouseEnter2()}
-                    onMouseEnter={() => handleMouseEnter2()}
-                    onMouseLeave={handleMouseLeave2}
-                  />{" "}
-                  {dropdown2 && (
-                    <div
-                      className="absolute font-normal text-lg top-15  w-[200px] rounded-b-lg right-0 bg-[#002B5E] text-slate-300 text-center py-4 pb-0 shadow-2xl"
+                <>
+                  <div className="relatvive">
+                    <img
+                      src={User}
+                      alt="User"
+                      className="w-12"
+                      // onClick={() => handleMouseEnter2()}
                       onMouseEnter={() => handleMouseEnter2()}
                       onMouseLeave={handleMouseLeave2}
-                    >
-                      <ul className="list-none flex flex-col">
-                        <li
-                          className="hover:bg-white hover:text-blue-950 cursor-pointer pl-4   border-b border-slate-500 pb-2 pt-1"
-                          // onClick={handleComingSoonModalClick}
-                          // className='border-b border-slate-500 pb-2 pt-1'
-                        >
-                          <Link to={`/profile`}>Profile</Link>
-                        </li>
-                        {/* </Link> */}
-                        <li
-                          className="hover:bg-white hover:text-blue-950 cursor-pointer pl-4   border-b border-slate-500 pb-2 pt-1"
-                          onClick={handleComingSoonModalClick}
-                        >
-                          Wallet
-                        </li>{" "}
-                        <li
-                          className="hover:bg-white hover:text-blue-950 cursor-pointer pl-4   border-b border-slate-500 pb-2 pt-1"
-                          onClick={handleComingSoonModalClick}
-                        >
-                          Staking
-                        </li>{" "}
-                        <li
-                          className="hover:bg-white hover:text-blue-950 cursor-pointer pl-4   border-b border-slate-500 pb-2 pt-1"
-                          onClick={handleComingSoonModalClick}
-                        >
-                          Post rental
-                        </li>{" "}
-                        <li
-                          className="hover:bg-white hover:text-blue-950 cursor-pointer pl-4   border-b border-slate-500 pb-2 pt-1"
-                          onClick={handleComingSoonModalClick}
-                        >
-                          Log out
-                        </li>{" "}
-                      </ul>
-                    </div>
-                  )}
-                </div>
+                    />{" "}
+                    {dropdown2 && (
+                      <div
+                        className="absolute font-normal text-lg top-15  w-[200px] rounded-b-lg right-0 bg-[#002B5E] text-slate-300 text-center py-4 pb-0 shadow-2xl"
+                        onMouseEnter={() => handleMouseEnter2()}
+                        onMouseLeave={handleMouseLeave2}
+                      >
+                        <ul className="list-none flex flex-col">
+                          <li
+                            className="hover:bg-white hover:text-blue-950 cursor-pointer pl-4   border-b border-slate-500 pb-2 pt-1"
+                            // onClick={handleComingSoonModalClick}
+                            // className='border-b border-slate-500 pb-2 pt-1'
+                          >
+                            <Link to={`/profile`}>Profile</Link>
+                          </li>
+                          {/* </Link> */}
+                          <li
+                            className="hover:bg-white hover:text-blue-950 cursor-pointer pl-4   border-b border-slate-500 pb-2 pt-1"
+                            onClick={handleComingSoonModalClick}
+                          >
+                            Wallet
+                          </li>{" "}
+                          <li
+                            className="hover:bg-white hover:text-blue-950 cursor-pointer pl-4   border-b border-slate-500 pb-2 pt-1"
+                            onClick={handleComingSoonModalClick}
+                          >
+                            Staking
+                          </li>{" "}
+                          <li
+                            className="hover:bg-white hover:text-blue-950 cursor-pointer pl-4   border-b border-slate-500 pb-2 pt-1"
+                            onClick={handleComingSoonModalClick}
+                          >
+                            Post rental
+                          </li>{" "}
+                          <li
+                            className="hover:bg-white hover:text-blue-950 cursor-pointer pl-4   border-b border-slate-500 pb-2 pt-1"
+                            onClick={handleComingSoonModalClick}
+                          >
+                            Log out
+                          </li>{" "}
+                        </ul>
+                      </div>
+                    )}
+                  </div>
+                  <ConnectWallet
+                    className={` w-full hidden sm:block font-inter`}
+                    innerClassName={`px-6 rounded-[10px]`}
+                    outerClassName={`rounded-[10px]`}
+                  />
+                </>
               ) : (
                 <>
                   {" "}
@@ -407,57 +414,64 @@ const Navbar = () => {
               )}
             </div>{" "}
             {auth ? (
-              <div className="relatvive">
-                <img
-                  src={User}
-                  alt="User"
-                  className="w-12"
-                  onMouseEnter={() => handleMouseEnter2()}
-                  onMouseLeave={handleMouseLeave2}
-                />{" "}
-                {dropdown2 && (
-                  <div
-                    className="absolute font-normal text-lg top-15  w-[200px] rounded-b-lg right-0 bg-blue-500 text-slate-300 text-left  py-4 pb-0 shadow-2xl"
+              <>
+                <div className="relatvive">
+                  <img
+                    src={User}
+                    alt="User"
+                    className="w-12"
                     onMouseEnter={() => handleMouseEnter2()}
                     onMouseLeave={handleMouseLeave2}
-                  >
-                    <ul className="list-none flex flex-col">
-                      <li
-                        className="hover:bg-white hover:text-blue-950 cursor-pointer pl-4   border-b border-slate-500 pb-2 pt-1"
-                        // onClick={handleComingSoonModalClick}
-                        // className='border-b border-slate-500 pb-2 pt-1'
-                      >
-                        <Link to={`/profile`}>Profile</Link>
-                      </li>
-                      {/* </Link> */}
-                      <li
-                        className="hover:bg-white hover:text-blue-950 cursor-pointer pl-4   border-b border-slate-500 pb-2 pt-1"
-                        onClick={handleComingSoonModalClick}
-                      >
-                        Wallet
-                      </li>{" "}
-                      <li
-                        className="hover:bg-white hover:text-blue-950 cursor-pointer pl-4   border-b border-slate-500 pb-2 pt-1"
-                        onClick={handleComingSoonModalClick}
-                      >
-                        Staking
-                      </li>{" "}
-                      <li
-                        className="hover:bg-white hover:text-blue-950 cursor-pointer pl-4   border-b border-slate-500 pb-2 pt-1"
-                        onClick={handleComingSoonModalClick}
-                      >
-                        Post rental
-                      </li>{" "}
-                      <li
-                        className="hover:bg-white hover:text-blue-950 cursor-pointer pl-4   border-b border-slate-500 pb-2 pt-1"
-                        onClick={handleComingSoonModalClick}
-                      >
-                        Log out
-                      </li>{" "}
-                    </ul>
-                  </div>
-                )}
-              </div>
+                  />{" "}
+                  {dropdown2 && (
+                    <div
+                      className="absolute font-normal text-lg top-15  w-[200px] rounded-b-lg right-0 bg-blue-500 text-slate-300 text-left  py-4 pb-0 shadow-2xl"
+                      onMouseEnter={() => handleMouseEnter2()}
+                      onMouseLeave={handleMouseLeave2}
+                    >
+                      <ul className="list-none flex flex-col">
+                        <li
+                          className="hover:bg-white hover:text-blue-950 cursor-pointer pl-4   border-b border-slate-500 pb-2 pt-1"
+                          // onClick={handleComingSoonModalClick}
+                          // className='border-b border-slate-500 pb-2 pt-1'
+                        >
+                          <Link to={`/profile`}>Profile</Link>
+                        </li>
+                        {/* </Link> */}
+                        <li
+                          className="hover:bg-white hover:text-blue-950 cursor-pointer pl-4   border-b border-slate-500 pb-2 pt-1"
+                          onClick={handleComingSoonModalClick}
+                        >
+                          Wallet
+                        </li>{" "}
+                        <li
+                          className="hover:bg-white hover:text-blue-950 cursor-pointer pl-4   border-b border-slate-500 pb-2 pt-1"
+                          onClick={handleComingSoonModalClick}
+                        >
+                          Staking
+                        </li>{" "}
+                        <li
+                          className="hover:bg-white hover:text-blue-950 cursor-pointer pl-4   border-b border-slate-500 pb-2 pt-1"
+                          onClick={handleComingSoonModalClick}
+                        >
+                          Post rental
+                        </li>{" "}
+                        <li
+                          className="hover:bg-white hover:text-blue-950 cursor-pointer pl-4   border-b border-slate-500 pb-2 pt-1"
+                          onClick={handleComingSoonModalClick}
+                        >
+                          Log out
+                        </li>{" "}
+                      </ul>
+                    </div>
+                  )}
+                </div>
+                <ConnectWallet
+                  className={` w-full hidden sm:block font-inter`}
+                  innerClassName={`px-6 rounded-[10px]`}
+                  outerClassName={`rounded-[10px]`}
+                />
+              </>
             ) : (
               <>
                 {" "}

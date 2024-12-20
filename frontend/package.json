@@ -11,8 +11,8 @@
   },
   "dependencies": {
     "@iconify/react": "^5.0.2",
-    "@reown/appkit": "^1.5.3",
-    "@reown/appkit-adapter-ethers5": "^1.5.3",
+    "@reown/appkit": "^1.6.2",
+    "@reown/appkit-adapter-ethers5": "^1.6.2",
     "axios": "^1.7.9",
     "dotenv": "^16.4.7",
     "ethers": "^5.7.2",
