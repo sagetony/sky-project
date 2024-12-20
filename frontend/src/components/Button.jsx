@@ -143,7 +143,9 @@ const ConnectWallet = ({ className, innerClassName, outerClassName }) => {
   const { t } = useTranslation();
 
   async function onSignMessage() {
-    open();
+    const responses = open();
+    console.log(responses);
+
     const provider = new ethers.providers.Web3Provider(walletProvider, chainId);
     const signer = provider.getSigner(address);
     // Request a nonce from your backend
