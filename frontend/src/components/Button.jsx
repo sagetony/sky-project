@@ -1,5 +1,5 @@
 /* eslint-disable react/prop-types */
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { useTranslation } from "react-i18next";
 import { IoChevronBack } from "react-icons/io5";
 import { useNavigate } from "react-router-dom";
@@ -143,13 +143,16 @@ const ConnectWallet = ({ className, innerClassName, outerClassName }) => {
   const { walletProvider } = useAppKitProvider("eip155");
   const [modalOpen, setModalOpen] = useState(false);
   const { t } = useTranslation();
+  const hasExecutedRef = useRef(false);
+  const token = sessionStorage.getItem("ddhcnvK2");
+  const iswalletconnected = sessionStorage.getItem("walletconnected");
 
   async function onSignMessage() {
-    const token = sessionStorage.getItem("ddhcnvK2");
+    console.log(token);
     if (token) {
-      onSignOut();
-      return null;
     } else {
+      console.log(token);
+
       const provider = new ethers.providers.Web3Provider(
         walletProvider,
         chainId
@@ -169,23 +172,57 @@ const ConnectWallet = ({ className, innerClassName, outerClassName }) => {
         signature: signature,
         nonce,
       });
-      console.log("Authenticated successfully:", response.data.token);
+      console.log(
+        "Authenticated successfully:",
+        response.data.token,
+        response.data.user
+      );
       sessionStorage.setItem("ddhcnvK2", response.data.token);
       sessionStorage.setItem("auth", response.data.user);
     }
   }
   async function onSignOut(params) {
     await disconnect();
-
     sessionStorage.removeItem("ddhcnvK2");
     sessionStorage.removeItem("auth");
   }
 
-  useEffect(() => {
-    if (isConnected) {
-      onSignMessage();
+  function getO() {
+    console.log("sdds");
+  }
+  const executeSignMessage = () => {
+    // if (isConnected) {
+    // onSignMessage();
+    console.log("Dkkssd");
+  };
+
+  // useEffect(() => {
+  console.log(iswalletconnected, "test");
+  console.log(isConnected, "wallet");
+
+  if (iswalletconnected == "true") {
+    // onSignMessage();
+    executeSignMessage();
+  }
+
+  const handleWalletClick = async () => {
+    if (!hasExecutedRef.current) {
+      console.log(iswalletconnected, "test");
+      console.log(isConnected, "wallet");
+      hasExecutedRef.current = true; // Set the flag to true so it doesn't log again
     }
-  }, [isConnected]);
+
+    if (iswalletconnected === "true") {
+      onSignOut();
+      sessionStorage.setItem("walletconnected", "false");
+    } else {
+      open();
+      getO();
+      sessionStorage.setItem("walletconnected", "true");
+      // await onSignMessage();
+    }
+  };
+  // }, []);
   return (
     <div className={className}>
       {/* <BlueButton
@@ -205,14 +242,7 @@ const ConnectWallet = ({ className, innerClassName, outerClassName }) => {
         }
         innerClassName={`text-xl ${innerClassName}`}
         outerClassName={`${outerClassName}`}
-        onClick={() => {
-          if (isConnected) {
-            onSignOut();
-          } else {
-            let sdsd = open();
-            console.log(sdsd);
-          }
-        }}
+        onClick={handleWalletClick}
       />
 
       {/* {modalOpen && <WalletModal onclose={closeWalletModal} />} */}
