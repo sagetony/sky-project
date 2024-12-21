@@ -1,7 +1,7 @@
 0: contract SkyMateCoin 0x4860e2c26a4A06265d387125C370F61Ff2Dd62c4
 1: contract SkyMatePurchaseToken 0xBaEa0c16b28BeccEBf88b04875d6bCfd44B855C8
 2: contract Staking 0x46Fd4d1f7c8e9f0685620cA757b51C75565B657b
-3: contract SkyMateNFT 0x2698AbFAf38dAB1c30DbE9A4F5ab22fc8f3D62C6
+3: contract SkyMateNFT 0x77A9D48ea6dFF35B5D9b62Fd6375F6bD6e8F214D
 4: contract HelperConfig 0xC7f2Cf4845C6db0e1a1e91ED41Bcd0FcC1b0E141
 
 == Logs ==
