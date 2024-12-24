@@ -9,7 +9,7 @@ import SkyMateNFTContractFile from "../../abis/SkyMateNFT.sol/SkyMateNFT.json";
 import axios from "axios";
 
 const SkyMateNFTContractAbi = SkyMateNFTContractFile.abi;
-const SkyMateNFTContractAddress = "0x2119b78F6db9091d11A5326352d725c1255a974B";
+const SkyMateNFTContractAddress = "0x77A9D48ea6dFF35B5D9b62Fd6375F6bD6e8F214D";
 // const API_KEY = import.meta.env.VITE_NFT_STORAGE_API_KEY;
 const PINATA_API_KEY = import.meta.env.VITE_PINATA_API_KEY;
 const PINATA_API_SECRET = import.meta.env.VITE_PINATA_API_SECRET;
@@ -95,7 +95,6 @@ const MintingForm = () => {
     );
     const tokenIdBigNumber = await SkyMateNFT._tokenIdCounter();
     const tokenId = tokenIdBigNumber.toNumber();
-
     setTokenId(tokenId);
     const imageUrl = await uploadImageToPinata(imageFile);
     //metadata
@@ -112,7 +111,18 @@ const MintingForm = () => {
     const tokenURI = await uploadToPinata(metadata);
 
     const _amount = ethers.utils.parseUnits(price, 18);
+
     try {
+      // Function to get the token from sessionStorage
+      const getAuthToken = () => {
+        return sessionStorage.getItem("ddhcnvK2"); // Get token from sessionStorage
+      };
+      const token = getAuthToken(); // Retrieve the token from sessionStorage
+
+      if (!token) {
+        toast.error("Connect Wallet");
+        return;
+      }
       const mintTx = await SkyMateNFT.uploadLand(
         coordinates,
         location,
@@ -139,10 +149,16 @@ const MintingForm = () => {
         // Sending the POST request to the API
         try {
           const response = await axios.post(
-            "https://smcc99.com/api/uploadnft",
-            nftData
+            "https://app-8188821b-b70d-4f68-a73e-2a6805ccb1f1.cleverapps.io/api/nfts/upload",
+            nftData,
+            {
+              headers: {
+                "Content-Type": "application/json", // Set the content type to JSON
+                Authorization: `Bearer ${token}`, // Include the token in the Authorization header
+              },
+            }
           );
-          if (response.status === 201) {
+          if (response.status === 200) {
             toast.success("NFT is minted and saved successfully");
           } else {
             toast.error("Failed to save NFT data to backend");

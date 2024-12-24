@@ -81,3 +81,7 @@ Features
    Contract Owner can delete land not Admin
 8. Update land sales status
    Land owner can update sale status
+
+
+You may connect via port 21098.
+Host Name field: business91.web-hosting.com

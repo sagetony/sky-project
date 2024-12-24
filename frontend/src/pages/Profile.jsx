@@ -197,11 +197,15 @@ const Profile = () => {
         formdata.append(`item${index + 1}`, file);
       });
 
-      const res = await axios.post("https://smcc99.com/api/profile", formdata, {
-        headers: {
-          Token: "6|5bFff3RuedT7rtFQiwAhaExsXZuTWINPTfbUk3Yv7634cdeb",
-        },
-      });
+      const res = await axios.post(
+        "https://app-8188821b-b70d-4f68-a73e-2a6805ccb1f1.cleverapps.io/api/profile",
+        formdata,
+        {
+          headers: {
+            Token: "6|5bFff3RuedT7rtFQiwAhaExsXZuTWINPTfbUk3Yv7634cdeb",
+          },
+        }
+      );
       console.log(res);
     } catch (error) {
       console.log(error);

@@ -17,12 +17,15 @@ const Market = () => {
     if (isConnected) {
       // Fetch NFTs for the current page
       axios
-        .get(`https://smcc99.com/api/load-nft?page=${currentPage}`) // Pass currentPage to API
+        .get(
+          `https://app-8188821b-b70d-4f68-a73e-2a6805ccb1f1.cleverapps.io/api/nfts/load?page=${currentPage}`
+        ) // Pass currentPage to API
         .then((response) => {
-          setNfts(response.data.nfts.data); // response.data.nfts.data contains the paginated NFTs
+          setNfts(response.data.nfts); // response.data.nfts.data contains the paginated NFTs
           setTotalNfts(response.data.totalNfts); // response.data.totalNfts contains the total NFT count
           setTotalPages(response.data.pagination.last_page); // response.data.pagination.last_page contains the total number of pages
           setIsLoading(false);
+          console.log(response);
         })
         .catch((error) => {
           console.error("Error fetching NFTs:", error);
