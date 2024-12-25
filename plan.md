@@ -82,6 +82,14 @@ Features
 8. Update land sales status
    Land owner can update sale status
 
-
 You may connect via port 21098.
 Host Name field: business91.web-hosting.com
+
+0: contract SkyMateCoin 0xdB8f55b83a24e84D50739E1FC971E88093993C92
+1: contract HelperConfig 0xC7f2Cf4845C6db0e1a1e91ED41Bcd0FcC1b0E141
+2: contract SkyMatePurchaseToken 0xb087F69F9BEe49964F082557E00dFa2CF2B1dEDc
+3: contract Staking 0x03356EBE91Afde8595ebF1dDc781E44fa7917414
+4: contract SkyMateNFT 0x9C43553EAC670f8B200c264343f5345C98219D08
+
+== Logs ==
+USDT CONTRACT ADDRESS 0x73A862B01FA7336A20b70D7222478B830779BEa5 6

@@ -7,8 +7,8 @@ import { toast } from "sonner";
 
 import StakingContractFile from "../../../abis/Staking.sol/Staking.json";
 import SMCTokenContractFile from "../../../abis/SkyMateCoin.sol/SkyMateCoin.json";
-const StakingContractAddress = "0x9854720B9B64498785A4E484b0fBC8cC7642ed98";
-const SMCTokenContractAddress = "0x5f548a29269537B00dC9d61cEac35887734369D4";
+const StakingContractAddress = "0x03356EBE91Afde8595ebF1dDc781E44fa7917414";
+const SMCTokenContractAddress = "0xdB8f55b83a24e84D50739E1FC971E88093993C92";
 const StakingContractAbi = StakingContractFile.abi;
 const SMCTokenContractAbi = SMCTokenContractFile.abi;
 

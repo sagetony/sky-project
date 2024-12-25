@@ -9,7 +9,7 @@ import SkyMateNFTContractFile from "../../abis/SkyMateNFT.sol/SkyMateNFT.json";
 import axios from "axios";
 
 const SkyMateNFTContractAbi = SkyMateNFTContractFile.abi;
-const SkyMateNFTContractAddress = "0x77A9D48ea6dFF35B5D9b62Fd6375F6bD6e8F214D";
+const SkyMateNFTContractAddress = "0x9C43553EAC670f8B200c264343f5345C98219D08";
 // const API_KEY = import.meta.env.VITE_NFT_STORAGE_API_KEY;
 const PINATA_API_KEY = import.meta.env.VITE_PINATA_API_KEY;
 const PINATA_API_SECRET = import.meta.env.VITE_PINATA_API_SECRET;

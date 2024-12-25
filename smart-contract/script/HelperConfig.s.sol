@@ -16,7 +16,7 @@ contract HelperConfig is Script {
 
     NetworkConfig public activeNetworkConfig;
     address public MAINNET_USDT = 0xdAC17F958D2ee523a2206206994597C13D831ec7;
-    address public TESTNET_USDC = 0x0bD659F1c4c86bB92D21603d1A362F288C3C4Cc0;
+    address public TESTNET_USDC = 0x73A862B01FA7336A20b70D7222478B830779BEa5;
 
     constructor() {
         if (block.chainid == 1) {

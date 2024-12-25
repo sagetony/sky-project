@@ -15,9 +15,9 @@ contract DeploySkyMate is Script {
     function run()
         external
         returns (
-            // SkyMateCoin,
-            // SkyMatePurchaseToken,
-            // Staking,
+            SkyMateCoin,
+            SkyMatePurchaseToken,
+            Staking,
             SkyMateNFT,
             HelperConfig
         )
@@ -27,48 +27,48 @@ contract DeploySkyMate is Script {
             .activeNetworkConfig();
 
         vm.startBroadcast(deployerKey);
-        // SkyMateCoin skymatecoin = new SkyMateCoin(owner);
+        SkyMateCoin skymatecoin = new SkyMateCoin(owner);
 
-        // SkyMatePurchaseToken skyMatepurchasetoken = new SkyMatePurchaseToken(
-        //     skymatecoin,
-        //     address(usdt),
-        //     owner
-        // );
+        SkyMatePurchaseToken skyMatepurchasetoken = new SkyMatePurchaseToken(
+            skymatecoin,
+            address(usdt),
+            owner
+        );
 
-        // Staking staking = new Staking(IERC20(skymatecoin), owner);
+        Staking staking = new Staking(IERC20(skymatecoin), owner);
 
         SkyMateNFT nft = new SkyMateNFT(owner);
         vm.stopBroadcast();
 
-        // vm.startPrank(owner);
-        // // Purchase
-        // skymatecoin.changeAllocationAdmin(
-        //     ("Public Offering"),
-        //     address(skyMatepurchasetoken)
-        // );
+        vm.startPrank(owner);
+        // Purchase
+        skymatecoin.changeAllocationAdmin(
+            ("Public Offering"),
+            address(skyMatepurchasetoken)
+        );
 
-        // skymatecoin.mintForAllocation(("Public Offering"), 1_000_000 ether);
-        // SkyMateCoin.VestingSchedule memory publicofferingschedule = skymatecoin
-        //     .getVestingSchedule(("Public Offering"));
-        // assert(publicofferingschedule.totalMinted == 1_000_000 ether);
+        skymatecoin.mintForAllocation(("Public Offering"), 1_000_000 ether);
+        SkyMateCoin.VestingSchedule memory publicofferingschedule = skymatecoin
+            .getVestingSchedule(("Public Offering"));
+        assert(publicofferingschedule.totalMinted == 1_000_000 ether);
 
-        // // Staking
-        // skymatecoin.changeAllocationAdmin(
-        //     ("Staking Rewards"),
-        //     address(staking)
-        // );
+        // Staking
+        skymatecoin.changeAllocationAdmin(
+            ("Staking Rewards"),
+            address(staking)
+        );
 
-        // skymatecoin.mintForAllocation(("Staking Rewards"), 1_000_000 ether);
-        // SkyMateCoin.VestingSchedule memory stakingschedule = skymatecoin
-        //     .getVestingSchedule(("Staking Rewards"));
-        // assert(stakingschedule.totalMinted == 1_000_000 ether);
+        skymatecoin.mintForAllocation(("Staking Rewards"), 1_000_000 ether);
+        SkyMateCoin.VestingSchedule memory stakingschedule = skymatecoin
+            .getVestingSchedule(("Staking Rewards"));
+        assert(stakingschedule.totalMinted == 1_000_000 ether);
 
-        // vm.stopPrank();
+        vm.stopPrank();
 
-        // return (skymatecoin, skyMatepurchasetoken, staking, nft, config);
-        return (nft, config);
+        return (skymatecoin, skyMatepurchasetoken, staking, nft, config);
     }
 }
 // forge script script/DeploySkyMate.s.sol:DeploySkyMate --rpc-url https://eth-sepolia.g.alchemy.com/v2/jFt5UlUXHbrbOtldpgZ2-w36Hy-1BwmK --etherscan-api-key CC27HD26UZ64HK9DG7XN84XRSUBWE7B8KX --broadcast --verify
 // forge script script/DeploySkyMate.s.sol:DeploySkyMate --rpc-url http://127.0.0.1:8545 --private-key 0xac0974bec39a17e36ba4a6b4d238ff944bacb478cbed5efcae784d7bf4f2ff80
 // // forge script script/DeploySkyMate.s.sol:DeploySkyMate --rpc-url https://eth-sepolia.g.alchemy.com/v2/r66BFm3G4qd0zNba-yyqjMjFALrlAiqR --etherscan-api-key CC27HD26UZ64HK9DG7XN84XRSUBWE7B8KX --broadcast --verify
+// forge script script/DeploySkyMate.s.sol:DeploySkyMate --rpc-url https://eth-sepolia.g.alchemy.com/v2/GiYWZYPy2DTXD1svy8HdUpVEAwhQ_eGV --etherscan-api-key VWERHSXZGZTA687YYF4FT8VQBX3CVYG1XA --broadcast --verify
