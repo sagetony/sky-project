@@ -21,9 +21,9 @@ import { toast } from "sonner";
 import SMCPurchaseContractFile from "../../abis/SkyMatePurchaseToken.sol/SkyMatePurchaseToken.json";
 import USDTFile from "../../abis/MockERC20.sol/MockERC20.json";
 
-const SMCPurchaseContractAddress = "0xdda41a29E1e78549b182c51883a529Af854bc3b7";
+const SMCPurchaseContractAddress = "0xb087F69F9BEe49964F082557E00dFa2CF2B1dEDc";
 const SMCPurchaseContractAbi = SMCPurchaseContractFile.abi;
-const usdtContractAddress = "0x6E840943e6b5f61C2f835C7A0569Aca76794a21e";
+const usdtContractAddress = "0x73A862B01FA7336A20b70D7222478B830779BEa5";
 
 const Purchase = () => {
   const [val, setVal] = useState(0);

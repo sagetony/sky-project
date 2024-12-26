@@ -1,18 +1,9 @@
-/* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable react/prop-types */
-import { useState, useEffect } from 'react';
+// import { useState, useEffect, useRef } from 'react';
 import { useTranslation } from 'react-i18next';
 import { IoChevronBack } from 'react-icons/io5';
 import { useNavigate } from 'react-router-dom';
-import {
-  useAppKit,
-  useAppKitAccount,
-  useAppKitNetwork,
-  useAppKitProvider,
-  useDisconnect,
-} from '@reown/appkit/react';
-import { ethers } from 'ethers';
-import axios from 'axios';
+import { useAppKit, useAppKitAccount } from '@reown/appkit/react';
 
 const PurpleButton = ({
   onClick,
@@ -139,65 +130,42 @@ const CloseButton = ({ route }) => {
 const ConnectWallet = ({ className, innerClassName, outerClassName }) => {
   const { open } = useAppKit();
   const { address, isConnected } = useAppKitAccount();
-  const { chainId } = useAppKitNetwork();
-  const { disconnect } = useDisconnect();
-  const { walletProvider } = useAppKitProvider('eip155');
-  // const [modalOpen, setModalOpen] = useState(false);
   const { t } = useTranslation();
-  const token = sessionStorage.getItem('ddhcnvK2');
-  const [hasRun, setHasRun] = useState(false); // Tracks if the logic has run
 
-  async function onSignMessage() {
-    if (token) {
-      return null;
-    } else {
-      const provider = new ethers.providers.Web3Provider(
-        walletProvider,
-        chainId
-      );
-      // Request a nonce from your backend
-      const signer = provider.getSigner(address);
+  // async function onSignMessage() {
+  //   if (token) {
+  //     return null;
+  //   } else {
+  //     const provider = new ethers.providers.Web3Provider(
+  //       walletProvider,
+  //       chainId
+  //     );
+  //     const signer = provider.getSigner(address);
+  //     // Request a nonce from your backend
+  //     const { data } = await axios.get("https://app-8188821b-b70d-4f68-a73e-2a6805ccb1f1.cleverapps.io/api/auth/nonce", {
+  //       params: { address },
+  //     });
+  //     const nonce = data.nonce;
 
-      const { data } = await axios.get('https://smcc99.com/api/auth/nonce', {
-        params: { address },
-      });
-      const nonce = data.nonce;
-      if (nonce) {
-        const signature = await signer?.signMessage(nonce);
-        console.log(signature);
+  //     const signature = await signer?.signMessage(nonce);
 
-        if (signature) {
-          // // Send the signed message to your backend for verification
-          const response = await axios.post(
-            'https://smcc99.com/api/auth/verify',
-            {
-              address,
-              signature: signature,
-              nonce,
-            }
-          );
-          console.log('token', response.data.token);
-          sessionStorage.setItem('ddhcnvK2', response.data.token);
-          console.log(response.data.user);
-          sessionStorage.setItem('auth', response.data.user);
-        }
-      }
-    }
-  }
+  //     // // Send the signed message to your backend for verification
+  //     const response = await axios.post("https://app-8188821b-b70d-4f68-a73e-2a6805ccb1f1.cleverapps.io/api/auth/verify", {
+  //       address,
+  //       signature: signature,
+  //       nonce,
+  //     });
+  //     console.log("Authenticated successfully:", response.data.token);
+  //     sessionStorage.setItem("ddhcnvK2", response.data.token);
+  //     sessionStorage.setItem("auth", response.data.user);
+  //   }
+  // }
+  // async function onSignOut(params) {
+  //   await disconnect();
 
-  useEffect(() => {
-    if (hasRun === true) {
-      console.log('isConnected updated:', isConnected);
-      onSignMessage();
-    }
-  }, [hasRun]);
-
-  async function onSignOut() {
-    await disconnect();
-
-    sessionStorage.removeItem('ddhcnvK2');
-    sessionStorage.removeItem('auth');
-  }
+  //   sessionStorage.removeItem("ddhcnvK2");
+  //   sessionStorage.removeItem("auth");
+  // }
 
   return (
     <div className={className}>
@@ -218,23 +186,8 @@ const ConnectWallet = ({ className, innerClassName, outerClassName }) => {
         }
         innerClassName={`text-xl ${innerClassName}`}
         outerClassName={`${outerClassName}`}
-        onClick={() => {
-          if (isConnected) {
-            onSignOut();
-            setHasRun(false);
-          } else {
-            open({
-              headers: {
-                'x-project-id': 'd4b4ea4d0b9e81094db8e4fd59a8eb87',
-                'x-sdk-type': 'Appkit',
-                'x-sdk-version': 'react-ethers-1.5.3',
-              },
-            });
-            setHasRun(true);
-          }
-        }}
+        onClick={() => open()}
       />
-
       {/* {modalOpen && <WalletModal onclose={closeWalletModal} />} */}
     </div>
   );

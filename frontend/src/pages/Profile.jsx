@@ -197,11 +197,26 @@ const Profile = () => {
         formdata.append(`item${index + 1}`, file);
       });
 
-      const res = await axios.post("https://smcc99.com/api/profile", formdata, {
-        headers: {
-          Token: "6|5bFff3RuedT7rtFQiwAhaExsXZuTWINPTfbUk3Yv7634cdeb",
-        },
-      });
+      // Function to get the token from sessionStorage
+      const getAuthToken = () => {
+        return sessionStorage.getItem("ddhcnvK2"); // Get token from sessionStorage
+      };
+      const token = getAuthToken(); // Retrieve the token from sessionStorage
+
+      if (!token) {
+        toast.error("Connect Wallet");
+        return;
+      }
+      const res = await axios.post(
+        "https://app-8188821b-b70d-4f68-a73e-2a6805ccb1f1.cleverapps.io/api/profile",
+        formdata,
+        {
+          headers: {
+            "Content-Type": "application/json", // Set the content type to JSON
+            Authorization: `Bearer ${token}`, // Include the token in the Authorization header
+          },
+        }
+      );
       console.log(res);
     } catch (error) {
       console.log(error);

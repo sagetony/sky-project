@@ -13,6 +13,7 @@
     "@iconify/react": "^5.0.2",
     "@reown/appkit": "^1.6.2",
     "@reown/appkit-adapter-ethers5": "^1.6.2",
+    "@reown/appkit-siwe": "^1.6.2",
     "axios": "^1.7.9",
     "dotenv": "^16.4.7",
     "ethers": "^5.7.2",
@@ -25,6 +26,7 @@
     "react-i18next": "^15.1.0",
     "react-icons": "^5.3.0",
     "react-router-dom": "^6.27.0",
+    "siwe": "^2.3.2",
     "sonner": "^1.7.1"
   },
   "devDependencies": {

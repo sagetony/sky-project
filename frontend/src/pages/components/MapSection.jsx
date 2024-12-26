@@ -1,7 +1,25 @@
+import axios from 'axios';
 import { Cloud1, map_inner, maps_bg } from '../../assets';
 import MapCard from './MapCard';
 
 const MapSection = () => {
+  const getAvatars = async () => {
+    try {
+      const res = await axios.get(
+        'https://app-8188821b-b70d-4f68-a73e-2a6805ccb1f1.cleverapps.io/api/nfts/bought',
+        {},
+        {
+          headers: {
+            Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Mywid2FsbGV0IjoiMHhkNTJmODIzRDQ2YmFCMTY3YTViMTRCNDg4NkFFOTk5ZTYxZjg3MkNBIiwiaWF0IjoxNzM1MjA4MjYxfQ.RGhkqzzsxxPsHAbssArUUz3PwgFWhcLqGmskiUufveo`,
+          },
+        }
+      );
+      console.log(res);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+  getAvatars();
   return (
     <div className='relative' style={{ backgroundImage: `url(${maps_bg})` }}>
       {' '}
