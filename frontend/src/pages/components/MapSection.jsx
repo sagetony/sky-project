@@ -133,6 +133,7 @@ const MapSection = () => {
                   isTag={true}
                   img={nft.image}
                   name={nft.name}
+                  coordinates={nft.coordinates}
                   onClick={() => handleBuyLandModalClick(nft)}
                 />
               ))}
