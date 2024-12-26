@@ -103,7 +103,7 @@ const MapSection = () => {
                   key={index}
                   src={`${avatar.nft.image}`}
                   alt={`Avatar ${index + 1}`}
-                  className='absolute'
+                  className='absolute cursor-pointer hover:scale-125'
                   onClick={() => {
                     handleLandModalClick(avatar);
                   }}
