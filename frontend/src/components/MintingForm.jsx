@@ -42,7 +42,7 @@ const MintingForm = () => {
       );
       return `https://gateway.pinata.cloud/ipfs/${response.data.IpfsHash}`;
     } catch (error) {
-      setError("Error uploading image to Pinata: " + error.message);
+      toast.error("Error uploading image to Pinata: " + error.message);
       throw error;
     }
   };
@@ -61,7 +61,7 @@ const MintingForm = () => {
       );
       return `https://gateway.pinata.cloud/ipfs/${response.data.IpfsHash}`;
     } catch (error) {
-      setError("Error uploading to Pinata: " + error.message);
+      toast.error("Error uploading to Pinata: " + error.message);
       throw error;
     }
   };
