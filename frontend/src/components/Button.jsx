@@ -1,5 +1,5 @@
 /* eslint-disable react/prop-types */
-import { useState, useEffect, useRef } from "react";
+// import { useState, useEffect, useRef } from 'react';
 import { useTranslation } from "react-i18next";
 import { IoChevronBack } from "react-icons/io5";
 import { useNavigate } from "react-router-dom";
@@ -128,7 +128,7 @@ const CloseButton = ({ route }) => {
 // import WalletModal from '../modal/WalletModal';
 
 const ConnectWallet = ({ className, innerClassName, outerClassName }) => {
-  const { open, close } = useAppKit();
+  const { open } = useAppKit();
   const { address, isConnected } = useAppKitAccount();
   const { t } = useTranslation();
 
@@ -182,7 +182,7 @@ const ConnectWallet = ({ className, innerClassName, outerClassName }) => {
             ? `${address.substring(0, 6)}...${address.substring(
                 address.length - 4
               )}`
-            : "Connect Wallet"
+            : `${t("connect_wallet")}`
         }
         innerClassName={`text-xl ${innerClassName}`}
         outerClassName={`${outerClassName}`}

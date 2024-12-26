@@ -7,7 +7,7 @@ import { toast } from "sonner";
 import { useAppKitAccount, useAppKitProvider } from "@reown/appkit/react";
 
 import StakingContractFile from "../../abis/Staking.sol/Staking.json";
-import SMCTokenContractFile from "../../abis/SkyMateCoin.sol/SkyMateCoin.json";
+// import SMCTokenContractFile from '../../abis/SkyMateCoin.sol/SkyMateCoin.json';
 const StakingContractAddress = "0x03356EBE91Afde8595ebF1dDc781E44fa7917414";
 const StakingContractAbi = StakingContractFile.abi;
 
@@ -15,8 +15,8 @@ const RewardModal = ({ onclose }) => {
   const { isConnected } = useAppKitAccount();
   const { walletProvider } = useAppKitProvider("eip155");
   const [StakingContract, setStakingContractState] = useState(null);
-  const [SMCTokenContract, setSMCTokenContract] = useState(null);
-  const [selectedPurpose, setSelectedPurpose] = useState("30");
+  // const [SMCTokenContract, setSMCTokenContract] = useState(null);
+  // const [selectedPurpose, setSelectedPurpose] = useState('30');
   const [totalStaked, setTotalStaked] = useState(null);
   const [stake, setStake] = useState(null);
   const [claimTimestamp, setClaimTimestamp] = useState(null);
