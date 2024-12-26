@@ -1,11 +1,14 @@
 /* eslint-disable react/prop-types */
-import { creator, maps_card_img, meta, pin, tags } from '../../assets';
+import { creator, meta, pin, tags } from '../../assets';
 import { Icons } from '../../components';
 
-const MapCard = ({ isTag, isCreator, isMeta }) => {
+const MapCard = ({ isTag, isCreator, isMeta, img, name, onClick }) => {
   return (
-    <div className='p-5 hover:shadow-2xl relative bg-card border-4 border-white rounded-2xl hover:bg-none hover:bg-slate-100 cursor-pointer hover:text-[#2A86E0] text-white font-inter hover:border-[#2A86E0]'>
-      <img src={maps_card_img} alt='' className='w-full' />
+    <div
+      onClick={onClick}
+      className='p-5 hover:shadow-2xl relative bg-card border-4 border-white rounded-2xl hover:bg-none hover:bg-slate-100 cursor-pointer hover:text-[#2A86E0] text-white font-inter hover:border-[#2A86E0]'
+    >
+      <img src={img} alt='' className='w-full' />
       {(isTag || isCreator || isMeta) && (
         <img
           src={isTag ? tags : isCreator ? creator : isMeta ? meta : null}
@@ -15,7 +18,7 @@ const MapCard = ({ isTag, isCreator, isMeta }) => {
 
       <div className='mt-6 gap-4 flex items-center justify-center'>
         <span className='flex gap-2'>
-          <p className=''>Game Name</p>
+          <p className=''>{name}</p>
           <img src={pin} className='w-6' alt='' />
         </span>
         <p className='text-[13px] font-[300]'>@game studio page</p>

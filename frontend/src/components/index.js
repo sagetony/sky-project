@@ -10,6 +10,8 @@ import ComingSoon from './ComingSoon';
 import RewardModal from './RewardModal';
 import { ConnectWallet } from './Button';
 import MintingForm from './MintingForm';
+import LandModal from './LandModal';
+import BuyLandModal from './BuyModal';
 
 export {
   CustomToastContainer,
@@ -26,4 +28,6 @@ export {
   RewardModal,
   ConnectWallet,
   MintingForm,
+  LandModal,
+  BuyLandModal,
 };
