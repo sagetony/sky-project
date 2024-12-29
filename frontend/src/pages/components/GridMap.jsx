@@ -23,7 +23,6 @@ const GridMap = ({ data }) => {
     const filteredLands = data.filter(
       (land) => land.x >= 1 && land.x <= 100 && land.y >= 1 && land.y <= 30
     );
-    console.log("Filtered lands:", filteredLands);
     setLands(filteredLands);
   }, [data]);
 
