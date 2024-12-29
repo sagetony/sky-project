@@ -23,6 +23,8 @@ const MarketCard = ({
   const { walletProvider } = useAppKitProvider("eip155");
 
   const handleClick = async (event) => {
+    const { isConnected } = useAppKitAccount();
+    const { walletProvider } = useAppKitProvider("eip155");
     if (isConnected) {
       try {
         const ethersProvider = new ethers.providers.Web3Provider(
@@ -54,6 +56,10 @@ const MarketCard = ({
           owner: walletAddress,
         };
 
+        const tokenData = {
+          tokenId: tokenId,
+        };
+
         let tx = await SkyMateNFT.buyLand(tokenId, { value: _amount });
         let receipt = await tx.wait();
         if (receipt.status === 1) {
@@ -68,7 +74,17 @@ const MarketCard = ({
                 },
               }
             );
-            if (response.status === 200) {
+            const response2 = await axios.post(
+              `https://app-8188821b-b70d-4f68-a73e-2a6805ccb1f1.cleverapps.io/api/nfts/sold`,
+              tokenData,
+              {
+                headers: {
+                  "Content-Type": "application/json", // Set the content type to JSON
+                  Authorization: `Bearer ${token}`, // Include the token in the Authorization header
+                },
+              }
+            );
+            if (response.status === 200 && response2.status === 200) {
               toast.success(`Land purchased successfully`);
             } else {
               toast.success(`Error purchasing NFT, Contact Admin`);

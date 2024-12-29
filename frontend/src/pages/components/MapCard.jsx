@@ -1,8 +1,15 @@
 /* eslint-disable react/prop-types */
 import { creator, meta, pin, tags } from '../../assets';
-import { Icons } from '../../components';
 
-const MapCard = ({ isTag, isCreator, isMeta, img, name, onClick }) => {
+const MapCard = ({
+  isTag,
+  isCreator,
+  isMeta,
+  img,
+  name,
+  onClick,
+  coordinates,
+}) => {
   return (
     <div
       onClick={onClick}
@@ -21,12 +28,12 @@ const MapCard = ({ isTag, isCreator, isMeta, img, name, onClick }) => {
           <p className=''>{name}</p>
           <img src={pin} className='w-6' alt='' />
         </span>
-        <p className='text-[13px] font-[300]'>@game studio page</p>
-        <span className='flex items-center'>
-          {' '}
-          <Icons icon='mdi-light:play' className='md:text-2xl text-xl ' />
-          <p>3k</p>{' '}
-        </span>
+        <p className='text-[13px] font-[300]'>@{coordinates}</p>
+        {/* <span className="flex items-center">
+          {" "}
+          <Icons icon="mdi-light:play" className="md:text-2xl text-xl " />
+          <p>3k</p>{" "}
+        </span> */}
         {/*<img src={src} alt='' className='p hover:shadow-xl cursor-pointer ' /> */}
       </div>
     </div>

@@ -36,7 +36,7 @@ const getNonce = async (): Promise<string> => {
     throw new Error("Network response was not ok");
   }
   const nonce = await res.text();
-  console.log("Nonce:", nonce);
+  // console.log("Nonce:", nonce);
   return nonce;
 };
 
@@ -53,7 +53,7 @@ const verifyMessage = async ({ message, signature }: SIWEVerifyMessageArgs) => {
       body: JSON.stringify({ message, signature }),
       credentials: "include",
     });
-    console.log(response);
+    // console.log(response);
     if (!response.ok) {
       return false;
     }
