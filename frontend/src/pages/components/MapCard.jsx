@@ -6,7 +6,7 @@ const MapCard = ({ isTag, isCreator, isMeta, img, name, onClick }) => {
   return (
     <div
       onClick={onClick}
-      className='p-5 hover:shadow-2xl relative bg-card border-4 border-white rounded-2xl hover:bg-none hover:bg-slate-100 cursor-pointer hover:text-[#2A86E0] text-white font-inter hover:border-[#2A86E0]'
+      className='p-5 hover:shadow-2xl relative bg-card border-4 border-white rounded-2xl hover:bg-none hover:bg-slate-100 cursor-pointer hover:text-[#2A86E0] text-white font-inter z-0 hover:border-[#2A86E0]'
     >
       <img src={img} alt='' className='w-full' />
       {(isTag || isCreator || isMeta) && (

@@ -1,5 +1,6 @@
-import { Cloud1, map_inner, maps_bg } from '../../assets';
-import { BuyLandModal, LandModal } from '../../components';
+import { Cloud1, maps_bg } from '../../assets';
+import { BuyLandModal } from '../../components';
+import GridMap from './GridMap';
 import MapCard from './MapCard';
 import { useEffect, useState } from 'react';
 
@@ -7,7 +8,6 @@ const MapSection = () => {
   const [selectedUser, setSelectedUser] = useState();
   const [users, setUsers] = useState([]);
   const [nfts, setNfts] = useState([]);
-  const [modalOpen, setModalOpen] = useState(false);
   const [modalOpen2, setModalOpen2] = useState(false);
 
   useEffect(() => {
@@ -23,7 +23,22 @@ const MapSection = () => {
           }
         );
         const data = await response.json();
-        setUsers(data.nfts);
+        const nftStrt = data.nfts.map((item) => {
+          // const [x, y] = item.nft.coordinates.split(',').map(Number);
+          return {
+            id: item?.id,
+            x: 30,
+            y: 20,
+            // x: item?.x,
+            // y: item?.y,
+            name: item?.nft?.name,
+            avatar: item?.nft?.image,
+            owner: item?.nft?.owner,
+            item: item,
+          };
+        });
+        // console.log(nftStrt);
+        setUsers(nftStrt);
       } catch (error) {
         console.error('Error fetching NFT data:', error);
       }
@@ -50,15 +65,6 @@ const MapSection = () => {
     fetchAvNfts();
   }, []);
 
-  const handleLandModalClick = (user) => {
-    setModalOpen(!modalOpen);
-    setSelectedUser(user);
-  };
-
-  const closeLandModal = () => {
-    setModalOpen(false);
-  };
-
   const handleBuyLandModalClick = (user) => {
     setModalOpen2(!modalOpen2);
     setSelectedUser(user);
@@ -68,12 +74,10 @@ const MapSection = () => {
     setModalOpen2(false);
   };
 
-  console.log(nfts);
   return (
     <div className='relative' style={{ backgroundImage: `url(${maps_bg})` }}>
       {' '}
       <div className='absolute inset-0 z-0'>
-        {/* <h1 className='text-[200px]'>khbj</h1> */}
         <img
           src={Cloud1}
           alt=''
@@ -85,48 +89,21 @@ const MapSection = () => {
           <input
             type='text'
             placeholder='Search an experience'
-            className='border-2 md:w-1/3 w-full mb-3 border-white bg-[#1B85ED] text-white placeholder:text-slate-100 px-5 py-2 rounded-md'
+            className='border-2 md:w-[31%] w-full  mb-3 border-white bg-[#1B85ED] text-white placeholder:text-slate-100 px-5 py-2 rounded-md'
           />
         </div>
         <div className='flex md:flex-row flex-col gap-10 justify-between'>
-          {/* <div className='md:w-2/3'>
-            <img src={map_inner} alt='' className='' />
-          </div> */}
           <div className='relative md:w-2/3'>
-            {/* Map Image */}
-            <img src={map_inner} alt='Map' className='w-full' />
-
-            {/* Scatter Avatars */}
-            <div className='absolute inset-0'>
-              {users.map((avatar, index) => (
-                <img
-                  key={index}
-                  src={`${avatar.nft.image}`}
-                  alt={`Avatar ${index + 1}`}
-                  className='absolute cursor-pointer hover:scale-125'
-                  onClick={() => {
-                    handleLandModalClick(avatar);
-                  }}
-                  style={{
-                    top: `${Math.random() * (100 - 10) + 5}%`, // Randomized with padding
-                    left: `${Math.random() * (100 - 10) + 5}%`,
-                    width: '40px', // Adjust size as needed
-                    height: '40px',
-                    borderRadius: '50%',
-                    transform: 'translate(-50%, -50%)', // Center each avatar
-                  }}
-                />
-              ))}
-            </div>
+            <GridMap data={users} />
           </div>
           <div
-            className='o md:overflow-auto md:h-[790px]'
+            className='o md:overflow-auto w-full md:h-[790px]'
             style={{
               scrollbarWidth: 'thin',
               scrollbarColor: '#1B85ED white',
             }}
           >
-            <div className='grid gap-5 md:px-8'>
+            <div className='grid gap-5 md:pl-8'>
               {nfts.map((nft, index) => (
                 <MapCard
                   key={index}
@@ -136,14 +113,10 @@ const MapSection = () => {
                   onClick={() => handleBuyLandModalClick(nft)}
                 />
               ))}
-              {/* <MapCard isCreator={true} />
-              <MapCard isMeta={true} /> */}
             </div>
           </div>
         </div>
-        {modalOpen && (
-          <LandModal onclose={closeLandModal} user={selectedUser} />
-        )}
+
         {modalOpen2 && (
           <BuyLandModal onclose={closeBuyLandModal} user={selectedUser} />
         )}

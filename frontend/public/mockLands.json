@@ -1,0 +1,34 @@
+[
+  {
+    "id": 1,
+    "x": 5,
+    "y": 5,
+    "name": "Land 1",
+    "avatar": "1.jpg",
+    "owner": "Player 1"
+  },
+  {
+    "id": 2,
+    "x": 10,
+    "y": 7,
+    "name": "Land 2",
+    "avatar": "2.png",
+    "owner": "Player 2"
+  },
+  {
+    "id": 3,
+    "x": 8,
+    "y": 10,
+    "name": "Land 3",
+    "avatar": "3.jpg",
+    "owner": "Player 3"
+  },
+  {
+    "id": 3,
+    "x": 4,
+    "y": 10,
+    "name": "Land 3",
+    "avatar": "3.jpg",
+    "owner": "Player 3"
+  }
+]

@@ -5,7 +5,7 @@ import { close, make_offer, Star } from '../assets';
 const LandModal = ({ user, onclose }) => {
   console.log(user);
   return (
-    <div className='fixed backdrop-filter backdrop-blur-md h-full w-full flex items-center justify-center z-[999px] top-0 left-0'>
+    <div className='fixed  backdrop-filter backdrop-blur-md h-full w-full flex items-center justify-center z-[9999] top-0 left-0'>
       <div className=' md:max-h-[620px]  [scrollbar-width:none] [--ms-overflow-style:none] [&::-webkit-scrollbar]:hidden max-h-[600px] overflow-auto text-white rounded-3xl  w-full lg:w-2/5 md:w-3/4'>
         <div className='bg-login font-inter p-8'>
           <div className='flex justify-end'>
