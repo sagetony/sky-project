@@ -1,9 +1,9 @@
 /* eslint-disable react/prop-types */
-import { useEffect, useState } from 'react';
-import { TransformWrapper, TransformComponent } from 'react-zoom-pan-pinch';
-import { Tooltip } from 'react-tooltip';
-import './styles.css';
-import { LandModal } from '../../components';
+import { useEffect, useState } from "react";
+import { TransformWrapper, TransformComponent } from "react-zoom-pan-pinch";
+import { Tooltip } from "react-tooltip";
+import "./styles.css";
+import { LandModal } from "../../components";
 
 const GridMap = ({ data }) => {
   const [lands, setLands] = useState([]);
@@ -23,7 +23,7 @@ const GridMap = ({ data }) => {
     const filteredLands = data.filter(
       (land) => land.x >= 1 && land.x <= 100 && land.y >= 1 && land.y <= 30
     );
-    // console.log('Filtered lands:', filteredLands);
+    console.log("Filtered lands:", filteredLands);
     setLands(filteredLands);
   }, [data]);
 
@@ -35,7 +35,7 @@ const GridMap = ({ data }) => {
       return (
         <div
           key={land.id}
-          className='grid-item cursor-pointer hover:scale-[3]'
+          className="grid-item cursor-pointer hover:scale-[3]"
           style={{
             gridRow: land.y,
             gridColumn: land.x,
@@ -45,13 +45,23 @@ const GridMap = ({ data }) => {
           data-tooltip-content={`${land.name} Owner: ${land.owner}`}
           data-html={true}
         >
-          <img src={land.avatar} alt={land.name} className='grid-avatar' />
-          <Tooltip id={`tooltip-${land.id}`} />
+          {land.avatar != null ? (
+            <>
+              <img
+                src={`https://app-8188821b-b70d-4f68-a73e-2a6805ccb1f1.cleverapps.io/${land.avatar}`}
+                alt={land.name}
+                className="grid-avatar"
+              />
+              <Tooltip id={`tooltip-${land.id}`} />
+            </>
+          ) : (
+            "null"
+          )}
         </div>
       );
     } else {
       return (
-        <div key={`empty-${row}-${col}`} className='grid-item empty'></div>
+        <div key={`empty-${row}-${col}`} className="grid-item empty"></div>
       );
     }
   };
@@ -65,7 +75,7 @@ const GridMap = ({ data }) => {
   }
 
   return (
-    <div className='grid-map-container'>
+    <div className="grid-map-container">
       <TransformWrapper
         defaultScale={0.3}
         wheel={{ step: 0.3 }}
@@ -73,7 +83,7 @@ const GridMap = ({ data }) => {
       >
         <TransformComponent>
           <div
-            className='grid-container'
+            className="grid-container"
             style={{
               gridTemplateRows: `repeat(${maxRows}, 1fr)`,
               gridTemplateColumns: `repeat(${maxColumns}, 1fr)`,
