@@ -1,0 +1,59 @@
+/* src/components/Map.css */
+.map-container {
+  text-align: center;
+  padding: 20px;
+}
+
+.map {
+  display: grid;
+  grid-template-columns: repeat(60, 1fr); /* 60 columns */
+  grid-template-rows: repeat(56, 1fr); /* 56 rows */
+  gap: 2px;
+  max-width: 100%;
+  margin: 0 auto;
+  background-color: #f0f0f0; /* Light gray background for the map */
+  border: 2px solid #ccc; /* Border around the whole map */
+  border-radius: 8px; /* Rounded corners */
+}
+
+.land {
+  width: 100%;
+  height: 100%;
+  background-color: #e0e0e0; /* Default land color */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  border: 1px solid #ccc; /* Border around each land */
+  border-radius: 4px;
+  cursor: pointer; /* Make the land clickable */
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.land:hover {
+  transform: scale(1.05); /* Slight zoom effect on hover */
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Add a subtle shadow */
+}
+
+.land.sold {
+  background-size: cover;
+  background-position: center;
+}
+
+.land-placeholder {
+  color: white;
+  font-weight: bold;
+  font-size: 14px;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.6); /* Text shadow for better visibility */
+}
+
+.land-info {
+  position: absolute;
+  bottom: 5px;
+  left: 5px;
+  color: white;
+  font-size: 12px;
+  background-color: rgba(0, 0, 0, 0.6);
+  padding: 2px 5px;
+  border-radius: 4px;
+}

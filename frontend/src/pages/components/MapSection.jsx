@@ -1,49 +1,15 @@
 import { Cloud1, maps_bg } from '../../assets';
 import { BuyLandModal } from '../../components';
-import GridMap from './GridMap';
+import GridMapMain from './GridMapNew/GridMapMain';
 import MapCard from './MapCard';
 import { useEffect, useState } from 'react';
 
 const MapSection = () => {
   const [selectedUser, setSelectedUser] = useState();
-  const [users, setUsers] = useState([]);
   const [nfts, setNfts] = useState([]);
   const [modalOpen2, setModalOpen2] = useState(false);
 
   useEffect(() => {
-    // Fetch the NFT data
-    const fetchBoughtNfts = async () => {
-      try {
-        const response = await fetch(
-          'https://app-8188821b-b70d-4f68-a73e-2a6805ccb1f1.cleverapps.io/api/nfts/bought',
-          {
-            headers: {
-              Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwid2FsbGV0IjoiMHhkNTJmODIzRDQ2YmFCMTY3YTViMTRCNDg4NkFFOTk5ZTYxZjg3MkNBIiwiaWF0IjoxNzM0OTQ3NTcyLCJleHAiOjE3MzQ5NTExNzJ9.Pp4APwXRfID8AN6joYXt1_nCOUKDXKCOdDUo2zZYJj0`,
-            },
-          }
-        );
-        const data = await response.json();
-        const nftStrt = data.nfts.map((item) => {
-          // const [x, y] = item.nft.coordinates.split(',').map(Number);
-          return {
-            id: item?.id,
-            x: 30,
-            y: 20,
-            // x: item?.x,
-            // y: item?.y,
-            name: item?.nft?.name,
-            avatar: item?.nft?.image,
-            owner: item?.nft?.owner,
-            item: item,
-          };
-        });
-        // console.log(nftStrt);
-        setUsers(nftStrt);
-      } catch (error) {
-        console.error('Error fetching NFT data:', error);
-      }
-    };
-
     const fetchAvNfts = async () => {
       try {
         const response = await fetch(
@@ -61,7 +27,6 @@ const MapSection = () => {
       }
     };
 
-    fetchBoughtNfts();
     fetchAvNfts();
   }, []);
 
@@ -92,12 +57,13 @@ const MapSection = () => {
             className='border-2 md:w-[31%] w-full  mb-3 border-white bg-[#1B85ED] text-white placeholder:text-slate-100 px-5 py-2 rounded-md'
           />
         </div>
-        <div className='flex md:flex-row flex-col gap-10 justify-between'>
-          <div className='relative md:w-2/3'>
-            <GridMap data={users} />
+        <div className='flex xl:flex-row flex-col gap-10 justify-between'>
+          <div className='relative xl:w-2/3'>
+            <GridMapMain />
+            {/* <GridMap data={users} /> */}
           </div>
           <div
-            className='o md:overflow-auto w-full md:h-[790px]'
+            className='o xl:overflow-auto w-full md:h-[790px]'
             style={{
               scrollbarWidth: 'thin',
               scrollbarColor: '#1B85ED white',
@@ -116,6 +82,7 @@ const MapSection = () => {
             </div>
           </div>
         </div>
+        {/* <GridMapMain /> */}
 
         {modalOpen2 && (
           <BuyLandModal onclose={closeBuyLandModal} user={selectedUser} />
