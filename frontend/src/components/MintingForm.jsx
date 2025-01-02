@@ -145,7 +145,9 @@ const MintingForm = () => {
           price: price,
           metadataURL: tokenURI,
           coordinates: coordinates,
+          zonename: zonename.charAt(0),
         };
+
         // Sending the POST request to the API
         try {
           const response = await axios.post(

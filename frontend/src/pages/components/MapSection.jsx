@@ -132,7 +132,6 @@ const MapSection = () => {
             </div>
           </div>
         </div>
-
         {modalOpen2 && (
           <BuyLandModal onclose={closeBuyLandModal} user={selectedUser} />
         )}
