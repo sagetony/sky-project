@@ -1,41 +1,43 @@
-import { useEffect, useState } from 'react';
-import { TransformWrapper, TransformComponent } from 'react-zoom-pan-pinch';
-import { Tooltip } from 'react-tooltip';
-import './news.css';
-import { LandModal } from '../../../../components';
+import { useEffect, useState } from "react";
+import { TransformWrapper, TransformComponent } from "react-zoom-pan-pinch";
+import { Tooltip } from "react-tooltip";
+import "./news.css";
+import { LandModal } from "../../../../components";
 
 const GridMapNew3 = () => {
   const [lands, setLands] = useState([]);
   const [modalOpen, setModalOpen] = useState(false);
   const [selectedUser, setSelectedUser] = useState();
+  const BASE_URL =
+    "https://app-8188821b-b70d-4f68-a73e-2a6805ccb1f1.cleverapps.io";
 
   useEffect(() => {
     const fetchBoughtNfts = async () => {
       try {
         const response = await fetch(
-          'https://app-8188821b-b70d-4f68-a73e-2a6805ccb1f1.cleverapps.io/api/nfts/bought-c',
+          "https://app-8188821b-b70d-4f68-a73e-2a6805ccb1f1.cleverapps.io/api/nfts/bought-c",
           {
-            headers: {
-              Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwid2FsbGV0IjoiMHhkNTJmODIzRDQ2YmFCMTY3YTViMTRCNDg4NkFFOTk5ZTYxZjg3MkNBIiwiaWF0IjoxNzM0OTQ3NTcyLCJleHAiOjE3MzQ5NTExNzJ9.Pp4APwXRfID8AN6joYXt1_nCOUKDXKCOdDUo2zZYJj0`,
-            },
+            // headers: {
+            //   Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwid2FsbGV0IjoiMHhkNTJmODIzRDQ2YmFCMTY3YTViMTRCNDg4NkFFOTk5ZTYxZjg3MkNBIiwiaWF0IjoxNzM0OTQ3NTcyLCJleHAiOjE3MzQ5NTExNzJ9.Pp4APwXRfID8AN6joYXt1_nCOUKDXKCOdDUo2zZYJj0`,
+            // },
           }
         );
         const data = await response.json();
         const nftStrt = data.nfts.map((item) => {
-          const [x, y] = item.nft.coordinates.split(',').map(Number);
+          const [x, y] = item.nft.coordinates.split(",").map(Number);
           return {
             id: item?.id,
             x: x,
             y: y,
             name: item?.nft?.name,
-            avatar: item?.nft?.image,
+            avatar: item?.user?.avatar,
             owner: item?.nft?.owner,
             item: item,
           };
         });
         setLands(nftStrt);
       } catch (error) {
-        console.error('Error fetching NFT data:', error);
+        console.error("Error fetching NFT data:", error);
       }
     };
     fetchBoughtNfts();
@@ -58,15 +60,15 @@ const GridMapNew3 = () => {
       <div
         key={`grid-${row}-${col}`}
         className={`grid-item-3 cursor-pointer hover:scale-[3] ${
-          land ? 'land-3' : 'empty-3'
+          land ? "land-3" : "empty-3"
         }  `}
       >
         {land && (
           <div onClick={() => handleLandModalClick(land.item)}>
             <img
-              src={land.avatar}
+              src={`${BASE_URL}/${land.avatar}`}
               alt={land.name}
-              className='grid-avatar-3'
+              className="grid-avatar-3"
               data-tooltip-id={`tooltip-${land.id}`}
               data-tooltip-content={`${land.name} Owner: ${land.owner}`}
             />
@@ -86,10 +88,10 @@ const GridMapNew3 = () => {
   }
 
   return (
-    <div className='grid-map-container-3'>
+    <div className="grid-map-container-3">
       <TransformWrapper defaultScale={0.3} wheel={{ step: 0.1 }}>
         <TransformComponent>
-          <div className='grid-container-3'>{gridItems}</div>
+          <div className="grid-container-3">{gridItems}</div>
         </TransformComponent>
       </TransformWrapper>
       {modalOpen && <LandModal onclose={closeLandModal} user={selectedUser} />}
