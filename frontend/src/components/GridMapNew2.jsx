@@ -1,22 +1,22 @@
-import React, { useEffect, useState } from 'react';
-import { TransformWrapper, TransformComponent } from 'react-zoom-pan-pinch';
-import { Tooltip } from 'react-tooltip';
-import './news.css';
+import React, { useEffect, useState } from "react";
+import { TransformWrapper, TransformComponent } from "react-zoom-pan-pinch";
+import { Tooltip } from "react-tooltip";
+import "./news.css";
 
 const GridMapNew2 = () => {
   const [lands, setLands] = useState([]);
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    fetch('/mockLands.json')
+    fetch("/mockLands.json")
       .then((response) => {
-        if (!response.ok) throw new Error('Network response was not ok');
+        if (!response.ok) throw new Error("Network response was not ok");
         return response.json();
       })
       .then((data) => {
         setLands(data);
       })
-      .catch((error) => setError('Failed to fetch lands.'));
+      .catch((error) => setError("Failed to fetch lands."));
   }, []);
 
   const maxRows = 1;
@@ -26,14 +26,14 @@ const GridMapNew2 = () => {
     return (
       <div
         key={`grid-${row}-${col}`}
-        className={`grid-item-2 ${land ? 'land-2' : 'empty-2'}  `}
+        className={`grid-item-2 ${land ? "land-2" : "empty-2"}  `}
       >
         {land && (
           <>
             <img
               src={land.avatar}
               alt={land.name}
-              className='grid-avatar-2'
+              className="grid-avatar-2"
               data-tooltip-id={`tooltip-${land.id}`}
               data-tooltip-content={`${land.name} Owner: ${land.owner}`}
             />
@@ -53,11 +53,11 @@ const GridMapNew2 = () => {
   }
 
   return (
-    <div className='grid-map-container-2'>
-      {error && <div className='error-message'>{error}</div>}
+    <div className="grid-map-container-2">
+      {error && <div className="error-message">{error}</div>}
       <TransformWrapper defaultScale={0.3} wheel={{ step: 0.1 }}>
         <TransformComponent>
-          <div className='grid-container-2'>{gridItems}</div>
+          <div className="grid-container-2">{gridItems}</div>
         </TransformComponent>
       </TransformWrapper>
     </div>
