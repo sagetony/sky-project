@@ -484,3 +484,117 @@
   height: 100%;
   object-fit: cover;
 }
+
+@media (min-width: 3000px) and (max-width: 3500px) {
+  .grid-container {
+    grid-template-columns: repeat(40, 17.5px);
+  }
+
+  .grid-container-2 {
+    grid-template-columns: repeat(6, 115px);
+  }
+
+  .grid-container-3 {
+    grid-template-columns: repeat(12, 57.5px);
+  }
+
+  .grid-container-4 {
+    grid-template-columns: repeat(1, 700px);
+  }
+
+  .grid-item-4 {
+    width: 700px;
+  }
+}
+
+@media (min-width: 2700px) and (max-width: 2999px) {
+  .grid-container {
+    grid-template-columns: repeat(37, 17.5px);
+  }
+
+  .grid-container-2 {
+    grid-template-columns: repeat(6, 115px);
+  }
+
+  .grid-container-3 {
+    grid-template-columns: repeat(12, 57.5px);
+  }
+
+  .grid-container-4 {
+    grid-template-columns: repeat(1, 700px);
+  }
+
+  .grid-item-4 {
+    width: 700px;
+  }
+}
+
+@media (min-width: 2500px) and (max-width: 2699px) {
+  .grid-container {
+    grid-template-columns: repeat(35, 17.5px);
+  }
+
+  .grid-container-2 {
+    grid-template-columns: repeat(5, 115px);
+  }
+
+  .grid-container-3 {
+    grid-template-columns: repeat(10, 57.5px);
+  }
+
+  .grid-container-4 {
+    grid-template-columns: repeat(1, 700px);
+  }
+
+  .grid-item-4 {
+    width: 700px;
+  }
+}
+@media (min-width: 2000px) and (max-width: 2499px) {
+  .grid-container {
+    grid-template-columns: repeat(25, 17.5px);
+  }
+
+  .grid-container-2 {
+    grid-template-columns: repeat(5, 115px);
+  }
+
+  .grid-container-3 {
+    grid-template-columns: repeat(10, 57.5px);
+  }
+
+  .grid-container-4 {
+    grid-template-columns: repeat(1, 700px);
+  }
+
+  .grid-item-4 {
+    width: 700px;
+  }
+}
+
+@media (min-width: 1500px) and (max-width: 1999px) {
+  .grid-container {
+    grid-template-columns: repeat(18, 17.5px);
+  }
+
+  .grid-container-4 {
+    grid-template-columns: repeat(1, 900px);
+  }
+
+  .grid-item-4 {
+    width: 900px;
+  }
+}
+
+@media (min-width: 1110px) and (max-width: 1200px) {
+  .grid-container {
+    /* grid-template-rows: repeat(10, 23px);
+    grid-template-columns: repeat(20, 17.5px); */
+  }
+}
+
+@media (max-width: 1500px) {
+  .grid-container {
+    /* grid-template-columns: repeat(14, 17.5px); */
+  }
+}

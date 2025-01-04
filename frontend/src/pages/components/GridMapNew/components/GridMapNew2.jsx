@@ -8,6 +8,8 @@ const GridMapNew2 = () => {
   const [lands, setLands] = useState([]);
   const [modalOpen, setModalOpen] = useState(false);
   const [selectedUser, setSelectedUser] = useState();
+  const [maxRows, setMaxRows] = useState(1);
+  const [maxColumns, setMaxColumns] = useState(4);
 
   useEffect(() => {
     const fetchBoughtNfts = async () => {
@@ -39,6 +41,14 @@ const GridMapNew2 = () => {
       }
     };
     fetchBoughtNfts();
+
+    calculateGridSize();
+
+    window.addEventListener('resize', calculateGridSize);
+
+    return () => {
+      window.removeEventListener('resize', calculateGridSize);
+    };
   }, []);
 
   const handleLandModalClick = (user) => {
@@ -50,8 +60,27 @@ const GridMapNew2 = () => {
     setModalOpen(false);
   };
 
-  const maxRows = 1;
-  const maxColumns = 4;
+  // const maxRows = 1;
+  // const maxColumns = 4;
+
+  const calculateGridSize = () => {
+    const width = window.innerWidth;
+    if (width >= 3000 && width <= 3500) {
+      setMaxColumns(6);
+    } else if (width >= 2700 && width <= 2999) {
+      setMaxColumns(6);
+    } else if (width >= 2500 && width <= 2699) {
+      setMaxColumns(5);
+    } else if (width >= 2000 && width <= 2499) {
+      setMaxColumns(5);
+    } else if (width <= 1500) {
+      // setMaxRows(10);
+      // setMaxColumns(14);
+    } else {
+      setMaxRows(1);
+      setMaxColumns(4);
+    }
+  };
 
   const getGridItem = (land, row, col) => {
     return (
