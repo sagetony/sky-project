@@ -73,6 +73,8 @@ const GridMapNew3 = () => {
       setMaxColumns(10);
     } else if (width >= 2000 && width <= 2499) {
       setMaxColumns(10);
+    } else if (width >= 1280 && width <= 1499) {
+      setMaxColumns(6);
     } else if (width <= 1500) {
       // setMaxRows(10);
       // setMaxColumns(14);
