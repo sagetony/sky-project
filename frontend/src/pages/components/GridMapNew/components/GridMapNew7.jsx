@@ -52,8 +52,8 @@ const GridMapNew7 = () => {
     setModalOpen(false);
   };
 
-  const maxRows = 50;
-  const maxColumns = 65;
+  const maxRows = 60;
+  const maxColumns = 80;
 
   const getGridItem = (land, row, col) => {
     return (
@@ -89,11 +89,11 @@ const GridMapNew7 = () => {
 
   return (
     <div className="grid-map-container-7">
-      <TransformWrapper defaultScale={0.3} wheel={{ step: 0.1 }}>
-        <TransformComponent>
-          <div className="grid-container-7">{gridItems}</div>
-        </TransformComponent>
-      </TransformWrapper>
+      {/* <TransformWrapper defaultScale={0.3} wheel={{ step: 0.1 }}>
+        <TransformComponent> */}
+      <div className="grid-container-7">{gridItems}</div>
+      {/* </TransformComponent>
+      </TransformWrapper> */}
       {modalOpen && <LandModal onclose={closeLandModal} user={selectedUser} />}
     </div>
   );

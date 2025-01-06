@@ -9,7 +9,7 @@
 .last-row,
 .first-row,
 .last-row-1 {
-  border: 2px solid black;
+  border: 1px solid black;
   background-color: black;
 }
 
@@ -19,25 +19,28 @@
 .last-row-1,
 .second-row-1,
 .third-row-1 {
-  border-right: 2px solid black;
+  border-right: 1px solid black;
+}
+.row-grid {
+  width: 950px;
   background-color: black;
 }
 .third-row-1 {
-  border-top: 3px solid black;
+  border-top: 1px solid black;
 }
 .first-row-2-1 {
-  border-bottom: 2px solid black;
+  border-bottom: 1px solid black;
 }
 
 .second-row-2 {
-  border-bottom: 3px solid black;
+  border-bottom: 1px solid black;
 }
 
 .second-row-1,
 .second-row-2,
 .first-row-2-2,
 .last-row-2 {
-  border-top: 2px solid black;
+  border-top: 1px solid black;
 }
 
 .first-row-1,
@@ -46,7 +49,7 @@
 .last-row-2,
 .first-row-3,
 .third-row-2 {
-  border-left: 2px solid black;
+  border-left: 1px solid black;
 }
 
 .second-row,
@@ -68,7 +71,6 @@
   grid-template-rows: repeat(10, 23px);
   gap: 0;
   position: relative;
-  background-color: #f0f0f0;
 }
 
 .grid-item {
@@ -181,7 +183,7 @@
 
 .grid-container-4 {
   display: grid;
-  grid-template-columns: repeat(1, 310px);
+  grid-template-columns: repeat(1, 3080px);
   grid-template-rows: repeat(1, 230px);
   gap: 0;
   position: relative;
@@ -189,7 +191,7 @@
 }
 
 .grid-item-4 {
-  width: 310px;
+  width: 3080px;
   height: 230px;
   display: flex;
   align-items: center;
@@ -300,15 +302,15 @@
 
 .grid-container-7 {
   display: grid;
-  grid-template-columns: repeat(65, 10px);
-  grid-template-rows: repeat(50, 10px);
+  grid-template-columns: repeat(80, 8px);
+  grid-template-rows: repeat(60, 10px);
   gap: 0;
   position: relative;
   background-color: #f0f0f0;
 }
 
 .grid-item-7 {
-  width: 10px;
+  width: 8px;
   height: 10px;
   display: flex;
   align-items: center;
@@ -339,15 +341,15 @@
 
 .grid-container-8 {
   display: grid;
-  grid-template-columns: repeat(80, 8px);
-  grid-template-rows: repeat(70, 8px);
+  grid-template-columns: repeat(60, 2px);
+  grid-template-rows: repeat(60, 8px);
   gap: 0;
   position: relative;
   background-color: #f0f0f0;
 }
 
 .grid-item-8 {
-  width: 8px;
+  width: 2px;
   height: 8px;
   display: flex;
   align-items: center;
@@ -378,8 +380,8 @@
 
 .grid-container-9 {
   display: grid;
-  grid-template-columns: repeat(90, 16.2px);
-  grid-template-rows: repeat(31, 16.2px);
+  grid-template-columns: repeat(60, 16.2px);
+  grid-template-rows: repeat(37, 16.2px);
   gap: 0;
   position: relative;
   background-color: #f0f0f0;
@@ -417,7 +419,7 @@
 
 .grid-container-10 {
   display: grid;
-  grid-template-columns: repeat(35, 15px);
+  grid-template-columns: repeat(35, 12px);
   grid-template-rows: repeat(21, 15px);
   gap: 0;
   position: relative;
@@ -425,7 +427,7 @@
 }
 
 .grid-item-10 {
-  width: 15px;
+  width: 12px;
   height: 15px;
   display: flex;
   align-items: center;

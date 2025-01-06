@@ -92,11 +92,11 @@ const GridMapNew = () => {
 
   return (
     <div className="grid-map-container">
-      <TransformWrapper defaultScale={0.3} wheel={{ step: 0.1 }}>
-        <TransformComponent>
-          <div className="grid-container">{gridItems}</div>
-        </TransformComponent>
-      </TransformWrapper>
+      {/* <TransformWrapper defaultScale={0.3} wheel={{ step: 0.1 }}> */}
+      {/* <TransformComponent> */}
+      <div className="grid-container">{gridItems}</div>
+      {/* </TransformComponent>
+      </TransformWrapper> */}
       {modalOpen && <LandModal onclose={closeLandModal} user={selectedUser} />}
     </div>
   );
