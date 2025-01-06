@@ -8,6 +8,8 @@ const GridMapNew6 = () => {
   const [lands, setLands] = useState([]);
   const [modalOpen, setModalOpen] = useState(false);
   const [selectedUser, setSelectedUser] = useState();
+  const [maxRows, setMaxRows] = useState(20);
+  const [maxColumns, setMaxColumns] = useState(14);
 
   useEffect(() => {
     const fetchBoughtNfts = async () => {
@@ -39,6 +41,13 @@ const GridMapNew6 = () => {
       }
     };
     fetchBoughtNfts();
+    calculateGridSize();
+
+    window.addEventListener('resize', calculateGridSize);
+
+    return () => {
+      window.removeEventListener('resize', calculateGridSize);
+    };
   }, []);
 
   const handleLandModalClick = (user) => {
@@ -50,8 +59,33 @@ const GridMapNew6 = () => {
     setModalOpen(false);
   };
 
-  const maxRows = 20;
-  const maxColumns = 14;
+  // const maxRows = 20;
+  // const maxColumns = 14;
+  const calculateGridSize = () => {
+    const width = window.innerWidth;
+    if (width >= 3000 && width <= 3500) {
+      setMaxColumns(27);
+    } else if (width >= 2700 && width <= 2999) {
+      setMaxColumns(25);
+    } else if (width >= 2500 && width <= 2699) {
+      setMaxColumns(24);
+    } else if (width >= 2000 && width <= 2499) {
+      setMaxColumns(24);
+    } else if (width >= 1500 && width <= 1999) {
+      setMaxColumns(24);
+    } else if (width >= 1280 && width <= 1499) {
+      setMaxColumns(24);
+    } else if (width >= 680 && width <= 1279) {
+      setMaxColumns(24);
+    } else if (width >= 500 && width <= 679) {
+      setMaxColumns(9);
+    } else if (width >= 400 && width <= 499) {
+      setMaxColumns(7);
+    } else {
+      setMaxRows(20);
+      setMaxColumns(7);
+    }
+  };
 
   const getGridItem = (land, row, col) => {
     return (

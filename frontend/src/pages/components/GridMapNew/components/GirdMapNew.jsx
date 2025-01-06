@@ -9,7 +9,7 @@ const GridMapNew = () => {
   const [modalOpen, setModalOpen] = useState(false);
   const [selectedUser, setSelectedUser] = useState();
   const [maxRows, setMaxRows] = useState(10);
-  const [maxColumns, setMaxColumns] = useState(22);
+  const [maxColumns, setMaxColumns] = useState(6);
 
   useEffect(() => {
     const fetchBoughtNfts = async () => {
@@ -77,12 +77,15 @@ const GridMapNew = () => {
       setMaxColumns(18);
     } else if (width >= 1280 && width <= 1499) {
       setMaxColumns(16);
-    } else if (width <= 1500) {
-      // setMaxRows(10);
-      // setMaxColumns(14);
+    } else if (width >= 680 && width <= 1279) {
+      setMaxColumns(15);
+    } else if (width >= 500 && width <= 679) {
+      setMaxColumns(7);
+    } else if (width >= 400 && width <= 499) {
+      setMaxColumns(6);
     } else {
       setMaxRows(10);
-      setMaxColumns(22);
+      setMaxColumns(6);
     }
   };
 
