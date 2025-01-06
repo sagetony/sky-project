@@ -64,7 +64,7 @@ const GridMapNew9 = () => {
   const calculateGridSize = () => {
     const width = window.innerWidth;
     if (width >= 3000 && width <= 3500) {
-      setMaxColumns(10);
+      setMaxColumns(100);
     } else if (width >= 2700 && width <= 2999) {
       // setMaxColumns(25);
     } else if (width >= 2500 && width <= 2699) {

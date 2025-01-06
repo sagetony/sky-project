@@ -523,7 +523,7 @@
   }
 
   .grid-container-9 {
-    grid-template-columns: repeat(10, 16.2px);
+    grid-template-columns: repeat(100, 16.2px);
   }
 
   .grid-container-10 {
