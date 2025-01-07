@@ -6,6 +6,7 @@ import GridMapNew4 from "./components/GridMapNew4";
 import GridMapNew5 from "./components/GridMapNew5";
 import GridMapNew6 from "./components/GridMapNew6";
 import GridMapNew7 from "./components/GridMapNew7";
+import GridMapNew8 from "./components/GridMapNew8";
 import GridMapNew9 from "./components/GridMapNew9";
 import GridMapNew10 from "./components/GridMapNew10";
 import GridMapNew11 from "./components/GridMapNew11";
@@ -58,6 +59,12 @@ const GridMapMain = () => {
             </div>
             <div className="last-row-2">
               <GridMapNew11 />{" "}
+            </div>
+            
+          </div>
+          <div className="forth-row">
+            <div className="forth-row-1">
+              <GridMapNew8 />
             </div>
           </div>
         </div>

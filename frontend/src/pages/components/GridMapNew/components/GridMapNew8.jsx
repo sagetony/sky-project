@@ -15,7 +15,7 @@ const GridMapNew8 = () => {
     const fetchBoughtNfts = async () => {
       try {
         const response = await fetch(
-          "https://app-8188821b-b70d-4f68-a73e-2a6805ccb1f1.cleverapps.io/api/nfts/bought-h",
+          "https://app-8188821b-b70d-4f68-a73e-2a6805ccb1f1.cleverapps.io/api/nfts/bought-k",
           {
             // headers: {
             //   Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwid2FsbGV0IjoiMHhkNTJmODIzRDQ2YmFCMTY3YTViMTRCNDg4NkFFOTk5ZTYxZjg3MkNBIiwiaWF0IjoxNzM0OTQ3NTcyLCJleHAiOjE3MzQ5NTExNzJ9.Pp4APwXRfID8AN6joYXt1_nCOUKDXKCOdDUo2zZYJj0`,
@@ -52,8 +52,8 @@ const GridMapNew8 = () => {
     setModalOpen(false);
   };
 
-  const maxRows = 70;
-  const maxColumns = 80;
+  const maxRows = 40;
+  const maxColumns = 40;
 
   const getGridItem = (land, row, col) => {
     return (
