@@ -52,8 +52,8 @@ const GridMapNew6 = () => {
     setModalOpen(false);
   };
 
-  const maxRows = 20;
-  const maxColumns = 14;
+  const maxRows = 5;
+  const maxColumns = 10;
 
   const getGridItem = (land, row, col) => {
     return (

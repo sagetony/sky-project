@@ -53,7 +53,7 @@ const GridMapNew3 = () => {
   };
 
   const maxRows = 1;
-  const maxColumns = 8;
+  const maxColumns = 10;
 
   const getGridItem = (land, row, col) => {
     return (

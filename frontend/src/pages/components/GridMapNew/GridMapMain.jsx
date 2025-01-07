@@ -21,7 +21,7 @@ const GridMapMain = () => {
     >
       <TransformComponent>
         <div className="row-grid">
-          <div className="first-row  ">
+          <div className="first-row">
             <div className="first-row-1">
               <GridMapNew />
             </div>
@@ -44,27 +44,22 @@ const GridMapMain = () => {
             <div className="second-row-2">
               <GridMapNew6 />
             </div>
+            <div className="second-row-3">
+              <GridMapNew7 />
+            </div>
+            <div className="second-row-4">
+              <GridMapNew8 />
+            </div>
           </div>
           <div className="third-row">
             <div className="third-row-1">
-              <GridMapNew7 />
-            </div>
-            <div className="third-row-2">
               <GridMapNew9 />
             </div>
-          </div>
-          <div className="last-row">
-            <div className="last-row-1">
+            <div className="third-row-2">
               <GridMapNew10 />
             </div>
             <div className="last-row-2">
               <GridMapNew11 />{" "}
-            </div>
-            
-          </div>
-          <div className="forth-row">
-            <div className="forth-row-1">
-              <GridMapNew8 />
             </div>
           </div>
         </div>
