@@ -74,7 +74,7 @@
 
 .grid-container {
   display: grid;
-  grid-template-columns: repeat(10, 27.5px);
+  grid-template-columns: repeat(10, 19.5px);
   grid-template-rows: repeat(5, 32.7px);
   gap: 0;
   border: 1px solid black; /* Adds a black border */
@@ -82,7 +82,7 @@
 }
 
 .grid-item {
-  width: 27.5px;
+  width: 19.5px;
   height: 32.7px;
   display: flex;
   align-items: center;
