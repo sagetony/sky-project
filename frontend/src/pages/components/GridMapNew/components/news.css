@@ -3,7 +3,7 @@
   overflow: hidden;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  height: 30%;
+  height: 16.5%;
   /* background-color: black; */
 }
 .second-row {
@@ -15,43 +15,14 @@
   overflow: hidden;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-}
-.last-row,
-.first-row,
-.last-row-1 {
-  /* border: 0.5px solid black; */
-  /* background-color: black; */
+  position: relative;
+  left: 120px;
 }
 
-.first-row-1,
-.first-row-2,
-.second-row,
-.last-row-1,
-.second-row-1,
-.third-row-1 {
-  /* border-right: 0.5px solid black; */
-}
 .row-grid {
   width: 950px;
+  position: relative;
 }
-.third-row-1 {
-  /* border-top: 0.5px solid black; */
-}
-.first-row-2-1 {
-  /* border-bottom: 0.5px solid black; */
-}
-
-.second-row-2 {
-  /* border-bottom: 0.5px solid black; */
-}
-
-.second-row-1,
-.second-row-2,
-.first-row-2-2,
-.last-row-2 {
-  /* border-top: 0.5px solid black; */
-}
-
 .first-row-1,
 .first-row-2,
 .second-row-2,
@@ -78,7 +49,6 @@
   grid-template-rows: repeat(5, 32.7px);
   gap: 0;
   border: 1px solid black; /* Adds a black border */
-  position: absolute;
 }
 
 .grid-item {
@@ -115,7 +85,6 @@
   grid-template-columns: repeat(5, 70px);
   grid-template-rows: repeat(1, 80px);
   gap: 0;
-  position: relative;
   background-color: #f0f0f0;
   border: 1px solid black; /* Adds a black border */
 }
@@ -154,7 +123,6 @@
   grid-template-columns: repeat(10, 36px);
   grid-template-rows: repeat(1, 78.3px);
   gap: 0;
-  position: relative;
   background-color: #f0f0f0;
 }
 
@@ -192,7 +160,6 @@
   grid-template-columns: repeat(1, 200px);
   grid-template-rows: repeat(1, 230px);
   gap: 0;
-  position: relative;
   border: 1px solid black; /* Adds a black border */
   background-color: #f0f0f0;
 }
@@ -232,9 +199,6 @@
   grid-template-columns: repeat(30, 20px);
   grid-template-rows: repeat(20, 15px);
   gap: 0;
-  position: relative;
-  top: 1px;
-  left: 1px;
   background-color: #f0f0f0;
   border: 1px solid black; /* Adds a black border */
 
@@ -283,19 +247,18 @@
 .grid-container-6 {
   display: grid;
   grid-template-columns: repeat(10, 40px);
-  grid-template-rows: repeat(5, 30px);
+  grid-template-rows: repeat(5, 27px);
   gap: 0;
-  position: relative;
+  position: absolute;
+  left: 360px;
+  top: 158px;
   background-color: #f0f0f0;
-  position: absolute; /* or relative, depending on your layout */
-  left: 360px; /* Moves the container to the left */
-  top: 160.5px; /* Adjust as needed for vertical positioning */
   border: 1px solid black; /* Adds a black border */
 }
 
 .grid-item-6 {
   width: 40px;
-  height: 30px;
+  height: 27px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -326,19 +289,19 @@
 .grid-container-7 {
   display: grid;
   grid-template-columns: repeat(10, 16px);
-  grid-template-rows: repeat(5, 30px);
+  grid-template-rows: repeat(5, 35px);
   gap: 0;
-  position: relative;
+  position: absolute;
+  left: 601px;
+  top: 295px;
   background-color: #f0f0f0;
-  position: absolute; /* or relative, depending on your layout */
-  left: 600px; /* Moves the container to the left */
-  top: 312px; /* Adjust as needed for vertical positioning */
+
   border: 1px solid black; /* Adds a black border */
 }
 
 .grid-item-7 {
   width: 16px;
-  height: 30px;
+  height: 35px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -371,9 +334,9 @@
   grid-template-columns: repeat(4, 20px);
   grid-template-rows: repeat(5, 15px);
   gap: 0;
-  position: absolute; /* or relative, depending on your layout */
-  left: 760px; /* Moves the container to the left */
-  top: 386.5px; /* Adjust as needed for vertical positioning */
+  position: absolute;
+  left: 761px;
+  top: 385px;
   border: 1px solid black; /* Adds a black border */
   background-color: #f0f0f0;
   width: 8.7%;
@@ -414,9 +377,10 @@
   grid-template-rows: repeat(50, 8.36px);
   gap: 0;
   background-color: #f0f0f0;
-  position: absolute; /* or relative, depending on your layout */
-  left: 120px;
+
   border: 1px solid black; /* Adds a black border */
+  height: 100%; /* Ensure full height */
+  overflow: visible; /* Allow grid items to render fully */
 }
 
 .grid-item-9 {
@@ -450,22 +414,19 @@
 
 .grid-container-10 {
   display: grid;
-  grid-template-columns: repeat(30, 10px);
-  grid-template-rows: repeat(50, 15px);
+  grid-template-columns: repeat(40, 9px);
+  grid-template-rows: repeat(30, 14px);
   gap: 0;
-  position: absolute; /* or relative, depending on your layout */
-  left: 540px;
   border: 1px solid black; /* Adds a black border */
   background-color: #f0f0f0;
 }
 
 .grid-item-10 {
-  width: 10px;
-  height: 15px;
+  width: 9px;
+  height: 14px;
   display: flex;
   align-items: center;
   justify-content: center;
-
   border: 0.1px solid rgba(255, 255, 255, 0.368);
   overflow: hidden;
 }
@@ -494,11 +455,9 @@
   grid-template-columns: repeat(4, 10px);
   grid-template-rows: repeat(4, 10px);
   gap: 0;
-  position: absolute;
-  left: 842px;
   background-color: #f0f0f0;
-
   border: 1px solid black; /* Adds a black border */
+  width: 42px;
 }
 
 .grid-item-11 {
