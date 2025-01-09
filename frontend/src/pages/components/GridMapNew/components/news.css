@@ -22,6 +22,7 @@
 .row-grid {
   width: 950px;
   position: relative;
+  /* background-color: black; */
 }
 .first-row-1,
 .first-row-2,
@@ -331,20 +332,20 @@
 
 .grid-container-8 {
   display: grid;
-  grid-template-columns: repeat(4, 20px);
-  grid-template-rows: repeat(5, 15px);
+  grid-template-columns: repeat(4, 13px);
+  grid-template-rows: repeat(5, 12px);
   gap: 0;
   position: absolute;
   left: 761px;
-  top: 385px;
+  top: 400px;
   border: 1px solid black; /* Adds a black border */
   background-color: #f0f0f0;
-  width: 8.7%;
+  width: 5.7%;
 }
 
 .grid-item-8 {
-  width: 20px;
-  height: 15px;
+  width: 13px;
+  height: 12px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -373,7 +374,7 @@
 
 .grid-container-9 {
   display: grid;
-  grid-template-columns: repeat(50, 8.36px);
+  grid-template-columns: repeat(50, 7.36px);
   grid-template-rows: repeat(50, 8.36px);
   gap: 0;
   background-color: #f0f0f0;
@@ -384,7 +385,7 @@
 }
 
 .grid-item-9 {
-  width: 8.36px;
+  width: 7.36px;
   height: 8.36px;
   display: flex;
   align-items: center;
@@ -414,7 +415,7 @@
 
 .grid-container-10 {
   display: grid;
-  grid-template-columns: repeat(40, 9px);
+  grid-template-columns: repeat(40, 7.5px);
   grid-template-rows: repeat(30, 14px);
   gap: 0;
   border: 1px solid black; /* Adds a black border */
@@ -422,7 +423,7 @@
 }
 
 .grid-item-10 {
-  width: 9px;
+  width: 7.5px;
   height: 14px;
   display: flex;
   align-items: center;
@@ -452,21 +453,20 @@
 
 .grid-container-11 {
   display: grid;
-  grid-template-columns: repeat(4, 10px);
-  grid-template-rows: repeat(4, 10px);
+  grid-template-columns: repeat(4, 13.4px);
+  grid-template-rows: repeat(5, 12px);
   gap: 0;
   background-color: #f0f0f0;
   border: 1px solid black; /* Adds a black border */
-  width: 42px;
+  width: 55px;
 }
 
 .grid-item-11 {
-  width: 10px;
-  height: 10px;
+  width: 13.4px;
+  height: 12px;
   display: flex;
   align-items: center;
   justify-content: center;
-
   border: 0.1px solid rgba(255, 255, 255, 0.368);
   overflow: hidden;
 }

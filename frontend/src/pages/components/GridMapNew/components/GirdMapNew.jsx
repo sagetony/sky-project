@@ -23,7 +23,6 @@ const GridMapNew = () => {
           }
         );
         const data = await response.json();
-        console.log("fs");
 
         const nftStrt = data.nfts.map((item) => {
           const [x, y] = item.nft.coordinates.split(",").map(Number);
