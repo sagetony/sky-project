@@ -61,6 +61,7 @@ contract SkyMateNFTTest is Test {
             "A land in new york",
             "A",
             1 ether,
+            "500m^2",
             ""
         );
 
@@ -81,6 +82,7 @@ contract SkyMateNFTTest is Test {
             "A land in new york",
             "A",
             1 ether,
+            "500m^2",
             ""
         );
 
@@ -101,6 +103,7 @@ contract SkyMateNFTTest is Test {
             "A land in new york",
             "A",
             1 ether,
+            "500m^2",
             ""
         );
 
@@ -122,6 +125,7 @@ contract SkyMateNFTTest is Test {
             "A land in new york",
             "A",
             1 ether,
+            "500m^2",
             ""
         );
 
@@ -154,6 +158,7 @@ contract SkyMateNFTTest is Test {
             "A land in new york",
             "A",
             1 ether,
+            "500m^2",
             ""
         );
     }
@@ -171,6 +176,7 @@ contract SkyMateNFTTest is Test {
             "A land in new york",
             "A",
             1 ether,
+            "500m^2",
             ""
         );
         vm.stopPrank();
@@ -198,6 +204,7 @@ contract SkyMateNFTTest is Test {
             "A land in new york",
             "A",
             1 ether,
+            "500m^2",
             ""
         );
         vm.stopPrank();
@@ -225,13 +232,14 @@ contract SkyMateNFTTest is Test {
             "A land in new york",
             "A",
             1 ether,
+            "500m^2",
             ""
         );
         vm.stopPrank();
 
         vm.startPrank(buyer);
         nft.buyLand{value: 1 ether}(tokenId);
-        nft.editLandInfo(tokenId, 3 ether, "Zone A", "Land Nigeria");
+        nft.editLandInfo(tokenId, 3 ether, "Zone A", "Land Nigeria", "300m^2");
         SkyMateNFT.Land memory land = nft.getLand(tokenId);
         assertEq(land.price, 3 ether);
         vm.stopPrank();
@@ -250,13 +258,14 @@ contract SkyMateNFTTest is Test {
             "A land in new york",
             "A",
             1 ether,
+            "500m^2",
             ""
         );
         vm.stopPrank();
 
         vm.startPrank(buyer);
         nft.buyLand{value: 1 ether}(tokenId);
-        nft.editLandInfo(tokenId, 3 ether, "Zone A", "Land Nigeria");
+        nft.editLandInfo(tokenId, 3 ether, "Zone A", "Land Nigeria", "100m^2");
         nft.updateLandSaleStatus(tokenId, true);
         SkyMateNFT.Land memory land = nft.getLand(tokenId);
         assertEq(land.onSale, true);

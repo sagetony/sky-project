@@ -9,7 +9,7 @@ import SkyMateNFTContractFile from "../../abis/SkyMateNFT.sol/SkyMateNFT.json";
 import axios from "axios";
 
 const SkyMateNFTContractAbi = SkyMateNFTContractFile.abi;
-const SkyMateNFTContractAddress = "0x9C43553EAC670f8B200c264343f5345C98219D08";
+const SkyMateNFTContractAddress = "0x02761dCc0e146c6bd5A33618B7118E8aE66d5398";
 // const API_KEY = import.meta.env.VITE_NFT_STORAGE_API_KEY;
 const PINATA_API_KEY = import.meta.env.VITE_PINATA_API_KEY;
 const PINATA_API_SECRET = import.meta.env.VITE_PINATA_API_SECRET;
@@ -20,6 +20,7 @@ const MintingForm = () => {
   const [description, setDescription] = useState("");
   const [coordinates, setCoordinates] = useState("");
   const [location, setLocation] = useState("");
+  const [size, setSize] = useState("");
   const [zone, setZone] = useState("");
   const [imageFile, setImageFile] = useState(null);
   const [tokenId, setTokenId] = useState(0);
@@ -69,7 +70,7 @@ const MintingForm = () => {
   const handleSubmit = async (event) => {
     event.preventDefault();
 
-    if (!coordinates || !location || !description || !zone || !price) {
+    if (!coordinates || !location || !description || !zone || !price || !size) {
       toast.error("All fields are required");
       return;
     }
@@ -105,6 +106,7 @@ const MintingForm = () => {
       attributes: [
         { trait_type: "Zone", value: zone },
         { trait_type: "Coordinates", value: coordinates },
+        { trait_type: "Size", value: size },
         { trait_type: "Price", value: `${price} ETH` },
       ],
     };
@@ -129,6 +131,7 @@ const MintingForm = () => {
         description,
         zone,
         _amount,
+        size,
         tokenURI
       );
       const receipt = await mintTx.wait();
@@ -146,6 +149,7 @@ const MintingForm = () => {
           metadataURL: tokenURI,
           coordinates: coordinates,
           zonename: zonename.charAt(0),
+          size: size,
         };
 
         // Sending the POST request to the API
@@ -238,6 +242,20 @@ const MintingForm = () => {
                     setCoordinates(value);
                   }}
                   placeholder="Coordinates (20, 40)"
+                  className="block w-full mb-4 placeholder:text-white focus:ring-4 ring-[#44C7FF] outline-none text-white text-[15px] border-2 rounded-md p-5 py-2 bg-[#1B85ED]"
+                />
+
+                <input
+                  type="text"
+                  required
+                  name="size"
+                  placeholder="Land Size"
+                  value={size}
+                  onChange={(e) => {
+                    const value = e.target.value;
+                    setSize(value);
+                  }}
+                  step="any"
                   className="block w-full mb-4 placeholder:text-white focus:ring-4 ring-[#44C7FF] outline-none text-white text-[15px] border-2 rounded-md p-5 py-2 bg-[#1B85ED]"
                 />
 
