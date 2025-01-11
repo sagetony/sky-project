@@ -46,6 +46,7 @@ contract SkyMateNFT is ERC721URIStorage, Ownable {
         uint256 price;
         bool onSale;
         string zoneName;
+        string size;
     }
 
     // Mapping from token ID to Land data
@@ -102,7 +103,8 @@ contract SkyMateNFT is ERC721URIStorage, Ownable {
         uint256 tokenId,
         uint256 price,
         string locationName,
-        string description
+        string description,
+        string size
     );
 
     /**
@@ -167,6 +169,7 @@ contract SkyMateNFT is ERC721URIStorage, Ownable {
         string memory description,
         string memory zone,
         uint256 price,
+        string memory size,
         string memory tokenURI
     ) external onlyAdmin returns (uint256) {
         if (price <= 0) revert SkyMateNFT_InvalidPrice();
@@ -189,7 +192,8 @@ contract SkyMateNFT is ERC721URIStorage, Ownable {
             description: description,
             price: price,
             onSale: true,
-            zoneName: zoneNameToString
+            zoneName: zoneNameToString,
+            size: size
         });
 
         _tokenIdCounter++; // Increment the token ID counter for the next mint
@@ -249,7 +253,8 @@ contract SkyMateNFT is ERC721URIStorage, Ownable {
         uint256 tokenId,
         uint256 newPrice,
         string memory newLocationName,
-        string memory newDescription
+        string memory newDescription,
+        string memory newSize
     ) external {
         address currentOwner = ownerOf(tokenId);
         if (msg.sender != currentOwner) revert SkyMateNFT_NotAuthorized();
@@ -260,12 +265,14 @@ contract SkyMateNFT is ERC721URIStorage, Ownable {
         lands[tokenId].price = newPrice;
         lands[tokenId].locationName = newLocationName;
         lands[tokenId].description = newDescription;
+        lands[tokenId].size = newSize;
 
         emit LandInfoUpdated(
             tokenId,
             newPrice,
             newLocationName,
-            newDescription
+            newDescription,
+            newSize
         );
     }
 
@@ -299,7 +306,7 @@ contract SkyMateNFT is ERC721URIStorage, Ownable {
         _burn(tokenId);
         delete lands[tokenId];
 
-        emit LandInfoUpdated(tokenId, 0, "", ""); // Optional: Emit event to log deletion
+        emit LandInfoUpdated(tokenId, 0, "", "", ""); // Optional: Emit event to log deletion
     }
 
     /**

@@ -17,7 +17,7 @@ import { useAppKitAccount, useAppKitProvider } from "@reown/appkit/react";
 import SkyMateNFTContractFile from "../../abis/SkyMateNFT.sol/SkyMateNFT.json";
 
 const SkyMateNFTContractAbi = SkyMateNFTContractFile.abi;
-const SkyMateNFTContractAddress = "0x9C43553EAC670f8B200c264343f5345C98219D08";
+const SkyMateNFTContractAddress = "0x02761dCc0e146c6bd5A33618B7118E8aE66d5398";
 import axios from "axios";
 
 const BuyLandModal = ({ user, onclose }) => {

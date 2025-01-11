@@ -1,20 +1,20 @@
 /* eslint-disable react/prop-types */
 
-import { close, make_offer, Star } from '../assets';
-import { BlueButton } from '../components/Button';
-import { ethers } from 'ethers';
-import { toast } from 'sonner';
-import { useAppKitAccount, useAppKitProvider } from '@reown/appkit/react';
+import { close, make_offer, Star } from "../assets";
+import { BlueButton } from "../components/Button";
+import { ethers } from "ethers";
+import { toast } from "sonner";
+import { useAppKitAccount, useAppKitProvider } from "@reown/appkit/react";
 
-import SkyMateNFTContractFile from '../../abis/SkyMateNFT.sol/SkyMateNFT.json';
+import SkyMateNFTContractFile from "../../abis/SkyMateNFT.sol/SkyMateNFT.json";
 
 const SkyMateNFTContractAbi = SkyMateNFTContractFile.abi;
-const SkyMateNFTContractAddress = '0x9C43553EAC670f8B200c264343f5345C98219D08';
-import axios from 'axios';
+const SkyMateNFTContractAddress = "0x02761dCc0e146c6bd5A33618B7118E8aE66d5398";
+import axios from "axios";
 
 const LandModal = ({ user, onclose }) => {
   const { isConnected } = useAppKitAccount();
-  const { walletProvider } = useAppKitProvider('eip155');
+  const { walletProvider } = useAppKitProvider("eip155");
 
   const handleClick = async (event) => {
     if (isConnected) {
@@ -32,17 +32,17 @@ const LandModal = ({ user, onclose }) => {
           signer
         );
 
-        const _amount = ethers.utils.parseUnits(user?.nft.price, 'ether');
+        const _amount = ethers.utils.parseUnits(user?.nft.price, "ether");
 
         // Function to get the token from sessionStorage
         const getAuthToken = () => {
-          return sessionStorage.getItem('ddhcnvK2'); // Get token from sessionStorage
+          return sessionStorage.getItem("ddhcnvK2"); // Get token from sessionStorage
         };
 
         const token = getAuthToken(); // Retrieve the token from sessionStorage
 
         if (!token) {
-          toast.error('Connect Wallet');
+          toast.error("Connect Wallet");
           return;
         }
 
@@ -66,7 +66,7 @@ const LandModal = ({ user, onclose }) => {
               nftBuyData,
               {
                 headers: {
-                  'Content-Type': 'application/json', // Set the content type to JSON
+                  "Content-Type": "application/json", // Set the content type to JSON
                   Authorization: `Bearer ${token}`, // Include the token in the Authorization header
                 },
               }
@@ -76,7 +76,7 @@ const LandModal = ({ user, onclose }) => {
               tokenData,
               {
                 headers: {
-                  'Content-Type': 'application/json', // Set the content type to JSON
+                  "Content-Type": "application/json", // Set the content type to JSON
                   Authorization: `Bearer ${token}`, // Include the token in the Authorization header
                 },
               }
@@ -102,24 +102,24 @@ const LandModal = ({ user, onclose }) => {
     }
   };
   return (
-    <div className='fixed  backdrop-filter backdrop-blur-md h-full w-full flex items-center justify-center z-[9999] top-0 left-0'>
-      <div className=' md:max-h-[620px]  [scrollbar-width:none] [--ms-overflow-style:none] [&::-webkit-scrollbar]:hidden max-h-[600px] overflow-auto text-white rounded-3xl  w-full lg:w-2/5 md:w-3/4'>
-        <div className='bg-login font-inter p-8'>
-          <div className='flex justify-end'>
+    <div className="fixed  backdrop-filter backdrop-blur-md h-full w-full flex items-center justify-center z-[9999] top-0 left-0">
+      <div className=" md:max-h-[620px]  [scrollbar-width:none] [--ms-overflow-style:none] [&::-webkit-scrollbar]:hidden max-h-[600px] overflow-auto text-white rounded-3xl  w-full lg:w-2/5 md:w-3/4">
+        <div className="bg-login font-inter p-8">
+          <div className="flex justify-end">
             <img
               src={close}
               onClick={onclose}
-              className=' cursor-pointer w-10 hover:opacity-50 '
+              className=" cursor-pointer w-10 hover:opacity-50 "
             />
           </div>
 
-          <h3 className='text-4xl'>#{user?.nft?.name}</h3>
-          <div className='w-2/3 flex items-center justify-center mx-auto my-10'>
-            <img src={user?.nft?.image} alt='' className='w-full' />
+          <h3 className="text-4xl">#{user?.nft?.name}</h3>
+          <div className="w-2/3 flex items-center justify-center mx-auto my-10">
+            <img src={user?.nft?.image} alt="" className="w-full" />
           </div>
-          <div className='grid text-center lg:grid-cols-3'>
+          <div className="grid text-center lg:grid-cols-3">
             <div>
-              <h4 className='font-bold text-xl'>BLOCKCHAIN</h4>
+              <h4 className="font-bold text-xl">BLOCKCHAIN</h4>
               <p>Ethereum</p>
             </div>
             <div>
@@ -127,15 +127,15 @@ const LandModal = ({ user, onclose }) => {
               <p>1 x 1</p> */}
             </div>
             <div>
-              <h4 className='font-bold text-xl'>TOKEN ID</h4>
+              <h4 className="font-bold text-xl">TOKEN ID</h4>
               <p>{user?.nft?.tokenId}</p>
             </div>
           </div>
 
-          <div className=' my-10 cursor-pointer hover:scale-110 ease-linear mx-auto w-2/4'>
+          <div className=" my-10 cursor-pointer hover:scale-110 ease-linear mx-auto w-2/4">
             {/* <img src={make_offer} alt="" /> */}
             <BlueButton
-              text={'Make Offer'}
+              text={"Make Offer"}
               // icon={<img src={gift2} className="w-7" />}
               position={`right`}
               outerClassName={`flex-1 font-semibold`}
@@ -145,34 +145,34 @@ const LandModal = ({ user, onclose }) => {
           </div>
 
           <div>
-            <h3 className='font-bold text-xl mb-5'>WHAT CAN I DO WITH LAND?</h3>
-            <p className='flex items-center gap-5 font-semibold font-inter mb-7'>
+            <h3 className="font-bold text-xl mb-5">WHAT CAN I DO WITH LAND?</h3>
+            <p className="flex items-center gap-5 font-semibold font-inter mb-7">
               <span>
-                <img src={Star} alt='' className='w-6' />
+                <img src={Star} alt="" className="w-6" />
               </span>
               Start building!
             </p>
-            <p className='flex items-center gap-5 font-semibold font-inter mb-7'>
+            <p className="flex items-center gap-5 font-semibold font-inter mb-7">
               <span>
-                <img src={Star} alt='' className='w-6' />
+                <img src={Star} alt="" className="w-6" />
               </span>
               Publish and monetize your Experience
             </p>
-            <p className='flex items-center gap-5 font-semibold font-inter mb-7'>
+            <p className="flex items-center gap-5 font-semibold font-inter mb-7">
               <span>
-                <img src={Star} alt='' className='w-6' />
+                <img src={Star} alt="" className="w-6" />
               </span>
               Earn special rewards
             </p>
-            <p className='flex items-center gap-5 font-semibold font-inter mb-7'>
+            <p className="flex items-center gap-5 font-semibold font-inter mb-7">
               <span>
-                <img src={Star} alt='' className='w-6' />
+                <img src={Star} alt="" className="w-6" />
               </span>
               Exclusive LAND Owner staking
             </p>
-            <p className='flex items-center gap-5 font-semibold font-inter mb-7'>
+            <p className="flex items-center gap-5 font-semibold font-inter mb-7">
               <span>
-                <img src={Star} alt='' className='w-6' />
+                <img src={Star} alt="" className="w-6" />
               </span>
               Sell your LAND
             </p>

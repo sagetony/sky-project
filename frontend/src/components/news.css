@@ -1,55 +1,23 @@
-.first-row {
-  width: 80%;
-  overflow: hidden;
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  height: 16.5%;
-  /* background-color: black; */
-}
-.second-row {
-  overflow: hidden;
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-}
-.third-row {
-  overflow: hidden;
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  position: relative;
-  left: 110px;
-}
-
-.row-grid {
-  width: 950px;
-  position: relative;
-  /* background-color: black; */
-}
-
-.last-row {
-  display: grid;
-  overflow: hidden;
-  grid-template-columns: repeat(2, 1fr);
-}
-
-/* New Map 1 */
 .grid-map-container {
   overflow: hidden;
 }
 
 .grid-container {
   display: grid;
-  grid-template-columns: repeat(10, 20px);
-  grid-template-rows: repeat(5, 29px);
+  grid-template-columns: repeat(16, 35px);
+  grid-template-rows: repeat(5, 46px);
   gap: 0;
-  border: 1px solid black; /* Adds a black border */
+  position: relative;
+  background-color: #f0f0f0;
 }
 
 .grid-item {
-  width: 20px;
-  height: 29px;
+  width: 35px;
+  height: 46px;
   display: flex;
   align-items: center;
   justify-content: center;
+
   border: 0.1px solid rgba(255, 255, 255, 0.368);
   overflow: hidden;
 }
@@ -62,11 +30,23 @@
   background-color: #add8e6;
 }
 
+.grid-item.large-section {
+  /* background: #000; */
+  /* width: 50px; */
+  /* height: 20px; */
+  /* grid-column: span 5; */
+  /* grid-row: span 2; */
+}
 .grid-avatar {
   width: 100%;
   height: 100%;
   object-fit: cover;
 }
+
+/* .grid-item.large-section {
+  width: 600px;
+  height: 600px; 
+} */
 
 /* New Map 2 */
 .grid-map-container-2 {
@@ -75,20 +55,21 @@
 
 .grid-container-2 {
   display: grid;
-  grid-template-columns: repeat(5, 70px);
-  grid-template-rows: repeat(1, 80px);
+  grid-template-columns: repeat(5, 115px);
+  grid-template-rows: repeat(1, 116px);
   gap: 0;
+  position: relative;
   background-color: #f0f0f0;
-  border: 1px solid black; /* Adds a black border */
 }
 
 .grid-item-2 {
-  width: 80px;
-  height: 80px;
+  width: 115px;
+  height: 116px;
   display: flex;
   align-items: center;
   justify-content: center;
-  border: 1px solid rgba(255, 255, 255, 0.368) !important;
+
+  border: 0.1px solid rgba(255, 255, 255, 0.368);
   overflow: hidden;
 }
 
@@ -113,18 +94,20 @@
 
 .grid-container-3 {
   display: grid;
-  grid-template-columns: repeat(10, 36px);
-  grid-template-rows: repeat(1, 78.3px);
+  grid-template-columns: repeat(10, 57.5px);
+  grid-template-rows: repeat(1, 110px);
   gap: 0;
+  position: relative;
   background-color: #f0f0f0;
 }
 
 .grid-item-3 {
-  width: 45px;
-  height: 78.3px;
+  width: 57.5px;
+  height: 110px;
   display: flex;
   align-items: center;
   justify-content: center;
+
   border: 0.1px solid rgba(255, 255, 255, 0.368);
   overflow: hidden;
 }
@@ -150,20 +133,20 @@
 
 .grid-container-4 {
   display: grid;
-  grid-template-columns: repeat(1, 142px);
+  grid-template-columns: repeat(1, 310px);
   grid-template-rows: repeat(1, 230px);
   gap: 0;
-  border: 1px solid black; /* Adds a black border */
+  position: relative;
   background-color: #f0f0f0;
-  width: 144px !important;
 }
 
 .grid-item-4 {
-  width: 142px;
+  width: 310px;
   height: 230px;
   display: flex;
   align-items: center;
   justify-content: center;
+
   border: 0.1px solid rgba(255, 255, 255, 0.368);
   overflow: hidden;
 }
@@ -190,29 +173,15 @@
 
 .grid-container-5 {
   display: grid;
-  grid-template-columns: repeat(30, 18px);
+  grid-template-columns: repeat(40, 20px);
   grid-template-rows: repeat(20, 15px);
   gap: 0;
+  position: relative;
   background-color: #f0f0f0;
-  border-bottom: 0.4px solid black; /* Adds a black border */
-  border-left: 1px solid black; /* Adds a black border */
-  border-right: 1px solid black; /* Adds a black border */
-  border-top: 1px solid black; /* Adds a black border */
-
-  clip-path: polygon(
-    0 0,
-    60% 0,
-    60% 45%,
-    100% 45%,
-    100% 100%,
-    20% 100%,
-    20% 50%,
-    0 50%
-  );
 }
 
 .grid-item-5 {
-  width: 18px;
+  width: 20px;
   height: 15px;
   display: flex;
   align-items: center;
@@ -243,22 +212,20 @@
 
 .grid-container-6 {
   display: grid;
-  grid-template-columns: repeat(10, 37.8px);
-  grid-template-rows: repeat(5, 27px);
+  grid-template-columns: repeat(13, 40px);
+  grid-template-rows: repeat(5, 30px);
   gap: 0;
-  position: absolute;
-  left: 325px;
-  top: 141px;
+  position: relative;
   background-color: #f0f0f0;
-  border: 1px solid black; /* Adds a black border */
 }
 
 .grid-item-6 {
-  width: 37.8px;
-  height: 27px;
+  width: 40px;
+  height: 30px;
   display: flex;
   align-items: center;
   justify-content: center;
+
   border: 0.1px solid rgba(255, 255, 255, 0.368);
   overflow: hidden;
 }
@@ -285,20 +252,16 @@
 
 .grid-container-7 {
   display: grid;
-  grid-template-columns: repeat(10, 16px);
-  grid-template-rows: repeat(5, 35px);
+  grid-template-columns: repeat(80, 10px);
+  grid-template-rows: repeat(50, 10px);
   gap: 0;
-  position: absolute;
-  left: 541px;
-  top: 277px;
+  position: relative;
   background-color: #f0f0f0;
-
-  border: 1px solid black; /* Adds a black border */
 }
 
 .grid-item-7 {
-  width: 16px;
-  height: 35px;
+  width: 10px;
+  height: 10px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -328,23 +291,20 @@
 
 .grid-container-8 {
   display: grid;
-  grid-template-columns: repeat(4, 16.5px);
-  grid-template-rows: repeat(5, 16.5px);
+  grid-template-columns: repeat(80, 8px);
+  grid-template-rows: repeat(70, 8px);
   gap: 0;
-  position: absolute;
-  left: 702px;
-  top: 359px;
-  border: 1px solid black; /* Adds a black border */
+  position: relative;
   background-color: #f0f0f0;
-  width: 7.2%;
 }
 
 .grid-item-8 {
-  width: 16.5px;
-  height: 16.5px;
+  width: 8px;
+  height: 8px;
   display: flex;
   align-items: center;
   justify-content: center;
+
   border: 0.1px solid rgba(255, 255, 255, 0.368);
   overflow: hidden;
 }
@@ -370,22 +330,20 @@
 
 .grid-container-9 {
   display: grid;
-  grid-template-columns: repeat(50, 6.36px);
-  grid-template-rows: repeat(50, 6.36px);
+  grid-template-columns: repeat(90, 10px);
+  grid-template-rows: repeat(30, 10px);
   gap: 0;
+  position: relative;
   background-color: #f0f0f0;
-
-  border: 0.4px solid black; /* Adds a black border */
-  height: 100%; /* Ensure full height */
-  overflow: visible; /* Allow grid items to render fully */
 }
 
 .grid-item-9 {
-  width: 6.36px;
-  height: 6.36px;
+  width: 10px;
+  height: 10px;
   display: flex;
   align-items: center;
   justify-content: center;
+
   border: 0.1px solid rgba(255, 255, 255, 0.368);
   overflow: hidden;
 }
@@ -411,19 +369,20 @@
 
 .grid-container-10 {
   display: grid;
-  grid-template-columns: repeat(40, 8.5px);
-  grid-template-rows: repeat(30, 10.6px);
+  grid-template-columns: repeat(60, 15px);
+  grid-template-rows: repeat(20, 15px);
   gap: 0;
-  border: 0.7px solid black; /* Adds a black border */
+  position: relative;
   background-color: #f0f0f0;
 }
 
 .grid-item-10 {
-  width: 8.5px;
-  height: 10.6px;
+  width: 15px;
+  height: 15px;
   display: flex;
   align-items: center;
   justify-content: center;
+
   border: 0.1px solid rgba(255, 255, 255, 0.368);
   overflow: hidden;
 }
@@ -449,24 +408,20 @@
 
 .grid-container-11 {
   display: grid;
-  grid-template-columns: repeat(4, 16.5px);
-  grid-template-rows: repeat(5, 16.5px);
+  grid-template-columns: repeat(10, 15px);
+  grid-template-rows: repeat(5, 15px);
   gap: 0;
+  position: relative;
   background-color: #f0f0f0;
-  border-left: 0.5px solid black; /* Adds a black border */
-  border-right: 1px solid black; /* Adds a black border */
-  border-top: 1px solid black; /* Adds a black border */
-  border-bottom: 1px solid black; /* Adds a black border */
-
-  width: 68px;
 }
 
 .grid-item-11 {
-  width: 16.5px;
-  height: 16.5px;
+  width: 15px;
+  height: 15px;
   display: flex;
   align-items: center;
   justify-content: center;
+
   border: 0.1px solid rgba(255, 255, 255, 0.368);
   overflow: hidden;
 }
@@ -483,19 +438,4 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
-}
-
-.grid-container:hover,
-.grid-container-2:hover,
-.grid-container-3:hover,
-.grid-container-4:hover,
-.grid-container-5:hover,
-.grid-container-6:hover,
-.grid-container-7:hover,
-.grid-container-8:hover,
-.grid-container-9:hover,
-.grid-container-10:hover,
-.grid-container-11:hover {
-  border: 2px solid white;
-  border-radius: 2px;
 }
