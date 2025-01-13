@@ -77,6 +77,7 @@ const MapSection = () => {
                   img={nft.image}
                   name={nft.name}
                   coordinates={nft.coordinates}
+                  size={nft.size}
                   onClick={() => handleBuyLandModalClick(nft)}
                 />
               ))}
