@@ -5,6 +5,7 @@ pragma solidity 0.8.20;
 import "@openzeppelin/contracts/token/ERC20/ERC20.sol";
 import {Script} from "forge-std/Script.sol";
 import {SkyMateNFT} from "../src/SkyMateNFT.sol";
+import {SkyMateLandStaking} from "../src/SkyMateLandStaking.sol";
 import {SkyMateCoin} from "../src/SkyMateCoin.sol";
 import {SkyMatePurchaseToken} from "../src/SkyMatePurchaseToken.sol";
 import {Staking} from "../src/Staking.sol";
@@ -19,6 +20,7 @@ contract DeploySkyMate is Script {
             SkyMatePurchaseToken,
             Staking,
             SkyMateNFT,
+            SkyMateLandStaking,
             HelperConfig
         )
     {
@@ -38,34 +40,22 @@ contract DeploySkyMate is Script {
         Staking staking = new Staking(IERC20(skymatecoin), owner);
 
         SkyMateNFT nft = new SkyMateNFT(owner);
+
+        SkyMateLandStaking stakingLand = new SkyMateLandStaking(
+            address(nft),
+            owner
+        );
+
         vm.stopBroadcast();
 
-        vm.startPrank(owner);
-        // Purchase
-        skymatecoin.changeAllocationAdmin(
-            ("Public Offering"),
-            address(skyMatepurchasetoken)
+        return (
+            skymatecoin,
+            skyMatepurchasetoken,
+            staking,
+            nft,
+            stakingLand,
+            config
         );
-
-        skymatecoin.mintForAllocation(("Public Offering"), 1_000_000 ether);
-        SkyMateCoin.VestingSchedule memory publicofferingschedule = skymatecoin
-            .getVestingSchedule(("Public Offering"));
-        assert(publicofferingschedule.totalMinted == 1_000_000 ether);
-
-        // Staking
-        skymatecoin.changeAllocationAdmin(
-            ("Staking Rewards"),
-            address(staking)
-        );
-
-        skymatecoin.mintForAllocation(("Staking Rewards"), 1_000_000 ether);
-        SkyMateCoin.VestingSchedule memory stakingschedule = skymatecoin
-            .getVestingSchedule(("Staking Rewards"));
-        assert(stakingschedule.totalMinted == 1_000_000 ether);
-
-        vm.stopPrank();
-
-        return (skymatecoin, skyMatepurchasetoken, staking, nft, config);
     }
 }
 // forge script script/DeploySkyMate.s.sol:DeploySkyMate --rpc-url https://eth-sepolia.g.alchemy.com/v2/jFt5UlUXHbrbOtldpgZ2-w36Hy-1BwmK --etherscan-api-key CC27HD26UZ64HK9DG7XN84XRSUBWE7B8KX --broadcast --verify

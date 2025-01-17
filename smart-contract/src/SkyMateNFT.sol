@@ -314,7 +314,7 @@ contract SkyMateNFT is ERC721URIStorage, Ownable {
      * @param _index Index of the land.
      * @return It returns the Land.
      */
-    function getLand(uint256 _index) public view returns (Land memory) {
+    function getLand(uint256 _index) external view returns (Land memory) {
         return lands[_index];
     }
 }

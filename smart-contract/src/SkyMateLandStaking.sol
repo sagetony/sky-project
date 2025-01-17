@@ -3,6 +3,7 @@ pragma solidity 0.8.20;
 
 import "@openzeppelin/contracts/access/Ownable.sol";
 import {ISkyMateNFT} from "../src/interface/ISkyMateNFT.sol";
+import {SkyMateNFT} from "./SkyMateNFT.sol";
 
 contract SkyMateLandStaking is Ownable {
     /*´:°•.°+.*•´.*:˚.°*.˚•´.°:°•.°•.*•´.*:˚.°*.˚•´.°:°•.°+.*•´.*:*/
@@ -15,23 +16,28 @@ contract SkyMateLandStaking is Ownable {
     error SkyMateStaking_StakePeriodNotEnded();
     error SkyMateStaking_TransactionFailed();
     error SkyMateStaking_MaximumStakesReached();
+    error SkyMateStaking_InsufficentEtherForRewards();
+    error SkyMateStaking_RewardAlreadyClaimed();
 
     /*´:°•.°+.*•´.*:˚.°*.˚•´.°:°•.°•.*•´.*:˚.°*.˚•´.°:°•.°+.*•´.*:*/
     /*                          EVENTS                           */
     /*.•°:°.´+˚.*°.˚:*.´•*.+°.•°:´*.´•*.•°.•°:°.´:•˚°.*°.˚:*.´+°.•*/
     event Staked(address indexed user, uint256 tokenId, uint256 duration);
-    event Unstaked(address indexed user, uint256 tokenId, uint256 reward);
+    event Unstaked(address indexed user, uint256 tokenId);
+    event ClaimRewards(address indexed user, uint256 tokenId, uint256 reward);
 
     /*´:°•.°+.*•´.*:˚.°*.˚•´.*:˚.°*.˚•´.*:˚.°*.˚•´.°:°•.°+.*•´.*:*/
     /*                          STORAGE                           */
     /*.•°:°.´+˚.*°.˚:*.´•*.+°.•°:´*.´•*.•°.•°:°.´:•˚°.*°.˚:*.´+°.•*/
     ISkyMateNFT public immutable skyMateNFT;
+    // SkyMateNFT public immutable nft;
 
     struct Stake {
         address owner;
         uint256 startTime;
         uint256 duration;
         uint256 rewardRate;
+        bool isRewardClaimed;
     }
 
     // Land price mapping (average price on the 1st of each month)
@@ -55,6 +61,7 @@ contract SkyMateLandStaking is Ownable {
     // Maximum number of stakes
     uint256 public constant MAXIMUM_STAKES = 100;
     uint256 public activeStakes; // Tracks the current number of active stakes
+    uint256 public totalStakes; // Tracks the number of stakes including unstacked
 
     /*´:°•.°+.*•´.*:˚.°*.˚•´.*:˚.°*.˚•´.*:˚.°*.˚•´.°:°•.°+.*•´.*:*/
     /*                        CONSTRUCTOR                         */
@@ -86,7 +93,7 @@ contract SkyMateLandStaking is Ownable {
         }
 
         // Check maximum stake limit
-        if (activeStakes >= MAXIMUM_STAKES) {
+        if (totalStakes > MAXIMUM_STAKES) {
             revert SkyMateStaking_MaximumStakesReached();
         }
 
@@ -112,11 +119,15 @@ contract SkyMateLandStaking is Ownable {
             owner: msg.sender,
             startTime: block.timestamp,
             duration: duration,
-            rewardRate: rewardRate
+            rewardRate: rewardRate,
+            isRewardClaimed: false
         });
 
         // Increment active stakes
         activeStakes++;
+
+        // Increment total stakes
+        totalStakes++;
 
         // Transfer NFT to contract
         skyMateNFT.transferFrom(msg.sender, address(this), tokenId);
@@ -135,11 +146,6 @@ contract SkyMateLandStaking is Ownable {
             revert SkyMateStaking_StakePeriodNotEnded();
         }
 
-        // Calculate rewards
-        uint256 averagePrice = getAveragePrice();
-        uint256 reward = (averagePrice * stake.rewardRate * stake.duration) /
-            (365 days * 10000);
-
         // Delete stake
         delete stakes[tokenId];
 
@@ -148,28 +154,47 @@ contract SkyMateLandStaking is Ownable {
 
         // Transfer NFT back and send reward
         skyMateNFT.transferFrom(address(this), msg.sender, tokenId);
-        (bool success, ) = payable(msg.sender).call{value: reward}("");
+
+        emit Unstaked(msg.sender, tokenId);
+    }
+
+    /**
+     * @dev Land owners can claim rewards
+     * @param tokenId The tokenId for the land
+     */
+    function claimReward(uint256 tokenId) external {
+        ISkyMateNFT.Land memory land = skyMateNFT.getLand(tokenId);
+        Stake storage stake = stakes[tokenId];
+
+        if (stake.owner != msg.sender) revert SkyMateStaking_NotOwner();
+        if (block.timestamp < stake.startTime + stake.duration) {
+            revert SkyMateStaking_StakePeriodNotEnded();
+        }
+        if (stake.isRewardClaimed) revert SkyMateStaking_NotOwner();
+
+        uint256 price = land.price;
+        uint256 rewardRate = stake.rewardRate;
+        uint256 reward = (price * rewardRate) / 1000;
+
+        stake.isRewardClaimed = true;
+
+        if (address(this).balance < reward)
+            revert SkyMateStaking_InsufficentEtherForRewards();
+        (bool success, ) = payable(stake.owner).call{value: reward}("");
         if (!success) revert SkyMateStaking_TransactionFailed();
 
-        emit Unstaked(msg.sender, tokenId, reward);
+        emit ClaimRewards(stake.owner, tokenId, reward);
     }
 
     /**
-     * @dev Admin function to set monthly average price.
-     * @param month The month index (e.g., 202401 for Jan 2024).
-     * @param price The average price of land in wei.
+     * @dev Get the staked land.
+     * @param _index Index of the land.
+     * @return It returns the Staked Land.
      */
-    function setMonthlyAveragePrice(uint256 month, uint256 price) external {
-        monthlyAveragePrices[month] = price;
-    }
-
-    /**
-     * @dev Retrieve the average price of land for rewards calculation.
-     * For simplicity, this returns a single hardcoded price or a dynamic average.
-     */
-    function getAveragePrice() public pure returns (uint256) {
-        // Replace with real price calculation logic
-        return 1 ether;
+    function getStakedLand(
+        uint256 _index
+    ) external view returns (Stake memory) {
+        return stakes[_index];
     }
 
     /**

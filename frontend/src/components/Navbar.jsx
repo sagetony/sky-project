@@ -221,18 +221,6 @@ const Navbar = () => {
                             className="hover:bg-white hover:text-blue-950 cursor-pointer pl-4   border-b border-slate-500 pb-2 pt-1"
                             onClick={handleComingSoonModalClick}
                           >
-                            Wallet
-                          </li>{" "}
-                          <li
-                            className="hover:bg-white hover:text-blue-950 cursor-pointer pl-4   border-b border-slate-500 pb-2 pt-1"
-                            onClick={handleComingSoonModalClick}
-                          >
-                            Staking
-                          </li>{" "}
-                          <li
-                            className="hover:bg-white hover:text-blue-950 cursor-pointer pl-4   border-b border-slate-500 pb-2 pt-1"
-                            onClick={handleComingSoonModalClick}
-                          >
                             Post rental
                           </li>{" "}
                           <li
@@ -438,30 +426,6 @@ const Navbar = () => {
                           <Link to={`/profile`}>Profile</Link>
                         </li>
                         {/* </Link> */}
-                        <li
-                          className="hover:bg-white hover:text-blue-950 cursor-pointer pl-4   border-b border-slate-500 pb-2 pt-1"
-                          onClick={handleComingSoonModalClick}
-                        >
-                          Wallet
-                        </li>{" "}
-                        <li
-                          className="hover:bg-white hover:text-blue-950 cursor-pointer pl-4   border-b border-slate-500 pb-2 pt-1"
-                          onClick={handleComingSoonModalClick}
-                        >
-                          Staking
-                        </li>{" "}
-                        <li
-                          className="hover:bg-white hover:text-blue-950 cursor-pointer pl-4   border-b border-slate-500 pb-2 pt-1"
-                          onClick={handleComingSoonModalClick}
-                        >
-                          Post rental
-                        </li>{" "}
-                        <li
-                          className="hover:bg-white hover:text-blue-950 cursor-pointer pl-4   border-b border-slate-500 pb-2 pt-1"
-                          onClick={handleComingSoonModalClick}
-                        >
-                          Log out
-                        </li>{" "}
                       </ul>
                     </div>
                   )}
