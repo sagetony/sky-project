@@ -113,7 +113,9 @@ const LandModal = ({ user, onclose }) => {
             />
           </div>
 
-          <h3 className="text-4xl">#{user?.nft?.name}</h3>
+          <h3 className="text-4xl">
+            #{user?.nft?.name} {user?.nft?.size}
+          </h3>
           <div className="w-2/3 flex items-center justify-center mx-auto my-10">
             <img src={user?.nft?.image} alt="" className="w-full" />
           </div>

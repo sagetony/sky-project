@@ -52,6 +52,7 @@
   justify-content: center;
   border: 0.1px solid rgba(255, 255, 255, 0.368);
   overflow: hidden;
+  font-size: 6px;
 }
 
 .grid-item.land {
@@ -90,6 +91,7 @@
   justify-content: center;
   border: 1px solid rgba(255, 255, 255, 0.368) !important;
   overflow: hidden;
+  font-size: 6px;
 }
 
 .grid-item-2.land-2 {
@@ -127,6 +129,7 @@
   justify-content: center;
   border: 0.1px solid rgba(255, 255, 255, 0.368);
   overflow: hidden;
+  font-size: 6px;
 }
 
 .grid-item-3.land-3 {
@@ -166,6 +169,7 @@
   justify-content: center;
   border: 0.1px solid rgba(255, 255, 255, 0.368);
   overflow: hidden;
+  font-size: 6px;
 }
 
 .grid-item-4.land-4 {
@@ -220,6 +224,7 @@
 
   border: 0.1px solid rgba(255, 255, 255, 0.368);
   overflow: hidden;
+  font-size: 5px;
 }
 
 .grid-item-5.land-5 {
@@ -261,6 +266,7 @@
   justify-content: center;
   border: 0.1px solid rgba(255, 255, 255, 0.368);
   overflow: hidden;
+  font-size: 6px;
 }
 
 .grid-item-6.land-6 {
@@ -304,6 +310,7 @@
   justify-content: center;
   border: 0.1px solid rgba(255, 255, 255, 0.368);
   overflow: hidden;
+  font-size: 5px;
 }
 
 .grid-item-7.land-7 {
@@ -347,6 +354,7 @@
   justify-content: center;
   border: 0.1px solid rgba(255, 255, 255, 0.368);
   overflow: hidden;
+  font-size: 5px;
 }
 
 .grid-item-8.land-8 {
@@ -388,6 +396,7 @@
   justify-content: center;
   border: 0.1px solid rgba(255, 255, 255, 0.368);
   overflow: hidden;
+  font-size: 3px;
 }
 
 .grid-item-9.land-9 {
@@ -426,6 +435,7 @@
   justify-content: center;
   border: 0.1px solid rgba(255, 255, 255, 0.368);
   overflow: hidden;
+  font-size: 3px;
 }
 
 .grid-item-10.land-10 {
@@ -457,7 +467,6 @@
   border-right: 1px solid black; /* Adds a black border */
   border-top: 1px solid black; /* Adds a black border */
   border-bottom: 1px solid black; /* Adds a black border */
-
   width: 68px;
 }
 
@@ -469,6 +478,7 @@
   justify-content: center;
   border: 0.1px solid rgba(255, 255, 255, 0.368);
   overflow: hidden;
+  font-size: 5px;
 }
 
 .grid-item-11.land-11 {
