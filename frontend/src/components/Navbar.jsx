@@ -19,6 +19,7 @@ const Navbar = () => {
   const [modalOpen, setModalOpen] = useState(false);
   const [isMobile, setIsMobile] = useState(window.innerWidth <= 900);
   const [isDropdownVisible, setIsDropdownVisible] = useState(false);
+  const [isDropdownVisible2, setIsDropdownVisible2] = useState(false);
 
   const handleTokenomicsClick = (e) => {
     e.preventDefault();
@@ -44,17 +45,24 @@ const Navbar = () => {
   };
 
   const handleMouseEnter = (index) => {
-    if (!isMobile && index !== 2) {
+    if (index !== 2) {
       // setDropdown(index);
     }
     setIsDropdownVisible(true);
   };
 
-  const handleMouseEnter2 = () => {
-    if (!isMobile) {
-      setDropdown2(true);
+  const handleMouseEnter2 = (index) => {
+    if (index !== 2) {
+      // setDropdown(index);
     }
+    setIsDropdownVisible2(true);
   };
+
+  // const handleMouseEnter2 = () => {
+  //   if (!isMobile) {
+  //     setDropdown2(true);
+  //   }
+  // };
 
   const handleDropdownMouseEnter = () => {
     // setIsHoveringDropdown(true);
@@ -63,6 +71,15 @@ const Navbar = () => {
   const handleDropdownMouseLeave = () => {
     // setIsHoveringDropdown(false);
     setIsDropdownVisible(false);
+  };
+
+  const handleDropdownMouseEnter2 = () => {
+    // setIsHoveringDropdown(true);
+  };
+
+  const handleDropdownMouseLeave2 = () => {
+    // setIsHoveringDropdown(false);
+    setIsDropdownVisible2(false);
   };
 
   const handleMouseLeave = () => {
@@ -151,7 +168,6 @@ const Navbar = () => {
   }, [isMobileMenuOpen]);
 
   const logoSrc = scrolling ? Logo : Logo;
-
   return (
     <div>
       <nav
@@ -172,7 +188,7 @@ const Navbar = () => {
                   <FaGlobe
                     onMouseEnter={handleMouseEnter}
                     onMouseLeave={handleMouseLeave}
-                    onClick={() => setIsDropdownVisible(true)}
+                    onClick={() => setIsDropdownVisible(!isDropdownVisible)}
                     style={{ fontSize: "25px" }}
                     className="group-hover:mt-0 transform group-hover:rotate-180 transition-transform"
                   />
@@ -193,46 +209,54 @@ const Navbar = () => {
               </div>{" "}
               {auth ? (
                 <>
-                  <div className="relatvive">
-                    <img
-                      src={User}
-                      alt="User"
-                      className="w-12"
-                      // onClick={() => handleMouseEnter2()}
-                      onMouseEnter={() => handleMouseEnter2()}
-                      onMouseLeave={handleMouseLeave2}
-                    />{" "}
-                    {dropdown2 && (
-                      <div
-                        className="absolute font-normal text-lg top-15  w-[200px] rounded-b-lg right-0 bg-[#002B5E] text-slate-300 text-center py-4 pb-0 shadow-2xl"
-                        onMouseEnter={() => handleMouseEnter2()}
+                  <div className="relative group2">
+                    <button className="flex items-center space-x-1 ">
+                      <img
+                        src={User}
+                        className="w-12"
+                        onMouseEnter={handleMouseEnter2}
                         onMouseLeave={handleMouseLeave2}
+                        onClick={() =>
+                          setIsDropdownVisible2(!isDropdownVisible2)
+                        }
+                        // style={{ fontSize: '25px' }}
+                        // className='group2-hover:mt-0 transform group2-hover:rotate-180 transition-transform'
+                      />
+                    </button>
+                    {/* Dropdown - Hidden initially */}
+                    {isDropdownVisible2 && (
+                      <div
+                        onMouseEnter={handleDropdownMouseEnter2}
+                        onMouseLeave={handleDropdownMouseLeave2}
+                        style={{
+                          scrollbarWidth: "none",
+                          msOverflowStyle: "none",
+                        }}
+                        className="absolute overflow-x-auto scroll-smooth scrollbar-hide -left-16 mt-1   w-[150px]  bg-blue-500 text-blue-600 shadow-xl rounded "
                       >
-                        <ul className="list-none flex flex-col">
-                          <li
-                            className="hover:bg-white hover:text-blue-950 cursor-pointer pl-4   border-b border-slate-500 pb-2 pt-1"
-                            // onClick={handleComingSoonModalClick}
-                            // className='border-b border-slate-500 pb-2 pt-1'
-                          >
-                            <Link to={`/profile`}>Profile</Link>
-                          </li>
-                          {/* </Link> */}
-                          <li
-                            className="hover:bg-white hover:text-blue-950 cursor-pointer pl-4   border-b border-slate-500 pb-2 pt-1"
-                            onClick={handleComingSoonModalClick}
-                          >
-                            Post rental
-                          </li>{" "}
-                          <li
-                            className="hover:bg-white hover:text-blue-950 cursor-pointer pl-4   border-b border-slate-500 pb-2 pt-1"
-                            onClick={handleComingSoonModalClick}
-                          >
-                            Log out
-                          </li>{" "}
-                        </ul>
+                        <div className=" font-normal text-lg top-15  w-[150px] rounded-b-lg right-0 bg-[#002B5E] text-slate-300 text-left py-4 pb-0 shadow-2xl">
+                          <ul className="list-none flex flex-col">
+                            <li className="hover:bg-white hover:text-blue-950 cursor-pointer pl-4   border-b border-slate-500 pb-2 pt-1">
+                              <Link to={`/profile`}>Profile</Link>
+                            </li>
+                            {/* </Link> */}
+                            <li
+                              className="hover:bg-white hover:text-blue-950 cursor-pointer pl-4   border-b border-slate-500 pb-2 pt-1"
+                              // onClick={handleComingSoonModalClick}
+                            >
+                              <Link to={`/maps`}>Map</Link>
+                            </li>{" "}
+                            <li
+                              className="hover:bg-white hover:text-blue-950 cursor-pointer pl-4   border-b border-slate-500 pb-2 pt-1"
+                              // onClick={handleComingSoonModalClick}
+                            >
+                              <Link to={`/market`}>Market</Link>
+                            </li>{" "}
+                          </ul>
+                        </div>
                       </div>
                     )}
-                  </div>
+                  </div>{" "}
                   <ConnectWallet
                     className={` w-full hidden sm:block font-inter`}
                     innerClassName={`px-6 rounded-[10px]`}
@@ -240,26 +264,11 @@ const Navbar = () => {
                   />
                 </>
               ) : (
-                <>
-                  {" "}
-                  {/* <a
-                    href='/login'
-                    className='h hover:text-blue-500 hover:font-bold'
-                  >
-                    {t('login')}
-                  </a> */}
-                  {/* <a
-                    href='/create-account'
-                    className='  text-white border border-white py-1 hover:ring-2 ring-blue-300 px-4 rounded hover:border-blue-500 hover:bg-blue-500'
-                  >
-                    {t('connect_wallet')}
-                  </a> */}{" "}
-                  <ConnectWallet
-                    className={` w-full hidden sm:block font-inter`}
-                    innerClassName={`px-6 rounded-[10px]`}
-                    outerClassName={`rounded-[10px]`}
-                  />
-                </>
+                <ConnectWallet
+                  className={` w-full hidden sm:block font-inter`}
+                  innerClassName={`px-6 rounded-[10px]`}
+                  outerClassName={`rounded-[10px]`}
+                />
               )}
             </div>
           </div>
@@ -403,33 +412,52 @@ const Navbar = () => {
             </div>{" "}
             {auth ? (
               <>
-                <div className="relatvive">
-                  <img
-                    src={User}
-                    alt="User"
-                    className="w-12"
-                    onMouseEnter={() => handleMouseEnter2()}
-                    onMouseLeave={handleMouseLeave2}
-                  />{" "}
-                  {dropdown2 && (
-                    <div
-                      className="absolute font-normal text-lg top-15  w-[200px] rounded-b-lg right-0 bg-blue-500 text-slate-300 text-left  py-4 pb-0 shadow-2xl"
-                      onMouseEnter={() => handleMouseEnter2()}
+                <div className="relative group2">
+                  <button className="flex items-center space-x-1 ">
+                    <img
+                      src={User}
+                      className="w-12"
+                      onMouseEnter={handleMouseEnter2}
                       onMouseLeave={handleMouseLeave2}
+                      onClick={() => setIsDropdownVisible2(!isDropdownVisible2)}
+                      // style={{ fontSize: '25px' }}
+                      // className='group2-hover:mt-0 transform group2-hover:rotate-180 transition-transform'
+                    />
+                  </button>
+                  {/* Dropdown - Hidden initially */}
+                  {isDropdownVisible2 && (
+                    <div
+                      onMouseEnter={handleDropdownMouseEnter2}
+                      onMouseLeave={handleDropdownMouseLeave2}
+                      style={{
+                        scrollbarWidth: "none",
+                        msOverflowStyle: "none",
+                      }}
+                      className="absolute overflow-x-auto scroll-smooth scrollbar-hide -left-16 mt-1   w-[150px]  bg-blue-500 text-blue-600 shadow-xl rounded "
                     >
-                      <ul className="list-none flex flex-col">
-                        <li
-                          className="hover:bg-white hover:text-blue-950 cursor-pointer pl-4   border-b border-slate-500 pb-2 pt-1"
-                          // onClick={handleComingSoonModalClick}
-                          // className='border-b border-slate-500 pb-2 pt-1'
-                        >
-                          <Link to={`/profile`}>Profile</Link>
-                        </li>
-                        {/* </Link> */}
-                      </ul>
+                      <div className=" font-normal text-lg top-15  w-[150px] rounded-b-lg right-0 bg-[#002B5E] text-slate-300 text-left py-4 pb-0 shadow-2xl">
+                        <ul className="list-none flex flex-col">
+                          <li className="hover:bg-white hover:text-blue-950 cursor-pointer pl-4   border-b border-slate-500 pb-2 pt-1">
+                            <Link to={`/profile`}>Profile</Link>
+                          </li>
+                          {/* </Link> */}
+                          <li
+                            className="hover:bg-white hover:text-blue-950 cursor-pointer pl-4   border-b border-slate-500 pb-2 pt-1"
+                            // onClick={handleComingSoonModalClick}
+                          >
+                            <Link to={`/maps`}>Map</Link>
+                          </li>{" "}
+                          <li
+                            className="hover:bg-white hover:text-blue-950 cursor-pointer pl-4   border-b border-slate-500 pb-2 pt-1"
+                            // onClick={handleComingSoonModalClick}
+                          >
+                            <Link to={`/market`}>Market</Link>
+                          </li>{" "}
+                        </ul>
+                      </div>
                     </div>
                   )}
-                </div>
+                </div>{" "}
                 <ConnectWallet
                   className={` w-full hidden sm:block font-inter`}
                   innerClassName={`px-6 rounded-[10px]`}
@@ -437,26 +465,11 @@ const Navbar = () => {
                 />
               </>
             ) : (
-              <>
-                {" "}
-                {/* <a
-                  href='/login'
-                  className='h hover:text-blue-500 hover:font-bold'
-                >
-                  {t('login')}
-                </a> */}
-                {/* <a
-                  href='/create-account'
-                  className='  text-white border border-white py-1 hover:ring-2 ring-blue-300 px-4 rounded hover:border-blue-500 hover:bg-blue-500'
-                >
-                  {t('connect_wallet')}
-                </a> */}{" "}
-                <ConnectWallet
-                  className={` w-full font-inter`}
-                  innerClassName={`px-6 rounded-[10px]`}
-                  outerClassName={`rounded-[10px]`}
-                />
-              </>
+              <ConnectWallet
+                className={` w-full hidden sm:block font-inter`}
+                innerClassName={`px-6 rounded-[10px]`}
+                outerClassName={`rounded-[10px]`}
+              />
             )}
           </div>
         </div>
