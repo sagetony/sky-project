@@ -76,7 +76,22 @@ const Profile = () => {
     }));
     setSelectedIcons((prev) => prev.filter((item) => item.name !== icon.name));
   };
-  useEffect(() => {}, [handles]);
+  useEffect(() => {
+    const fetchUser = async () => {
+      try {
+        const response = await axios.get(
+          "https://app-8188821b-b70d-4f68-a73e-2a6805ccb1f1.cleverapps.io/api/users/view-user"
+        );
+        setFormData(response.data); // Assuming API returns { name, email, phone, address }
+        setLoading(false);
+      } catch (err) {
+        setError("Failed to fetch user data");
+        setLoading(false);
+      }
+    };
+
+    fetchUser();
+  }, [handles]);
 
   const handleDeleteContact = (icon) => {
     if (icon.name === "Discord") {
@@ -177,7 +192,6 @@ const Profile = () => {
 
   const SaveProfile = async (e) => {
     e.preventDefault();
-
     try {
       const formdata = new FormData();
 
@@ -196,7 +210,7 @@ const Profile = () => {
       mediaFiles.forEach((file, index) => {
         formdata.append(`item${index + 1}`, file);
       });
-
+      console.log(formData.name, formdata);
       // Function to get the token from sessionStorage
       const getAuthToken = () => {
         return sessionStorage.getItem("ddhcnvK2"); // Get token from sessionStorage
