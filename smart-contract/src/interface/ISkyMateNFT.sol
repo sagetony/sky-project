@@ -7,6 +7,19 @@ import "@openzeppelin/contracts/token/ERC721/IERC721.sol";
  * @dev Interface for the SkyMateNFT contract.
  */
 interface ISkyMateNFT is IERC721 {
+    /*´:°•.°+.*•´.*:˚.°*.˚•´.*:˚.°*.˚•´.*:˚.°*.˚•´.°:°•.°+.*•´.*:*/
+    /*                          STORAGE                           */
+    /*.•°:°.´+˚.*°.˚:*.´•*.+°.•°:´*.´•*.•°.•°:°.´:•˚°.*°.˚:*.´+°.•*/
+    struct Land {
+        uint256 id;
+        string coordinates;
+        string locationName;
+        string description;
+        uint256 price;
+        bool onSale;
+        string zoneName;
+        string size;
+    }
     /*´:°•.°+.*•´.*:˚.°*.˚•´.°:°•.°•.*•´.*:˚.°*.˚•´.°:°•.°+.*•´.*:*/
     /*                          EVENTS                           */
     /*.•°:°.´+˚.*°.˚:*.´•*.+°.•°:´*.´•*.•°.•°:°.´:•˚°.*°.˚:*.´+°.•*/
@@ -58,4 +71,6 @@ interface ISkyMateNFT is IERC721 {
     ) external;
 
     function updateLandSaleStatus(uint256 tokenId, bool status) external;
+
+    function getLand(uint256 _index) external view returns (Land memory);
 }
