@@ -1,7 +1,9 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { useEffect, useState } from "react";
 import { Cloud1, Cloud2, Cloud3, User } from "../assets";
 import { BlueButton, Icons } from "../components";
 import axios from "axios";
+import { toast } from "sonner";
 
 const socialMediaIcons = [
   { name: "Discord", icon: "ant-design:discord-outlined" },
@@ -76,22 +78,45 @@ const Profile = () => {
     }));
     setSelectedIcons((prev) => prev.filter((item) => item.name !== icon.name));
   };
-  useEffect(() => {
-    const fetchUser = async () => {
-      try {
-        const response = await axios.get(
-          "https://app-8188821b-b70d-4f68-a73e-2a6805ccb1f1.cleverapps.io/api/users/view-user"
-        );
-        setFormData(response.data); // Assuming API returns { name, email, phone, address }
-        setLoading(false);
-      } catch (err) {
-        setError("Failed to fetch user data");
-        setLoading(false);
-      }
-    };
+  useEffect(() => {}, [handles]);
 
-    fetchUser();
-  }, [handles]);
+  const getAuthToken = () => {
+    return sessionStorage.getItem("ddhcnvK2");
+  };
+  const token = getAuthToken();
+
+  const getDeets = async () => {
+    const res = await axios.get(
+      "https://app-8188821b-b70d-4f68-a73e-2a6805ccb1f1.cleverapps.io/api/users/view-user",
+
+      {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
+
+    const info = res.data.user;
+    setFormData({
+      name: info?.name ?? "",
+      username: info?.username ?? "",
+      description: info?.description ?? "",
+      website: info?.website ?? "",
+      about: info?.about ?? "",
+      avatar: info?.avatar ?? "",
+      Discord: info?.discord ?? "",
+      Twitter: info?.twitter ?? "",
+      Instagram: info?.instagram ?? "",
+      Telegram: info?.telegram ?? "",
+      YouTube: info?.youtube ?? "",
+      Facebook: info?.facebook ?? "",
+    });
+  };
+
+  useEffect(() => {
+    getDeets();
+  }, []);
 
   const handleDeleteContact = (icon) => {
     if (icon.name === "Discord") {
@@ -192,6 +217,7 @@ const Profile = () => {
 
   const SaveProfile = async (e) => {
     e.preventDefault();
+
     try {
       const formdata = new FormData();
 
@@ -210,30 +236,27 @@ const Profile = () => {
       mediaFiles.forEach((file, index) => {
         formdata.append(`item${index + 1}`, file);
       });
-      console.log(formData.name, formdata);
-      // Function to get the token from sessionStorage
-      const getAuthToken = () => {
-        return sessionStorage.getItem("ddhcnvK2"); // Get token from sessionStorage
-      };
-      const token = getAuthToken(); // Retrieve the token from sessionStorage
 
       if (!token) {
         toast.error("Connect Wallet");
         return;
       }
       const res = await axios.post(
-        "https://app-8188821b-b70d-4f68-a73e-2a6805ccb1f1.cleverapps.io/api/profile",
+        "https://app-8188821b-b70d-4f68-a73e-2a6805ccb1f1.cleverapps.io/api/users/edit-user",
         formdata,
         {
           headers: {
-            "Content-Type": "application/json", // Set the content type to JSON
-            Authorization: `Bearer ${token}`, // Include the token in the Authorization header
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
           },
         }
       );
-      console.log(res);
+      if (res.status == 200) {
+        toast.success("Profile successful");
+      }
+      getDeets();
     } catch (error) {
-      console.log(error);
+      toast.error(error.response?.data);
     }
   };
 
