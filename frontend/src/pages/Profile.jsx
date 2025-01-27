@@ -26,7 +26,7 @@ const Profile = () => {
     description: "",
     website: "",
     about: "",
-    avatar: null,
+    avatar: "",
     Discord: "",
     Twitter: "",
     Instagram: "",
@@ -41,6 +41,8 @@ const Profile = () => {
   ]);
   const maxLength = 500;
 
+  const BASE_URL =
+    "https://app-8188821b-b70d-4f68-a73e-2a6805ccb1f1.cleverapps.io";
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
@@ -67,6 +69,7 @@ const Profile = () => {
     setSelectedIcons((prev) =>
       prev.map((item) => (item.name === name ? { ...item, url: value } : item))
     );
+    console.log(selectedIcons);
   };
 
   const handleAddContact = (icon) => {
@@ -99,18 +102,18 @@ const Profile = () => {
 
     const info = res.data.user;
     setFormData({
-      name: info?.name ?? "",
-      username: info?.username ?? "",
-      description: info?.description ?? "",
-      website: info?.website ?? "",
-      about: info?.about ?? "",
-      avatar: info?.avatar ?? "",
-      Discord: info?.discord ?? "",
-      Twitter: info?.twitter ?? "",
-      Instagram: info?.instagram ?? "",
-      Telegram: info?.telegram ?? "",
-      YouTube: info?.youtube ?? "",
-      Facebook: info?.facebook ?? "",
+      name: info?.name == "null" ? "" : info?.name,
+      username: info?.username == "null" ? "" : info?.username,
+      description: info?.description == "null" ? "" : info?.description,
+      website: info?.website == "null" ? "" : info?.website,
+      about: info?.about == "null" ? "" : info?.about,
+      avatar: info?.avatar == "null" ? "" : info?.avatar,
+      Discord: info?.discord == "null" ? "" : info?.discord,
+      Twitter: info?.twitter == "null" ? "" : info?.twitter,
+      Instagram: info?.instagram == "null" ? "" : info?.instagram,
+      Telegram: info?.telegram == "null" ? "" : info?.telegram,
+      YouTube: info?.youtube == "null" ? "" : info?.youtube,
+      Facebook: info?.facebook == "null" ? "" : info?.facebook,
     });
   };
 
@@ -193,6 +196,8 @@ const Profile = () => {
   };
 
   const handleAvatarChange = (e) => {
+    console.log(FormData);
+
     const file = e.target.files[0];
     if (!file) return;
 
@@ -207,7 +212,9 @@ const Profile = () => {
     }
 
     // Update the avatar with the selected file
-    setAvatar(URL.createObjectURL(file));
+    // setAvatar(URL.cr
+    // eateObjectURL(file));
+    setAvatar(file);
     setFormData((prev) => ({ ...prev, avatar: file }));
   };
 
@@ -217,10 +224,9 @@ const Profile = () => {
 
   const SaveProfile = async (e) => {
     e.preventDefault();
-
+    console.log(formData.Discord);
     try {
       const formdata = new FormData();
-
       formdata.append("name", formData.name);
       formdata.append("username", formData.username);
       formdata.append("description", formData.description);
@@ -233,10 +239,10 @@ const Profile = () => {
       formdata.append("telegram", formData.Telegram);
       formdata.append("youtube", formData.YouTube);
       formdata.append("facebook", formData.Facebook);
+
       mediaFiles.forEach((file, index) => {
         formdata.append(`item${index + 1}`, file);
       });
-
       if (!token) {
         toast.error("Connect Wallet");
         return;
@@ -246,11 +252,12 @@ const Profile = () => {
         formdata,
         {
           headers: {
-            "Content-Type": "application/json",
+            "Content-Type": "multipart/form-data",
             Authorization: `Bearer ${token}`,
           },
         }
       );
+      console.log(res);
       if (res.status == 200) {
         toast.success("Profile successful");
       }
@@ -302,7 +309,7 @@ const Profile = () => {
           <div className="flex md:flex-row gap-8 md:gap-0 flex-col justify-between md:items-center">
             <div className="bg-[#104C86] border-2 flex items-center justify-center relative w-44 h-40 border-white rounded-md">
               <img
-                src={avatar}
+                src={`${BASE_URL}/${formData.avatar}`}
                 alt=""
                 className="max-w-full max-h-full rounded-full"
               />
@@ -315,6 +322,7 @@ const Profile = () => {
               <input
                 id="avatarInput"
                 type="file"
+                name="avatar"
                 accept="image/*"
                 className="hidden"
                 onChange={handleAvatarChange}
@@ -396,7 +404,7 @@ const Profile = () => {
               // value={formData.about}
               // onChange={handleChange}
               rows={10}
-              value={text}
+              value={formData.about}
               onChange={handleTextChange}
               maxLength={maxLength}
               placeholder="xxxxxxxxxxxxxxxxx"
@@ -446,13 +454,14 @@ const Profile = () => {
                     <Icons icon={icon.icon} width="50" />
                     <input
                       type="text"
-                      value={icon.url}
+                      // value={formData[icon.name]}
                       placeholder={`Enter ${icon.name} URL`}
                       onChange={(e) =>
                         handleInputChange(icon.name, e.target.value)
                       }
                       className="flex-1 bg-[#104C86] w-full text-white outline-none focus:shadow-2xl focus:ring-2 focus:ring-blue-100 border-2 mt-1 border-white rounded-md text-xl p-3"
                     />
+
                     <div
                       className={` mb-6 absolute top-4 right-2 ${
                         index === 0 ? "block" : "hidden"
@@ -501,7 +510,7 @@ const Profile = () => {
               id="description"
               rows={10}
               name="description"
-              value={text2}
+              value={formData.description}
               onChange={handleTextChange2}
               maxLength={maxLength}
               placeholder="xxxxxxxxxxxxxxxxx"
