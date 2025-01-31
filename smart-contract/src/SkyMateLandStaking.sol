@@ -18,6 +18,7 @@ contract SkyMateLandStaking is Ownable {
     error SkyMateStaking_MaximumStakesReached();
     error SkyMateStaking_InsufficentEtherForRewards();
     error SkyMateStaking_RewardAlreadyClaimed();
+    error SkyMateStaking_UserWithThisZoneCannotStake();
 
     /*´:°•.°+.*•´.*:˚.°*.˚•´.°:°•.°•.*•´.*:˚.°*.˚•´.°:°•.°+.*•´.*:*/
     /*                          EVENTS                           */
@@ -36,7 +37,10 @@ contract SkyMateLandStaking is Ownable {
         address owner;
         uint256 startTime;
         uint256 duration;
+        uint256 lastClaimTimestamp;
         uint256 rewardRate;
+        uint256 expectedRewards;
+        uint256 accumulatedRewards;
         bool isRewardClaimed;
     }
 
@@ -107,6 +111,16 @@ contract SkyMateLandStaking is Ownable {
             revert SkyMateStaking_AlreadyStaked();
         }
 
+        // Determine the eligibility of the staker
+        ISkyMateNFT.Land memory land = skyMateNFT.getLand(tokenId);
+        string memory zone = string(abi.encodePacked(bytes(land.zoneName)[0]));
+
+        if (
+            keccak256(bytes(zone)) != keccak256(bytes("H")) &&
+            keccak256(bytes(zone)) != keccak256(bytes("K")) &&
+            keccak256(bytes(zone)) != keccak256(bytes("E"))
+        ) revert SkyMateStaking_UserWithThisZoneCannotStake();
+
         // Determine reward rate
         uint256 rewardRate;
         if (duration == DURATION_30_DAYS) rewardRate = RATE_30_DAYS;
@@ -114,12 +128,17 @@ contract SkyMateLandStaking is Ownable {
         else if (duration == DURATION_1_YEAR) rewardRate = RATE_1_YEAR;
         else if (duration == DURATION_2_YEARS) rewardRate = RATE_2_YEARS;
 
+        uint256 _calculatedEarnings = calculateEarnings(tokenId, rewardRate);
+        uint256 _expectedRewards = _calculatedEarnings * (duration / 30 days);
         // Record stake
         stakes[tokenId] = Stake({
             owner: msg.sender,
             startTime: block.timestamp,
             duration: duration,
+            lastClaimTimestamp: 0,
+            expectedRewards: _expectedRewards,
             rewardRate: rewardRate,
+            accumulatedRewards: 0,
             isRewardClaimed: false
         });
 
@@ -163,27 +182,42 @@ contract SkyMateLandStaking is Ownable {
      * @param tokenId The tokenId for the land
      */
     function claimReward(uint256 tokenId) external {
-        ISkyMateNFT.Land memory land = skyMateNFT.getLand(tokenId);
         Stake storage stake = stakes[tokenId];
 
         if (stake.owner != msg.sender) revert SkyMateStaking_NotOwner();
         if (block.timestamp < stake.startTime + stake.duration) {
             revert SkyMateStaking_StakePeriodNotEnded();
         }
-        if (stake.isRewardClaimed) revert SkyMateStaking_NotOwner();
 
-        uint256 price = land.price;
         uint256 rewardRate = stake.rewardRate;
-        uint256 reward = (price * rewardRate) / 1000;
+        uint256 rewards = calculateEarnings(tokenId, rewardRate);
+        stake.accumulatedRewards += rewards;
 
-        stake.isRewardClaimed = true;
+        if (stake.accumulatedRewards > stake.expectedRewards) {
+            revert SkyMateStaking_RewardAlreadyClaimed();
+        }
 
-        if (address(this).balance < reward)
+        if (address(this).balance < rewards)
             revert SkyMateStaking_InsufficentEtherForRewards();
-        (bool success, ) = payable(stake.owner).call{value: reward}("");
+        (bool success, ) = payable(stake.owner).call{value: rewards}("");
         if (!success) revert SkyMateStaking_TransactionFailed();
 
-        emit ClaimRewards(stake.owner, tokenId, reward);
+        emit ClaimRewards(stake.owner, tokenId, rewards);
+    }
+
+    /**
+     * @dev Calculates earnings based on the staked amount, annual yield rate, and time elapsed.
+     * @param tokenId LandNFT Id.
+     * @param yieldRate yieldrate of the staked period
+     * @return Earnings calculated based on the inputs.
+     */
+    function calculateEarnings(
+        uint256 tokenId,
+        uint256 yieldRate
+    ) public view returns (uint256) {
+        ISkyMateNFT.Land memory land = skyMateNFT.getLand(tokenId);
+        uint256 price = land.price;
+        return (price * yieldRate) / (10000 * 12);
     }
 
     /**

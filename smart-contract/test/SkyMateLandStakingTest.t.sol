@@ -28,9 +28,9 @@ contract SkyMateLandStakingTest is Test {
         vm.startPrank(owner);
         uint256 tokenId = nft.uploadLand(
             "20, 40",
-            "Zone A",
+            "Zone E",
             "A land in new york",
-            "A",
+            "E",
             1 ether,
             "10m^2",
             ""
@@ -49,15 +49,22 @@ contract SkyMateLandStakingTest is Test {
     }
 
     function test_stakeLand() external buyLand {
+        uint256 duration = 90 days;
         vm.startPrank(buyer);
         nft.approve(address(staking), 1);
-        staking.stakeLand(1, 30 days);
+        staking.stakeLand(1, duration);
         SkyMateLandStaking.Stake memory stake = staking.getStakedLand(1);
+        uint256 _calculatedEarnings = staking.calculateEarnings(
+            1,
+            stake.rewardRate
+        );
+        uint256 _expectedRewards = _calculatedEarnings * (duration / 30 days);
         assertEq(nft.ownerOf(1), address(staking));
         assertEq(stake.owner, buyer);
         assertEq(stake.isRewardClaimed, false);
-        assertEq(stake.duration, 30 days);
-        assertEq(stake.rewardRate, 300);
+        assertEq(stake.duration, 90 days);
+        assertEq(stake.rewardRate, 500);
+        assertEq(stake.expectedRewards, _expectedRewards);
         vm.stopPrank();
     }
 
@@ -89,13 +96,12 @@ contract SkyMateLandStakingTest is Test {
         staking.stakeLand(1, 30 days);
         assertEq(nft.ownerOf(1), address(staking));
 
-        vm.warp(block.timestamp + 30 days);
         uint256 beforeBalance = buyer.balance;
+        vm.warp(block.timestamp + 30 days);
         staking.claimReward(1);
         uint256 afterBalance = buyer.balance;
 
         assertLe(beforeBalance, afterBalance);
-        console.log(beforeBalance, afterBalance);
         vm.stopPrank();
     }
 

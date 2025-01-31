@@ -40,14 +40,14 @@ contract HelperConfig is Script {
     }
 
     function getSepoliaTestnetConfig() public returns (NetworkConfig memory) {
-        vm.startBroadcast(vm.envUint("PRIVATE_KEY"));
+        // vm.startBroadcast(vm.envUint("PRIVATE_KEY"));
 
-        MockERC20 usdt = new MockERC20();
-        usdt.initialize("USDT TOKEN", "USDT", 6);
+        // MockERC20 usdt = new MockERC20();
+        // usdt.initialize("USDT TOKEN", "USDT", 6);
 
-        console.log("USDT CONTRACT ADDRESS", address(usdt), usdt.decimals());
+        // console.log("USDT CONTRACT ADDRESS", address(usdt), usdt.decimals());
 
-        vm.stopBroadcast();
+        // vm.stopBroadcast();
 
         return
             NetworkConfig({

@@ -103,11 +103,12 @@ contract Staking is Ownable {
         hasActiveStake[msg.sender] = true;
         totalStakedToken += _amount;
 
-        uint256 _expectedRewards = calculateEarnings(
+        uint256 _calculatedEarnings = calculateEarnings(
             _amount,
             stakingaprs[_period]
         );
-        uint256 _expectedDailyRewards = _expectedRewards / _period;
+        uint256 _expectedRewards = _calculatedEarnings * (_period / 30);
+        uint256 _expectedDailyRewards = _calculatedEarnings;
         uint256 _expectedRewardTimestamp = block.timestamp +
             (_period * SECONDS_IN_A_DAY);
         stakes[msg.sender].push(
@@ -145,9 +146,7 @@ contract Staking is Ownable {
         if (currentTime < stake.lastClaimTimestamp + 30 days)
             revert Staking_StakingNotOver();
 
-        uint256 currentDay = (currentTime - stake.lastClaimTimestamp) / 86400;
-
-        uint256 earnings = stake.expectedDailyRewards * currentDay;
+        uint256 earnings = stake.expectedDailyRewards;
         stake.accumulatedRewards += earnings;
         totalRewardDistributed += earnings;
         stake.lastClaimTimestamp = block.timestamp;
@@ -211,7 +210,7 @@ contract Staking is Ownable {
         uint256 _amount,
         uint256 yieldRate
     ) public pure returns (uint256) {
-        return (_amount * yieldRate) / (100);
+        return (_amount * yieldRate) / (100 * 12);
     }
 
     /**

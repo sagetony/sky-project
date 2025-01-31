@@ -5,20 +5,23 @@ import { useAppKitAccount, useAppKitProvider } from "@reown/appkit/react";
 import { ethers } from "ethers";
 import { toast } from "sonner";
 
-import StakingContractFile from "../../../abis/Staking.sol/Staking.json";
-import SMCTokenContractFile from "../../../abis/SkyMateCoin.sol/SkyMateCoin.json";
-const StakingContractAddress = "0x97BCFF612Ce30d6142d03174FD6ee761FC2DeD3c";
-const SMCTokenContractAddress = "0xdB8f55b83a24e84D50739E1FC971E88093993C92";
-const StakingContractAbi = StakingContractFile.abi;
-const SMCTokenContractAbi = SMCTokenContractFile.abi;
+import SkyMateLandStaking from "../../../abis/SkyMateLandStaking.sol/SkyMateLandStaking.json";
+import SkyMateNFTContractFile from "../../../abis/SkyMateNFT.sol/SkyMateNFT.json";
 
-const StakeCard = ({ setTotalRewardDistributed }) => {
+const StakingNFTContractAddress = "0x29d65815934F88ae1a5a50e1Bd2684506B189D56";
+const SkyMateNFTContractAddress = "0x02761dCc0e146c6bd5A33618B7118E8aE66d5398";
+
+const SkyMateLandStakingContractAbi = SkyMateLandStaking.abi;
+const SkyMateNFTContractAbi = SkyMateNFTContractFile.abi;
+
+const StakeLandCard = ({ setTotalRewardDistributed }) => {
   const [val, setVal] = useState(0);
   const [modalOpen2, setModalOpen2] = useState(false);
   const [selectedPurpose, setSelectedPurpose] = useState("30");
+  const [nfts, setNfts] = useState([]);
   const [totalStaked, setTotalStaked] = useState(null);
-  const [StakingContract, setStakingContractState] = useState(null);
-  const [SMCTokenContract, setSMCTokenContract] = useState(null);
+  const [StakingLandContract, setStakingLandContractState] = useState(null);
+  const [NFTContract, setNFTContract] = useState(null);
   const { isConnected } = useAppKitAccount();
   const { walletProvider } = useAppKitProvider("eip155");
   const handleSelect = (purpose) => {
@@ -28,6 +31,37 @@ const StakeCard = ({ setTotalRewardDistributed }) => {
   const handleStakeModalClick = () => {
     setModalOpen2(!modalOpen2);
   };
+
+  // Get NFTs
+  async function getNFTsByOwner(usersigner) {
+    const walletAddress = await signer.getAddress();
+
+    // Get the number of NFTs owned by the user
+    const balance = await NFTContract.balanceOf(walletAddress);
+    let tokenIds = [];
+
+    // Loop through the NFTs and fetch their Token IDs
+    for (let i = 0; i < balance; i++) {
+      const tokenId = await NFTContract.tokenOfOwnerByIndex(walletAddress, i);
+      tokenIds.push(tokenId.toString());
+    }
+
+    console.log("User's NFTs Token IDs:", tokenIds);
+    return tokenIds;
+  }
+
+  async function getNFTMetadata(tokenId) {
+    // Get the token URI for the given tokenId
+    const tokenURI = await NFTContract.tokenURI(tokenId);
+
+    // Fetch the metadata from the tokenURI (usually points to a JSON file)
+    const response = await fetch(tokenURI);
+    const metadata = await response.json();
+
+    console.log("NFT Metadata:", metadata);
+    return metadata;
+  }
+
   const handleStake = async (event) => {
     event.preventDefault();
     const amount = val;
@@ -65,32 +99,33 @@ const StakeCard = ({ setTotalRewardDistributed }) => {
       const signer = ethersProvider.getSigner();
 
       // The Contract object
-      const StakingContractState = new ethers.Contract(
-        StakingContractAddress,
-        StakingContractAbi,
+      const StakingLandContractState = new ethers.Contract(
+        StakingNFTContractAddress,
+        SkyMateLandStakingContractAbi,
         signer
       );
-      const SMCTokenContractState = new ethers.Contract(
-        SMCTokenContractAddress,
-        SMCTokenContractAbi,
+      const NFTContractState = new ethers.Contract(
+        SkyMateNFTContractAddress,
+        SkyMateNFTContractAbi,
         signer
       );
+      setStakingLandContractState(StakingLandContractState);
+      setNFTContract(NFTContractState);
 
-      setStakingContractState(StakingContractState);
-      setSMCTokenContract(SMCTokenContractState);
+      try {
+        const getNFTs = async () => {
+          const tokenIds = await getNFTsByOwner(signer);
+          const nftMetadata = await Promise.all(
+            tokenIds.map(async (tokenId) => {
+              return await getNFTMetadata(tokenId);
+            })
+          );
 
-      const fetchTotalStaked = async () => {
-        const amount = await StakingContract.totalStakedToken();
-        const total = ethers.utils.formatUnits(amount, 18);
-        setTotalStaked(total);
-      };
-      const fetchTotalRewardDistributed = async () => {
-        const amount = await StakingContract.totalRewardDistributed();
-        const rewards = ethers.utils.formatUnits(amount, 18);
-        setTotalRewardDistributed(rewards);
-      };
-      fetchTotalStaked();
-      fetchTotalRewardDistributed();
+          setNfts(nftMetadata);
+        };
+      } catch (error) {
+        console.error("Error fetching NFTs:", error);
+      }
     }
   }, [isConnected]);
   return (
@@ -146,6 +181,19 @@ const StakeCard = ({ setTotalRewardDistributed }) => {
             </button>{" "}
           </div>
         </div>
+        <div id="nftList">
+          {nfts.map((metadata, index) => (
+            <div key={index} className="nft">
+              <h3>{metadata.name}</h3>
+              <img
+                src={metadata.image}
+                alt={metadata.name}
+                style={{ width: "100px" }}
+              />
+              <p>Token ID: {metadata.tokenId}</p>
+            </div>
+          ))}
+        </div>
         {isConnected ? (
           <div className="lg:w-[20%] w-full lg:mb-0 mb-9 lg:text-center">
             <p className="font-itim text-xl mb-1">Total Staked:</p>
@@ -187,7 +235,7 @@ const StakeCard = ({ setTotalRewardDistributed }) => {
           />
           <BlueButton
             onClick={handleStake}
-            text="Stake Token"
+            text="Stake Land"
             innerClassName="text-lg font-inter font-semibold flex-row-reverse gap-[10px]"
           />
         </div>
@@ -196,4 +244,4 @@ const StakeCard = ({ setTotalRewardDistributed }) => {
   );
 };
 
-export default StakeCard;
+export default StakeLandCard;

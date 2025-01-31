@@ -16,28 +16,28 @@ contract DeploySkyMate is Script {
     function run()
         external
         returns (
-            SkyMateCoin,
-            SkyMatePurchaseToken,
-            Staking,
+            // SkyMateCoin,
+            // SkyMatePurchaseToken,
+            // Staking,
             SkyMateNFT,
-            SkyMateLandStaking,
-            HelperConfig
+            SkyMateLandStaking
         )
+    // HelperConfig
     {
         HelperConfig config = new HelperConfig();
         (uint256 deployerKey, address owner, address usdt) = config
             .activeNetworkConfig();
 
         vm.startBroadcast(deployerKey);
-        SkyMateCoin skymatecoin = new SkyMateCoin(owner);
+        // SkyMateCoin skymatecoin = new SkyMateCoin(owner);
 
-        SkyMatePurchaseToken skyMatepurchasetoken = new SkyMatePurchaseToken(
-            skymatecoin,
-            address(usdt),
-            owner
-        );
+        // SkyMatePurchaseToken skyMatepurchasetoken = new SkyMatePurchaseToken(
+        //     skymatecoin,
+        //     address(usdt),
+        //     owner
+        // );
 
-        Staking staking = new Staking(IERC20(skymatecoin), owner);
+        // Staking staking = new Staking(IERC20(skymatecoin), owner);
 
         SkyMateNFT nft = new SkyMateNFT(owner);
 
@@ -49,12 +49,12 @@ contract DeploySkyMate is Script {
         vm.stopBroadcast();
 
         return (
-            skymatecoin,
-            skyMatepurchasetoken,
-            staking,
+            // skymatecoin,
+            // skyMatepurchasetoken,
+            // staking,
             nft,
-            stakingLand,
-            config
+            stakingLand
+            // config
         );
     }
 }

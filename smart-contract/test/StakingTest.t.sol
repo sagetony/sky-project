@@ -75,7 +75,7 @@ contract StakingTest is Test {
 
     function test_staking() external buytoken {
         vm.startPrank(user);
-        uint256 period = 30;
+        uint256 period = 720;
 
         // staking
         uint256 beforeBalance = skymatecoin.balanceOf(address(staking));
@@ -85,18 +85,17 @@ contract StakingTest is Test {
 
         uint256 recentIndex = staking.getRecentStakeIndex();
         Staking.Stake memory stake = staking.getStake(recentIndex);
-        uint256 expectedRewards = staking.calculateEarnings(100 ether, 3);
+        uint256 expectedRewards = staking.calculateEarnings(100 ether, 20);
         uint256 expectedRewardTimestamp = block.timestamp + (period * 86400);
         assertEq(stake.amount, 100 ether);
         assertEq(stake.startTimestamp, block.timestamp);
-        assertEq(stake.annualYieldRate, 3);
+        assertEq(stake.annualYieldRate, 20);
         assertEq(stake.period, period);
-        assertEq(stake.annualYieldRate, 3);
         assertEq(stake.lastClaimTimestamp, 0);
         assertEq(stake.expectedRewardTimestamp, expectedRewardTimestamp);
         assertEq(stake.accumulatedRewards, 0);
-        assertEq(stake.expectedRewards, expectedRewards);
-        assertEq(stake.expectedDailyRewards, expectedRewards / period);
+        assertEq(stake.expectedRewards, (expectedRewards * period) / 30);
+        assertEq(stake.expectedDailyRewards, expectedRewards);
         assertLt(beforeBalance, afterBalance);
         vm.stopPrank();
     }

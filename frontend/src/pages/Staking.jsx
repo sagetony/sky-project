@@ -10,6 +10,7 @@ import {
 } from "../assets";
 import { BlueButton, RewardModal } from "../components";
 import StakeCard from "./components/StakeCard";
+import StakeLandCard from "./components/StakeLandCard";
 import { FiGift } from "react-icons/fi";
 
 const Staking = () => {
@@ -116,7 +117,7 @@ const Staking = () => {
         </div>
         <img src={Land_Staking} alt="" className="w-[300px]" />
         <div className="mt-10">
-          <StakeCard />
+          <StakeLandCard />
         </div>
         <div className="py-16">
           <div className="bg-[#2A86E0] rounded-lg text-white shadow-section">
