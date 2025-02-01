@@ -8,7 +8,7 @@ import {
   Land_Staking,
   Stake_Label,
 } from "../assets";
-import { BlueButton, RewardModal } from "../components";
+import { BlueButton, RewardLandModal } from "../components";
 import StakeCard from "./components/StakeCard";
 import StakeLandCard from "./components/StakeLandCard";
 import { FiGift } from "react-icons/fi";
@@ -156,7 +156,7 @@ const Staking = () => {
             </div>
           </div>
         </div>{" "}
-        {modalOpen && <RewardModal onclose={closeRewardModal} />}
+        {modalOpen && <RewardLandModal onclose={closeRewardModal} />}
       </div>
     </div>
   );

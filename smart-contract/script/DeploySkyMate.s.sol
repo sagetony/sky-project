@@ -19,7 +19,7 @@ contract DeploySkyMate is Script {
             // SkyMateCoin,
             // SkyMatePurchaseToken,
             // Staking,
-            SkyMateNFT,
+            // SkyMateNFT,
             SkyMateLandStaking
         )
     // HelperConfig
@@ -39,10 +39,10 @@ contract DeploySkyMate is Script {
 
         // Staking staking = new Staking(IERC20(skymatecoin), owner);
 
-        SkyMateNFT nft = new SkyMateNFT(owner);
+        // SkyMateNFT nft = new SkyMateNFT(owner);
 
         SkyMateLandStaking stakingLand = new SkyMateLandStaking(
-            address(nft),
+            address(0xF22Bf09A14f37406F46F507Bd1cC5F3FE6909b00),
             owner
         );
 
@@ -52,7 +52,7 @@ contract DeploySkyMate is Script {
             // skymatecoin,
             // skyMatepurchasetoken,
             // staking,
-            nft,
+            // nft,
             stakingLand
             // config
         );

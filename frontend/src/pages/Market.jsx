@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { buy, Cloud1, Cloud2, Cloud3, rent } from "../assets";
+import { buy, Cloud1, Cloud2, Cloud3 } from "../assets";
 import { MarketCard } from "./components";
 import { useAppKitAccount } from "@reown/appkit/react";
 
@@ -41,7 +41,7 @@ const Market = () => {
   };
 
   return (
-    <div className="pt-36 bg-pages relative">
+    <div className="pt-36 bg-pages md:min-h-[1300px] min-h-[1400px] relative">
       <div className="absolute inset-0 z-0">
         <img
           src={Cloud1}

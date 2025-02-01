@@ -17,6 +17,7 @@
     "axios": "^1.7.9",
     "dotenv": "^16.4.7",
     "ethers": "^5.7.2",
+    "ethers-decode-error": "^1.0.0",
     "i18next": "^23.16.4",
     "i18next-browser-languagedetector": "^8.0.0",
     "i18next-http-backend": "^2.6.2",

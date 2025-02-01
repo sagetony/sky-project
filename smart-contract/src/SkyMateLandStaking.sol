@@ -44,11 +44,10 @@ contract SkyMateLandStaking is Ownable {
         bool isRewardClaimed;
     }
 
-    // Land price mapping (average price on the 1st of each month)
-    mapping(uint256 => uint256) public monthlyAveragePrices;
-
     // Stake data for each NFT
     mapping(uint256 => Stake) public stakes;
+
+    mapping(address => uint256[]) public userStakes;
 
     // Staking duration constants (in seconds)
     uint256 public constant DURATION_30_DAYS = 30 days;
@@ -141,6 +140,8 @@ contract SkyMateLandStaking is Ownable {
             accumulatedRewards: 0,
             isRewardClaimed: false
         });
+
+        userStakes[msg.sender].push(tokenId);
 
         // Increment active stakes
         activeStakes++;
@@ -239,6 +240,12 @@ contract SkyMateLandStaking is Ownable {
             value: address(this).balance
         }("");
         if (!success) revert SkyMateStaking_TransactionFailed();
+    }
+
+    function getStakedNFTs(
+        address user
+    ) external view returns (uint256[] memory) {
+        return userStakes[user];
     }
 
     receive() external payable {}

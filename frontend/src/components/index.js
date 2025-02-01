@@ -12,6 +12,8 @@ import { ConnectWallet } from "./Button";
 import MintingForm from "./MintingForm";
 import LandModal from "./LandModal";
 import BuyLandModal from "./BuyModal";
+import StakeModal from "./StakeModal";
+import RewardLandModal from "./RewardLandModal";
 
 export {
   CustomToastContainer,
@@ -30,4 +32,6 @@ export {
   MintingForm,
   LandModal,
   BuyLandModal,
+  StakeModal,
+  RewardLandModal,
 };

@@ -59,6 +59,7 @@ contract SkyMateLandStakingTest is Test {
             stake.rewardRate
         );
         uint256 _expectedRewards = _calculatedEarnings * (duration / 30 days);
+        assertEq(staking.getStakedNFTs(buyer)[0], 1);
         assertEq(nft.ownerOf(1), address(staking));
         assertEq(stake.owner, buyer);
         assertEq(stake.isRewardClaimed, false);
