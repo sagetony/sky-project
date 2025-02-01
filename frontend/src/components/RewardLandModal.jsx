@@ -305,7 +305,7 @@ const RewardLandModal = ({ onclose }) => {
                 onClick={handleUnstake}
                 className="flex-1 border-[3px] w-full py-2 hover:bg-[#184C7F] hover:text-white rounded-full text-xl font-semibold border-[#184C7F] text-[#184C7F]"
               >
-                Unstack NFT
+                Unstake NFT
               </button>
             </div>
           </div>
