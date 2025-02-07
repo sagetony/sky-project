@@ -8,7 +8,7 @@ import { useAppKitAccount, useAppKitProvider } from "@reown/appkit/react";
 
 import StakingContractFile from "../../abis/Staking.sol/Staking.json";
 // import SMCTokenContractFile from '../../abis/SkyMateCoin.sol/SkyMateCoin.json';
-const StakingContractAddress = "0x97BCFF612Ce30d6142d03174FD6ee761FC2DeD3c";
+const StakingContractAddress = "0x55330485d48303BE17fc5763bF1042F8f3ecc2F5";
 const StakingContractAbi = StakingContractFile.abi;
 
 const RewardModal = ({ onclose }) => {

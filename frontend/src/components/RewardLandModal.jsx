@@ -12,7 +12,7 @@ import SkyMateLandStaking from "../../abis/SkyMateLandStaking.sol/SkyMateLandSta
 import SkyMateNFTContractFile from "../../abis/SkyMateNFT.sol/SkyMateNFT.json";
 
 const StakingNFTContractAddress = "0x32bC760D50E5762E7Af269385CD0bB54a5D8B247";
-const SkyMateNFTContractAddress = "0xF22Bf09A14f37406F46F507Bd1cC5F3FE6909b00";
+const SkyMateNFTContractAddress = "0xa545665CD001A272d4b99d05b2b0776462c38D03";
 
 const SkyMateLandStakingContractAbi = SkyMateLandStaking.abi;
 const SkyMateNFTContractAbi = SkyMateNFTContractFile.abi;

@@ -7,7 +7,7 @@ import { useAppKitAccount, useAppKitProvider } from "@reown/appkit/react";
 import SkyMateNFTContractFile from "../../../abis/SkyMateNFT.sol/SkyMateNFT.json";
 
 const SkyMateNFTContractAbi = SkyMateNFTContractFile.abi;
-const SkyMateNFTContractAddress = "0xF22Bf09A14f37406F46F507Bd1cC5F3FE6909b00";
+const SkyMateNFTContractAddress = "0xa545665CD001A272d4b99d05b2b0776462c38D03";
 import axios from "axios";
 
 const MarketCard = ({
@@ -67,7 +67,7 @@ const MarketCard = ({
       if (receipt.status === 1) {
         try {
           const response = await axios.post(
-            `https://app-8188821b-b70d-4f68-a73e-2a6805ccb1f1.cleverapps.io/api/nfts/buy`,
+            `https://server-production-411c.up.railway.app/api/nfts/buy`,
             nftBuyData,
             {
               headers: {
@@ -77,7 +77,7 @@ const MarketCard = ({
             }
           );
           const response2 = await axios.post(
-            `https://app-8188821b-b70d-4f68-a73e-2a6805ccb1f1.cleverapps.io/api/nfts/sold`,
+            `https://server-production-411c.up.railway.app/api/nfts/sold`,
             tokenData,
             {
               headers: {

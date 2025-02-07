@@ -9,7 +9,7 @@ import SkyMateNFTContractFile from "../../abis/SkyMateNFT.sol/SkyMateNFT.json";
 import axios from "axios";
 
 const SkyMateNFTContractAbi = SkyMateNFTContractFile.abi;
-const SkyMateNFTContractAddress = "0xF22Bf09A14f37406F46F507Bd1cC5F3FE6909b00";
+const SkyMateNFTContractAddress = "0xa545665CD001A272d4b99d05b2b0776462c38D03";
 // const API_KEY = import.meta.env.VITE_NFT_STORAGE_API_KEY;
 const PINATA_API_KEY = import.meta.env.VITE_PINATA_API_KEY;
 const PINATA_API_SECRET = import.meta.env.VITE_PINATA_API_SECRET;
@@ -155,7 +155,7 @@ const MintingForm = () => {
         // Sending the POST request to the API
         try {
           const response = await axios.post(
-            "https://app-8188821b-b70d-4f68-a73e-2a6805ccb1f1.cleverapps.io/api/nfts/upload",
+            "https://server-production-411c.up.railway.app/api/nfts/upload",
             nftData,
             {
               headers: {
