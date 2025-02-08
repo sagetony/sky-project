@@ -41,7 +41,7 @@ const Profile = () => {
   ]);
   const maxLength = 500;
 
-  const BASE_URL = "http://localhost:8080";
+  const BASE_URL = "https://server-production-411c.up.railway.app";
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
@@ -89,7 +89,7 @@ const Profile = () => {
 
   const getDeets = async () => {
     const res = await axios.get(
-      "http://localhost:8080/api/users/view-user",
+      "https://server-production-411c.up.railway.app/api/users/view-user",
 
       {
         headers: {
@@ -247,7 +247,7 @@ const Profile = () => {
         return;
       }
       const res = await axios.post(
-        "http://localhost:8080/api/users/edit-user",
+        "https://server-production-411c.up.railway.app/api/users/edit-user",
         formdata,
         {
           headers: {

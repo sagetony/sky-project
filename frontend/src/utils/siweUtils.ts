@@ -8,7 +8,7 @@ import {
 } from "@reown/appkit-siwe";
 import { getAddress } from "viem";
 
-const BASE_URL = "http://localhost:8080";
+const BASE_URL = "https://server-production-411c.up.railway.app";
 
 // Normalize the address (checksum)
 const normalizeAddress = (address: string): string => {

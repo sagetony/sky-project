@@ -47,7 +47,7 @@ const GridMap = ({ data }) => {
           {land.avatar != null ? (
             <>
               <img
-                src={`http://localhost:8080/${land.avatar}`}
+                src={`https://server-production-411c.up.railway.app/${land.avatar}`}
                 alt={land.name}
                 className="grid-avatar"
               />

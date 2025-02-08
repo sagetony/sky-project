@@ -5,13 +5,13 @@ import "./news.css";
 
 const GridMapNew4 = ({ onLandClick }) => {
   const [lands, setLands] = useState([]);
-  const BASE_URL = "http://localhost:8080";
+  const BASE_URL = "https://server-production-411c.up.railway.app";
 
   useEffect(() => {
     const fetchBoughtNfts = async () => {
       try {
         const response = await fetch(
-          "http://localhost:8080/api/nfts/bought-d",
+          "https://server-production-411c.up.railway.app/api/nfts/bought-d",
           {
             // headers: {
             //
