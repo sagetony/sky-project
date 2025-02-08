@@ -47,7 +47,7 @@ const GridMap = ({ data }) => {
           {land.avatar != null ? (
             <>
               <img
-                src={`https://server-production-411c.up.railway.app/${land.avatar}`}
+                src={`https://app-56f7bff7-a9d9-47a4-80e9-d5d0311eaedf.cleverapps.io/${land.avatar}`}
                 alt={land.name}
                 className="grid-avatar"
               />

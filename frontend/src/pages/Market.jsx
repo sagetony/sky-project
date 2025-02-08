@@ -18,7 +18,7 @@ const Market = () => {
       // Fetch NFTs for the current page
       axios
         .get(
-          `https://server-production-411c.up.railway.app/api/nfts/load?page=${currentPage}`
+          `https://app-56f7bff7-a9d9-47a4-80e9-d5d0311eaedf.cleverapps.io/api/nfts/load?page=${currentPage}`
         ) // Pass currentPage to API
         .then((response) => {
           setNfts(response.data.nfts); // response.data.nfts.data contains the paginated NFTs

@@ -41,7 +41,8 @@ const Profile = () => {
   ]);
   const maxLength = 500;
 
-  const BASE_URL = "https://server-production-411c.up.railway.app";
+  const BASE_URL =
+    "https://app-56f7bff7-a9d9-47a4-80e9-d5d0311eaedf.cleverapps.io";
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
@@ -89,7 +90,7 @@ const Profile = () => {
 
   const getDeets = async () => {
     const res = await axios.get(
-      "https://server-production-411c.up.railway.app/api/users/view-user",
+      "https://app-56f7bff7-a9d9-47a4-80e9-d5d0311eaedf.cleverapps.io/api/users/view-user",
 
       {
         headers: {
@@ -247,7 +248,7 @@ const Profile = () => {
         return;
       }
       const res = await axios.post(
-        "https://server-production-411c.up.railway.app/api/users/edit-user",
+        "https://app-56f7bff7-a9d9-47a4-80e9-d5d0311eaedf.cleverapps.io/api/users/edit-user",
         formdata,
         {
           headers: {

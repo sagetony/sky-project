@@ -142,7 +142,7 @@ const ConnectWallet = ({ className, innerClassName, outerClassName }) => {
   //     );
   //     const signer = provider.getSigner(address);
   //     // Request a nonce from your backend
-  //     const { data } = await axios.get("https://server-production-411c.up.railway.app/api/auth/nonce", {
+  //     const { data } = await axios.get("https://app-56f7bff7-a9d9-47a4-80e9-d5d0311eaedf.cleverapps.io/api/auth/nonce", {
   //       params: { address },
   //     });
   //     const nonce = data.nonce;
@@ -150,7 +150,7 @@ const ConnectWallet = ({ className, innerClassName, outerClassName }) => {
   //     const signature = await signer?.signMessage(nonce);
 
   //     // // Send the signed message to your backend for verification
-  //     const response = await axios.post("https://server-production-411c.up.railway.app/api/auth/verify", {
+  //     const response = await axios.post("https://app-56f7bff7-a9d9-47a4-80e9-d5d0311eaedf.cleverapps.io/api/auth/verify", {
   //       address,
   //       signature: signature,
   //       nonce,

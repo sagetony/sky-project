@@ -5,13 +5,14 @@ import "./news.css";
 
 const GridMapNew4 = ({ onLandClick }) => {
   const [lands, setLands] = useState([]);
-  const BASE_URL = "https://server-production-411c.up.railway.app";
+  const BASE_URL =
+    "https://app-56f7bff7-a9d9-47a4-80e9-d5d0311eaedf.cleverapps.io";
 
   useEffect(() => {
     const fetchBoughtNfts = async () => {
       try {
         const response = await fetch(
-          "https://server-production-411c.up.railway.app/api/nfts/bought-d",
+          "https://app-56f7bff7-a9d9-47a4-80e9-d5d0311eaedf.cleverapps.io/api/nfts/bought-d",
           {
             // headers: {
             //

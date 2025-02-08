@@ -155,7 +155,7 @@ const MintingForm = () => {
         // Sending the POST request to the API
         try {
           const response = await axios.post(
-            "https://server-production-411c.up.railway.app/api/nfts/upload",
+            "https://app-56f7bff7-a9d9-47a4-80e9-d5d0311eaedf.cleverapps.io/api/nfts/upload",
             nftData,
             {
               headers: {

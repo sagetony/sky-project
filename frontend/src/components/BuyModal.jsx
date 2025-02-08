@@ -68,7 +68,7 @@ const BuyLandModal = ({ user, onclose }) => {
       if (receipt.status === 1) {
         try {
           const response = await axios.post(
-            `https://server-production-411c.up.railway.app/api/nfts/buy`,
+            `https://app-56f7bff7-a9d9-47a4-80e9-d5d0311eaedf.cleverapps.io/api/nfts/buy`,
             nftBuyData,
             {
               headers: {
@@ -78,7 +78,7 @@ const BuyLandModal = ({ user, onclose }) => {
             }
           );
           const response2 = await axios.post(
-            `https://server-production-411c.up.railway.app/api/nfts/sold`,
+            `https://app-56f7bff7-a9d9-47a4-80e9-d5d0311eaedf.cleverapps.io/api/nfts/sold`,
             tokenData,
             {
               headers: {
