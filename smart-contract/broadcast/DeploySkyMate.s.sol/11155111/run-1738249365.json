@@ -4,11 +4,9 @@
       "hash": "0xb0ea5879c7985b10eca4a8b85b2d7b7357ea73302c620cf2b95ee3967dcec0a5",
       "transactionType": "CREATE",
       "contractName": "SkyMateNFT",
-      "contractAddress": "0xf22bf09a14f37406f46f507bd1cc5f3fe6909b00",
+      "contractAddress": "0xa545665CD001A272d4b99d05b2b0776462c38D03",
       "function": null,
-      "arguments": [
-        "0xd52f823D46baB167a5b14B4886AE999e61f872CA"
-      ],
+      "arguments": ["0xd52f823D46baB167a5b14B4886AE999e61f872CA"],
       "transaction": {
         "from": "0xd52f823d46bab167a5b14b4886ae999e61f872ca",
         "gas": "0x31286e",
@@ -24,10 +22,10 @@
       "hash": "0xd18e56ab1be70dd078d8512f98d886495adbde720aca2973f62d246a98625d5a",
       "transactionType": "CREATE",
       "contractName": "SkyMateLandStaking",
-      "contractAddress": "0x4fbc0b8b1583d6fc4d4bd893d08d4121c5d33e93",
+      "contractAddress": "0x69d2728B4e76f893E7D22d2dF7A3A8F273aa9253",
       "function": null,
       "arguments": [
-        "0xF22Bf09A14f37406F46F507Bd1cC5F3FE6909b00",
+        "0xa545665CD001A272d4b99d05b2b0776462c38D03",
         "0xd52f823D46baB167a5b14B4886AE999e61f872CA"
       ],
       "transaction": {
@@ -48,7 +46,7 @@
       "cumulativeGasUsed": "0x824bf0",
       "logs": [
         {
-          "address": "0xf22bf09a14f37406f46f507bd1cc5f3fe6909b00",
+          "address": "0xa545665CD001A272d4b99d05b2b0776462c38D03",
           "topics": [
             "0x8be0079c531659141344cd1fd0a4f28419497f9722a3daafe3b4186f6b6457e0",
             "0x0000000000000000000000000000000000000000000000000000000000000000",
@@ -73,14 +71,14 @@
       "effectiveGasPrice": "0xdf444a58",
       "from": "0xd52f823d46bab167a5b14b4886ae999e61f872ca",
       "to": null,
-      "contractAddress": "0xf22bf09a14f37406f46f507bd1cc5f3fe6909b00"
+      "contractAddress": "0xa545665CD001A272d4b99d05b2b0776462c38D03"
     },
     {
       "status": "0x1",
       "cumulativeGasUsed": "0x964da6",
       "logs": [
         {
-          "address": "0x4fbc0b8b1583d6fc4d4bd893d08d4121c5d33e93",
+          "address": "0x69d2728B4e76f893E7D22d2dF7A3A8F273aa9253",
           "topics": [
             "0x8be0079c531659141344cd1fd0a4f28419497f9722a3daafe3b4186f6b6457e0",
             "0x0000000000000000000000000000000000000000000000000000000000000000",
@@ -105,7 +103,7 @@
       "effectiveGasPrice": "0xdf444a58",
       "from": "0xd52f823d46bab167a5b14b4886ae999e61f872ca",
       "to": null,
-      "contractAddress": "0x4fbc0b8b1583d6fc4d4bd893d08d4121c5d33e93"
+      "contractAddress": "0x69d2728B4e76f893E7D22d2dF7A3A8F273aa9253"
     }
   ],
   "libraries": [],
@@ -113,11 +111,11 @@
   "returns": {
     "0": {
       "internal_type": "contract SkyMateNFT",
-      "value": "0xF22Bf09A14f37406F46F507Bd1cC5F3FE6909b00"
+      "value": "0xa545665CD001A272d4b99d05b2b0776462c38D03"
     },
     "1": {
       "internal_type": "contract SkyMateLandStaking",
-      "value": "0x4Fbc0B8B1583D6fC4d4bd893d08D4121C5D33e93"
+      "value": "0x69d2728B4e76f893E7D22d2dF7A3A8F273aa9253"
     }
   },
   "timestamp": 1738249365,

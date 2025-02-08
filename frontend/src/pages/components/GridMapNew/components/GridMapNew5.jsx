@@ -5,13 +5,13 @@ import "./news.css";
 
 const GridMapNew5 = ({ onLandClick }) => {
   const [lands, setLands] = useState([]);
-  const BASE_URL = "https://server-production-411c.up.railway.app";
+  const BASE_URL = "http://localhost:8080";
 
   useEffect(() => {
     const fetchBoughtNfts = async () => {
       try {
         const response = await fetch(
-          "https://server-production-411c.up.railway.app/api/nfts/bought-e",
+          "http://localhost:8080/api/nfts/bought-e",
           {
             // headers: {
             //   Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwid2FsbGV0IjoiMHhkNTJmODIzRDQ2YmFCMTY3YTViMTRCNDg4NkFFOTk5ZTYxZjg3MkNBIiwiaWF0IjoxNzM0OTQ3NTcyLCJleHAiOjE3MzQ5NTExNzJ9.Pp4APwXRfID8AN6joYXt1_nCOUKDXKCOdDUo2zZYJj0`,

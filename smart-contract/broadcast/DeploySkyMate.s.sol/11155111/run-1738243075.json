@@ -24,11 +24,7 @@
       "contractName": "MockERC20",
       "contractAddress": "0xc7f821f6b0313592447809bb25c89c18a741d3be",
       "function": "initialize(string,string,uint8)",
-      "arguments": [
-        "\"USDT TOKEN\"",
-        "\"USDT\"",
-        "6"
-      ],
+      "arguments": ["\"USDT TOKEN\"", "\"USDT\"", "6"],
       "transaction": {
         "from": "0xd52f823d46bab167a5b14b4886ae999e61f872ca",
         "to": "0xc7f821f6b0313592447809bb25c89c18a741d3be",
@@ -45,7 +41,7 @@
       "hash": "0xa96d6924af38f03b7613c2bf32c017c6f106ada0e92030663b036a4e36e01532",
       "transactionType": "CREATE",
       "contractName": "Staking",
-      "contractAddress": "0x97bcff612ce30d6142d03174fd6ee761fc2ded3c",
+      "contractAddress": "0x55330485d48303BE17fc5763bF1042F8f3ecc2F5",
       "function": null,
       "arguments": [
         "0x03356EBE91Afde8595ebF1dDc781E44fa7917414",
@@ -138,7 +134,7 @@
       "cumulativeGasUsed": "0x93eeb2",
       "logs": [
         {
-          "address": "0x97bcff612ce30d6142d03174fd6ee761fc2ded3c",
+          "address": "0x55330485d48303BE17fc5763bF1042F8f3ecc2F5",
           "topics": [
             "0x8be0079c531659141344cd1fd0a4f28419497f9722a3daafe3b4186f6b6457e0",
             "0x0000000000000000000000000000000000000000000000000000000000000000",
@@ -163,7 +159,7 @@
       "effectiveGasPrice": "0x8ed3311d",
       "from": "0xd52f823d46bab167a5b14b4886ae999e61f872ca",
       "to": null,
-      "contractAddress": "0x97bcff612ce30d6142d03174fd6ee761fc2ded3c"
+      "contractAddress": "0x55330485d48303BE17fc5763bF1042F8f3ecc2F5"
     },
     {
       "status": "0x1",
@@ -203,7 +199,7 @@
   "returns": {
     "0": {
       "internal_type": "contract Staking",
-      "value": "0x97BCFF612Ce30d6142d03174FD6ee761FC2DeD3c"
+      "value": "0x55330485d48303BE17fc5763bF1042F8f3ecc2F5"
     },
     "1": {
       "internal_type": "contract SkyMateLandStaking",
