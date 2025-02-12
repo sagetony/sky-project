@@ -13,6 +13,7 @@ import { BlueButton } from "../components/Button";
 import { ethers } from "ethers";
 import { toast } from "sonner";
 import { useAppKitAccount, useAppKitProvider } from "@reown/appkit/react";
+import { decodeError } from "ethers-decode-error";
 
 import SkyMateNFTContractFile from "../../abis/SkyMateNFT.sol/SkyMateNFT.json";
 
@@ -30,77 +31,81 @@ const BuyLandModal = ({ user, onclose }) => {
       toast.error("User disconnected");
       return;
     }
+    const ethersProvider = new ethers.providers.Web3Provider(walletProvider);
+    const signer = ethersProvider.getSigner();
+    const walletAddress = await signer.getAddress();
+
+    // // The Contract object
+    const SkyMateNFT = new ethers.Contract(
+      SkyMateNFTContractAddress,
+      SkyMateNFTContractAbi,
+      signer
+    );
+
+    const _amount = ethers.utils.parseUnits(user?.price, "ether");
+    // Function to get the token from sessionStorage
+    const getAuthToken = () => {
+      return sessionStorage.getItem("ddhcnvK2"); // Get token from sessionStorage
+    };
+    const token = getAuthToken(); // Retrieve the token from sessionStorage
+
+    if (!token) {
+      toast.error("Connect Wallet");
+      return;
+    }
+    const tokenId = user?.tokenId;
+    const nftBuyData = {
+      tokenId: tokenId,
+      owner: walletAddress,
+    };
+
+    const tokenData = {
+      tokenId: tokenId,
+    };
     try {
-      const ethersProvider = new ethers.providers.Web3Provider(walletProvider);
-      const signer = ethersProvider.getSigner();
-      const walletAddress = await signer.getAddress();
-
-      // // The Contract object
-      const SkyMateNFT = new ethers.Contract(
-        SkyMateNFTContractAddress,
-        SkyMateNFTContractAbi,
-        signer
-      );
-
-      const _amount = ethers.utils.parseUnits(user?.price, "ether");
-      // Function to get the token from sessionStorage
-      const getAuthToken = () => {
-        return sessionStorage.getItem("ddhcnvK2"); // Get token from sessionStorage
-      };
-      const token = getAuthToken(); // Retrieve the token from sessionStorage
-
-      if (!token) {
-        toast.error("Connect Wallet");
-        return;
-      }
-      const tokenId = user?.tokenId;
-      const nftBuyData = {
-        tokenId: tokenId,
-        owner: walletAddress,
-      };
-
-      const tokenData = {
-        tokenId: tokenId,
-      };
-
       let tx = await SkyMateNFT.buyLand(tokenId, { value: _amount });
       let receipt = await tx.wait();
       if (receipt.status === 1) {
-        try {
-          const response = await axios.post(
-            `https://app-56f7bff7-a9d9-47a4-80e9-d5d0311eaedf.cleverapps.io/api/nfts/buy`,
-            nftBuyData,
-            {
-              headers: {
-                "Content-Type": "application/json", // Set the content type to JSON
-                Authorization: `Bearer ${token}`, // Include the token in the Authorization header
-              },
-            }
-          );
-          const response2 = await axios.post(
-            `https://app-56f7bff7-a9d9-47a4-80e9-d5d0311eaedf.cleverapps.io/api/nfts/sold`,
-            tokenData,
-            {
-              headers: {
-                "Content-Type": "application/json", // Set the content type to JSON
-                Authorization: `Bearer ${token}`, // Include the token in the Authorization header
-              },
-            }
-          );
-          if (response.status === 200 && response2.status === 200) {
-            toast.success(`Land purchased successfully`);
-          } else {
-            toast.success(`Error purchasing NFT, Contact Admin`);
+        const response = await axios.post(
+          `https://app-56f7bff7-a9d9-47a4-80e9-d5d0311eaedf.cleverapps.io/api/nfts/buy`,
+          nftBuyData,
+          {
+            headers: {
+              "Content-Type": "application/json", // Set the content type to JSON
+              Authorization: `Bearer ${token}`, // Include the token in the Authorization header
+            },
           }
-        } catch (error) {
+        );
+        const response2 = await axios.post(
+          `https://app-56f7bff7-a9d9-47a4-80e9-d5d0311eaedf.cleverapps.io/api/nfts/sold`,
+          tokenData,
+          {
+            headers: {
+              "Content-Type": "application/json", // Set the content type to JSON
+              Authorization: `Bearer ${token}`, // Include the token in the Authorization header
+            },
+          }
+        );
+        if (response.status === 200 && response2.status === 200) {
+          toast.success(`Land purchased successfully`);
+        } else {
           toast.success(`Error purchasing NFT, Contact Admin`);
         }
       } else {
         toast.error(`Transaction failed: ${error.error}`);
         return;
       }
-    } catch (error) {
-      toast.error(`Transaction failed: ${error.error}`);
+    } catch (err) {
+      const { error } = decodeError(err);
+      if (error == 0xe15efb2e) {
+        toast.error(`Transaction failed: No enough ether for this transaction`);
+      } else if (error == 0x42d7591a) {
+        toast.error(`Transaction failed: Land not for sale`);
+      } else if (error == 0xd34d5c13) {
+        toast.error(`Transaction failed: Land doesn't exist`);
+      } else {
+        toast.error(`Transaction failed: ${error.error.message}`);
+      }
     }
   };
   return (

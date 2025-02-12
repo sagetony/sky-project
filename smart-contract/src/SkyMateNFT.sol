@@ -208,6 +208,7 @@ contract SkyMateNFT is ERC721URIStorage, Ownable {
      * @param tokenId The token ID of the land to be bought.
      * @notice The buyer must send enough Ether to cover the land's price.
      */
+
     function buyLand(uint256 tokenId) external payable {
         Land storage land = lands[tokenId];
         if (!land.onSale) revert SkyMateNFT_LandNotForSale();
