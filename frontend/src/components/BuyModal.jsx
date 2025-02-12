@@ -92,7 +92,18 @@ const BuyLandModal = ({ user, onclose }) => {
           toast.success(`Error purchasing NFT, Contact Admin`);
         }
       } else {
-        toast.error(`Transaction failed: ${error.error}`);
+        const { error } = decodeError(err);
+        if (error == 0xe15efb2e) {
+          toast.error(
+            `Transaction failed: No enough ether for this transaction`
+          );
+        } else if (error == 0x42d7591a) {
+          toast.error(`Transaction failed: Land not for sale`);
+        } else if (error == 0xd34d5c13) {
+          toast.error(`Transaction failed: Land doesn't exist`);
+        } else {
+          toast.error(`Transaction failed: ${error.error.message}`);
+        }
         return;
       }
     } catch (err) {

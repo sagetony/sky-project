@@ -5,6 +5,7 @@ import { BlueButton } from "../components/Button";
 import { ethers } from "ethers";
 import { toast } from "sonner";
 import { useAppKitAccount, useAppKitProvider } from "@reown/appkit/react";
+import { decodeError } from "ethers-decode-error";
 
 import SkyMateNFTContractFile from "../../abis/SkyMateNFT.sol/SkyMateNFT.json";
 
@@ -56,7 +57,8 @@ const LandModal = ({ user, onclose }) => {
         const tokenData = {
           tokenId: tokenId,
         };
-
+        toast.error("Connect Wallet");
+        return;
         let tx = await SkyMateNFT.buyLand(tokenId, { value: _amount });
         let receipt = await tx.wait();
         if (receipt.status === 1) {
