@@ -76,17 +76,17 @@ const BuyLandModal = ({ user, onclose }) => {
             },
           }
         );
-        const response2 = await axios.post(
-          `https://app-56f7bff7-a9d9-47a4-80e9-d5d0311eaedf.cleverapps.io/api/nfts/sold`,
-          tokenData,
-          {
-            headers: {
-              "Content-Type": "application/json", // Set the content type to JSON
-              Authorization: `Bearer ${token}`, // Include the token in the Authorization header
-            },
-          }
-        );
-        if (response.status === 200 && response2.status === 200) {
+        // const response2 = await axios.post(
+        //   `https://app-56f7bff7-a9d9-47a4-80e9-d5d0311eaedf.cleverapps.io/api/nfts/sold`,
+        //   tokenData,
+        //   {
+        //     headers: {
+        //       "Content-Type": "application/json", // Set the content type to JSON
+        //       Authorization: `Bearer ${token}`, // Include the token in the Authorization header
+        //     },
+        //   }
+        // );
+        if (response.status === 200) {
           toast.success(`Land purchased successfully`);
         } else {
           toast.success(`Error purchasing NFT, Contact Admin`);

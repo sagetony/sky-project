@@ -70,7 +70,16 @@ const MintingForm = () => {
   const handleSubmit = async (event) => {
     event.preventDefault();
 
-    if (!coordinates || !location || !description || !zone || !price || !size) {
+    if (
+      !coordinates ||
+      !location ||
+      !description ||
+      !zone ||
+      !price ||
+      !size ||
+      !name ||
+      !zone
+    ) {
       toast.error("All fields are required");
       return;
     }
