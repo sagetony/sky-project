@@ -21,7 +21,10 @@ const GridMapNew6 = ({ onLandClick }) => {
         );
         const data = await response.json();
         const nftStrt = data.nfts.map((item) => {
-          const [x, y] = item.nft.coordinates.split(",").map(Number);
+          const [x, y] = item.nft.coordinates
+            .replace(/[()]/g, "") // Remove parentheses if present
+            .split(/\s*,\s*/) // Split by comma, allowing spaces
+            .map(Number); // Convert to numbers
           return {
             id: item?.id,
             x: x,
