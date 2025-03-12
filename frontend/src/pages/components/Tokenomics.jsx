@@ -17,6 +17,7 @@ const Tokenomics = () => {
     if (currentBatch < totalBatches - 1) {
       setSlideDirection("right");
       setCurrentBatch(currentBatch + 1);
+      console.log(currentBatch);
     }
   };
 
@@ -136,10 +137,10 @@ const Tokenomics = () => {
 
               <button
                 onClick={() => {
-                  if (currentBatch < totalBatches - 1) handleNext(); // Ensures the function only runs when valid
+                  if (currentBatch < totalBatches - 1) handleNext();
                 }}
                 disabled={currentBatch >= totalBatches - 1}
-                className={`rounded-md w-24 p-2 transition font-semibold text-white ${
+                className={`rounded-md w-24 p-2 transition font-semibold text-white z-50 ${
                   currentBatch >= totalBatches - 1
                     ? "bg-[#D9D9D9] opacity-50 cursor-not-allowed"
                     : "bg-[#69CCF4] hover:bg-[#5ABEE3] cursor-pointer"
