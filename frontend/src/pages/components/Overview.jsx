@@ -60,12 +60,12 @@ const Overview = () => {
               </p>
             </div>
           </div>
-          <div className="md:w-2/3 flex justify-center flex-col">
+          {/* <div className="md:w-2/3 flex justify-center flex-col">
             <img src={points} alt="" />
-            {/* <span className="shadow-card border-[5px] border-white rounded-full bg-mapsbtn md:mt-0 mt-8 md:w-[450px] text-center font-[300] mx-auto px-10 py-5 font-inter">
+            <span className="shadow-card border-[5px] border-white rounded-full bg-mapsbtn md:mt-0 mt-8 md:w-[450px] text-center font-[300] mx-auto px-10 py-5 font-inter">
               <Translations text="official_button" />{" "}
-            </span> */}
-          </div>
+            </span>
+          </div> */}
         </div>
         <div className="my-28 flex md:flex-row flex-col gap-20 justify-between">
           <div className="flex flex-col gap-5 items-center">
