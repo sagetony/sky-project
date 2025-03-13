@@ -47,11 +47,11 @@ const Overview = () => {
           <Translations text="project_overview" />
         </h2>
         <div className="flex md:flex-row flex-col-reverse justify-between gap-16">
-          <div className="md:w-1/2">
-            <div className="mb-20">
-              <h3 className="font-itim text-2xl">
-                <Translations text="position" />
-              </h3>
+          <div className="md:w-2/2">
+            <div className="flex flex-col items-center justify-center text-2xl text-center my-20">
+              {/* <h3 className="font-itim text-3xl">
+    <Translations text="position" />
+  </h3> */}
               <p>
                 <Translations text="position_info" />
               </p>
@@ -70,19 +70,12 @@ const Overview = () => {
         <div className="my-28 flex md:flex-row flex-col gap-20 justify-between">
           <div className="flex flex-col gap-5 items-center">
             <img src={ov1} alt="" />
-            <Link to="/about">
-              <img src={overviewT1} alt="" />
-            </Link>
           </div>
           <div className="flex flex-col gap-5 items-center">
             <img src={ov2} alt="" />
-            <Link to="/city-fund">
-              <img src={overviewT2} alt="" />
-            </Link>
           </div>
           <div className="flex flex-col gap-5 items-center">
             <img src={ov3} alt="" />
-            <img src={overviewT3} alt="" />
           </div>
         </div>
         {/* <div className="font-itim bg-card rounded-[100px] border-[5px] border-white p-10 py-20">
