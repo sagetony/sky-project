@@ -2,12 +2,13 @@
 pragma solidity 0.8.20;
 import "@openzeppelin/contracts/access/Ownable.sol";
 import {IERC20} from "@openzeppelin/contracts/token/ERC20/IERC20.sol";
+import "./utils/ReentrancyGuard.sol";
 
 /**
  * @title StakingContract
  * @dev A contract for staking tokens and earning rewards based on staking duration and annual yield rates.
  */
-contract Staking is Ownable {
+contract Staking is Ownable, ReentrancyGuard {
     /*´:°•.°+.*•´.*:˚.°*.˚•´.°:°•.°•.*•´.*:˚.°*.˚•´.°:°•.°+.*•´.*:*/
     /*                          ERRORS                           */
     /*.•°:°.´+˚.*°.˚:*.´•*.+°.•°:´*.´•*.•°.•°:°.´:•˚°.*°.˚:*.´+°.•*/
@@ -136,7 +137,7 @@ contract Staking is Ownable {
      * Rewards can be claimed immediately, and locked tokens can be withdrawn after the staking period.
      * @param stakeIndex Index of the stake in the stakes array.
      */
-    function claimRewards(uint256 stakeIndex) external {
+    function claimRewards(uint256 stakeIndex) external nonReentrant {
         if (stakeIndex >= stakes[msg.sender].length)
             revert Staking_InvalidStakeIndex();
         Stake storage stake = stakes[msg.sender][stakeIndex];

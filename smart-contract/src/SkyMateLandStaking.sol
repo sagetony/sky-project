@@ -4,8 +4,9 @@ pragma solidity 0.8.20;
 import "@openzeppelin/contracts/access/Ownable.sol";
 import {ISkyMateNFT} from "../src/interface/ISkyMateNFT.sol";
 import {SkyMateNFT} from "./SkyMateNFT.sol";
+import "./utils/ReentrancyGuard.sol";
 
-contract SkyMateLandStaking is Ownable {
+contract SkyMateLandStaking is Ownable, ReentrancyGuard {
     /*´:°•.°+.*•´.*:˚.°*.˚•´.°:°•.°•.*•´.*:˚.°*.˚•´.°:°•.°+.*•´.*:*/
     /*                          ERRORS                           */
     /*.•°:°.´+˚.*°.˚:*.´•*.+°.•°:´*.´•*.•°.•°:°.´:•˚°.*°.˚:*.´+°.•*/
@@ -182,7 +183,7 @@ contract SkyMateLandStaking is Ownable {
      * @dev Land owners can claim rewards
      * @param tokenId The tokenId for the land
      */
-    function claimReward(uint256 tokenId) external {
+    function claimReward(uint256 tokenId) external nonReentrant {
         Stake storage stake = stakes[tokenId];
 
         if (stake.owner != msg.sender) revert SkyMateStaking_NotOwner();

@@ -39,7 +39,11 @@ contract HelperConfig is Script {
             });
     }
 
-    function getSepoliaTestnetConfig() public returns (NetworkConfig memory) {
+    function getSepoliaTestnetConfig()
+        public
+        view
+        returns (NetworkConfig memory)
+    {
         // vm.startBroadcast(vm.envUint("PRIVATE_KEY"));
 
         // MockERC20 usdt = new MockERC20();

@@ -27,20 +27,20 @@ contract SkyMateCoin is ERC20, Ownable {
         uint256 lastAllocationTime;
     }
 
-    bytes32 immutable CIRCULATION = keccak256("Circulation");
-    bytes32 immutable PRIVATE_PLACEMENT = keccak256("Private Placement");
-    bytes32 immutable PUBLIC_OFFERING = keccak256("Public Offering");
-    bytes32 immutable MARKETING_EXPENSES = keccak256("Marketing Expenses");
-    bytes32 immutable TEAM = keccak256("Team");
-    bytes32 immutable COMMUNITY = keccak256("Community");
-    bytes32 immutable METACITY_FUND = keccak256("MetaCity Fund");
-    bytes32 immutable STAKING_REWARDS = keccak256("Staking Rewards");
-    bytes32 immutable DONATE = keccak256("Donate");
-    bytes32 immutable CONSULTANT = keccak256("Consultant");
-    bytes32 immutable OFFICIAL_MARKETING = keccak256("Official Marketing");
-    bytes32 immutable COMPANY_RESERVE = keccak256("Company Reserves");
+    bytes32 immutable public CIRCULATION = keccak256("Circulation");
+    bytes32 immutable public PRIVATE_PLACEMENT = keccak256("Private Placement");
+    bytes32 immutable public PUBLIC_OFFERING = keccak256("Public Offering");
+    bytes32 immutable public MARKETING_EXPENSES = keccak256("Marketing Expenses");
+    bytes32 immutable public TEAM = keccak256("Team");
+    bytes32 immutable public COMMUNITY = keccak256("Community");
+    bytes32 immutable public METACITY_FUND = keccak256("MetaCity Fund");
+    bytes32 immutable public STAKING_REWARDS = keccak256("Staking Rewards");
+    bytes32 immutable public DONATE = keccak256("Donate");
+    bytes32 immutable public CONSULTANT = keccak256("Consultant");
+    bytes32 immutable public OFFICIAL_MARKETING = keccak256("Official Marketing");
+    bytes32 immutable public COMPANY_RESERVE = keccak256("Company Reserves");
 
-    uint256 immutable ALLOCATION_TIMING = 180 days;
+    uint256 immutable public ALLOCATION_TIMING = 180 days;
     mapping(string => VestingSchedule) private vestingSchedules;
 
     /*´:°•.°+.*•´.*:˚.°*.˚•´.°:°•.°•.*•´.*:˚.°*.˚•´.°:°•.°+.*•´.*:*/

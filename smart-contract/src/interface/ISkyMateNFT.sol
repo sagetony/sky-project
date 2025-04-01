@@ -68,7 +68,7 @@ interface ISkyMateNFT is IERC721 {
         uint256 newPrice,
         string memory newLocationName,
         string memory newDescription
-    ) external;
+    ) external returns (uint256);
 
     function updateLandSaleStatus(uint256 tokenId, bool status) external;
 

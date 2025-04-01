@@ -172,7 +172,7 @@ contract SkyMateNFT is ERC721URIStorage, Ownable {
         string memory size,
         string memory tokenURI
     ) external onlyAdmin returns (uint256) {
-        if (price <= 0) revert SkyMateNFT_InvalidPrice();
+        if (price == 0) revert SkyMateNFT_InvalidPrice();
 
         uint256 tokenId = _tokenIdCounter;
         // Increment zone counter and generate zone-based name
